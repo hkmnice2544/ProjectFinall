@@ -2,6 +2,7 @@ package org.itsci.informrepair.service;
 
 import org.itsci.informrepair.model.Equipment;
 import org.itsci.informrepair.model.InformRepair;
+import org.itsci.informrepair.model.Inform_pictures;
 import org.itsci.informrepair.repository.EquipmentRepository;
 import org.itsci.informrepair.repository.InformRepairRepository;
 import org.itsci.informrepair.repository.RoomRepository;
@@ -88,6 +89,7 @@ public class InformRepairServiceImpl implements InformRepairService{
 
         return informRepairs;
     }
+
 
 
 
