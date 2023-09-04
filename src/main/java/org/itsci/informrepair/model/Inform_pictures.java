@@ -18,7 +18,7 @@ package org.itsci.informrepair.model;
 public class Inform_pictures {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int informpictures_id;
 
     @Column(name = "picture_url", length = 255)
     private String pictureUrl;
@@ -26,8 +26,6 @@ public class Inform_pictures {
     @ManyToOne
     @JoinColumn(name = "informrepair_id")
     private InformRepair informRepair;
-
-
 
 
 }

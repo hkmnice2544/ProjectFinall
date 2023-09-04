@@ -32,6 +32,12 @@ public class InformRepair {
 	@JoinColumn(name = "equipment_id")
 	private Equipment equipment;
 
+	@ManyToOne
+	@JoinColumns({
+			@JoinColumn(name = "user_id")
+	})
+	private User user;
+
 
 
 

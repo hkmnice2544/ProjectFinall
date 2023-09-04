@@ -3,9 +3,11 @@ package org.itsci.informrepair.service;
 import org.itsci.informrepair.model.Equipment;
 import org.itsci.informrepair.model.InformRepair;
 import org.itsci.informrepair.model.Inform_pictures;
+import org.itsci.informrepair.model.User;
 import org.itsci.informrepair.repository.EquipmentRepository;
 import org.itsci.informrepair.repository.InformRepairRepository;
 import org.itsci.informrepair.repository.RoomRepository;
+import org.itsci.informrepair.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -25,6 +27,8 @@ public class InformRepairServiceImpl implements InformRepairService{
     @Autowired
     private RoomRepository roomRepository;
 
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<InformRepair> getAllInformRepairs() {
@@ -82,8 +86,10 @@ public class InformRepairServiceImpl implements InformRepairService{
             }
 
             Equipment equipment = equipmentRepository.getReferenceById(equipment_id);
+            Integer user_id = Integer.parseInt(map.get("user_id"));
+            User user = userRepository.getReferenceById(user_id); // ใช้อ็อบเจกต์ userRepository ที่ถูกสร้างขึ้นแล้ว
 
-            InformRepair informRepair = new InformRepair(informrepair_id, informdate, informdetails, status, equipment);
+            InformRepair informRepair = new InformRepair(informrepair_id, informdate, informdetails, status, equipment,user);
             informRepairs.add(informRepairRepository.save(informRepair));
         }
 
@@ -103,9 +109,11 @@ public class InformRepairServiceImpl implements InformRepairService{
         Date informdate = new Date();
         String status = map.get("status");
         Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
-        Equipment equipment = equipmentRepository.getReferenceById(equipment_id);
+        Equipment equipment = equipmentRepository.getReferenceById(equipment_id);Integer user_id = Integer.parseInt(map.get("user_id"));
+        User user = userRepository.getReferenceById(user_id); // ใช้อ็อบเจกต์ userRepository ที่ถูกสร้างขึ้นแล้ว
 
-        InformRepair informRepair = new InformRepair( informrepair_id, informdate, informdetails, status,equipment);
+
+        InformRepair informRepair = new InformRepair( informrepair_id, informdate, informdetails, status,equipment,user);
         return informRepairRepository.save(informRepair);
     }
     @Override
