@@ -36,7 +36,14 @@ public class ReportServiceImpl implements ReportrepairService {
 
     @Override
     public Reportrepair saveReportrepair(Map<String, String> map) {
-        Integer report_id = generateReportRepairId(reportrepairRepository.count()+1);
+        Integer report_id = generateReportRepairId(reportrepairRepository.count()+1);// หาค่า report_id ล่าสุด
+
+        if (report_id <= 0) {
+            // กรณีค่า report_id เป็น 0 หรือน้อยกว่า 0 ให้ทำการจัดการใหม่ที่นี่
+            // ยกเลิกการบันทึกหรือทำการแจ้งเตือนเพื่อแก้ไขปัญหา
+            return null;
+        }
+
         String repairer = map.get("repairer");
         String details = map.get("details");
         Date reportdate = new Date();
@@ -44,9 +51,18 @@ public class ReportServiceImpl implements ReportrepairService {
 
         Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
         InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
-        Reportrepair reportrepair = new Reportrepair(report_id,repairer,reportdate,enddate,details,informRepair);
+
+        if (informRepair == null) {
+            // กรณีไม่พบ InformRepair ที่ต้องการ
+            // ทำการจัดการใหม่ที่นี่
+            // ยกเลิกการบันทึกหรือทำการแจ้งเตือนเพื่อแก้ไขปัญหา
+            return null;
+        }
+
+        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, enddate, details, informRepair);
         return reportrepairRepository.save(reportrepair);
     }
+
 
     @Override
     public Reportrepair updateReportrepair(Map<String, String> map) {
@@ -67,8 +83,8 @@ public class ReportServiceImpl implements ReportrepairService {
         reportrepairRepository.delete(reportrepair);
 
     }
-    public Integer generateReportRepairId(long rewId){
-        Integer result = Integer.parseInt(Long.toString(rewId));
+    public Integer generateReportRepairId(long report_id){
+        Integer result = Integer.parseInt(Long.toString(report_id));
         result =  10000 + result;
         return result;
     }

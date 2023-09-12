@@ -18,35 +18,35 @@ import java.util.Map;
 @RestController
 @RequestMapping("/reportrepairs")
 public class ReportRepairController {
-//
-//    @Autowired
-//    private ReportrepairService reportrepairService;
-//    @RequestMapping("/test")
-//    public String test() {
-//        return "hi";
-//    }
-//    @PostMapping("/add")
-//    public ResponseEntity addReportRepair(@RequestBody Map<String,String> map){
-//        try {
-//            Reportrepair reportrepair = reportrepairService.saveReportrepair(map);
-//            return new ResponseEntity<>(reportrepair, HttpStatus.OK);
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//
-//    @PostMapping("/list")
-//    public ResponseEntity listReportRepair(){
-//        try{
-//
-//            List<Reportrepair> reportrepairs = reportrepairService.getAllReportrepairs();
-//            return  new ResponseEntity(reportrepairs,HttpStatus.OK);
-//        }catch (Exception e){
-//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//
+
+    @Autowired
+    private ReportrepairService reportrepairService;
+    @RequestMapping("/test")
+    public String test() {
+        return "hi";
+    }
+    @PostMapping("/add")
+    public ResponseEntity addReportRepair(@RequestBody Map<String,String> map){
+        try {
+            Reportrepair reportrepair = reportrepairService.saveReportrepair(map);
+            return new ResponseEntity<>(reportrepair, HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/list")
+    public ResponseEntity listReportRepair(){
+        try{
+
+            List<Reportrepair> reportrepairs = reportrepairService.getAllReportrepairs();
+            return  new ResponseEntity(reportrepairs,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }
