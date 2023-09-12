@@ -22,7 +22,7 @@ public class Reportrepair {
 	private Date reportdate;
 	private Date enddate;
 	private String details;
-	private String status;
+
 
 	@ManyToOne
 	@JoinColumns({
@@ -32,6 +32,6 @@ public class Reportrepair {
 
 
 
-	public Reportrepair(Integer reportId, String repairer, Date reportdate, Date enddate, String details, String status, InformRepair informRepair) {
+	public Reportrepair(Integer reportId, String repairer, Date reportdate, Date enddate, String details, InformRepair informRepair) {
 	}
 }

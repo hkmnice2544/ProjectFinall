@@ -25,11 +25,6 @@ public class User {
     private String password;
     private String mobile;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "roomequipment",
-            joinColumns= { @JoinColumn(name = "equipment_id")},
-            inverseJoinColumns= { @JoinColumn(name = "room_id")})
-//    private List<Room> room;
-    private Set<Room> rooms = new HashSet<Room>();
+
 
 }

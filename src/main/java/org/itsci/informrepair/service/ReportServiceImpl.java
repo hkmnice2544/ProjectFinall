@@ -41,10 +41,10 @@ public class ReportServiceImpl implements ReportrepairService {
         String details = map.get("details");
         Date reportdate = new Date();
         Date enddate = new Date();
-        String status = map.get("status");
+
         Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
         InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
-        Reportrepair reportrepair = new Reportrepair(report_id,repairer,reportdate,enddate,details,status,informRepair);
+        Reportrepair reportrepair = new Reportrepair(report_id,repairer,reportdate,enddate,details,informRepair);
         return reportrepairRepository.save(reportrepair);
     }
 
@@ -55,10 +55,9 @@ public class ReportServiceImpl implements ReportrepairService {
         String details = map.get("details");
         Date reportdate = new Date();
         Date enddate = new Date();
-        String status = map.get("status");
         Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
         InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
-        Reportrepair reportrepair = new Reportrepair(report_id,repairer,reportdate,enddate,details,status,informRepair);
+        Reportrepair reportrepair = new Reportrepair(report_id,repairer,reportdate,enddate,details,informRepair);
         return reportrepairRepository.save(reportrepair);
     }
 
