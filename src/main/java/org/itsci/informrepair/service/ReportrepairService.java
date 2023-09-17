@@ -14,4 +14,6 @@ public interface ReportrepairService {
 
     //    Path downloadPostImg (String filePath) ;
     void deleteReportrepair(Integer report_id);
+
+
 }

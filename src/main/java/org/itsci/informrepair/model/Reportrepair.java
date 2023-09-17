@@ -32,6 +32,4 @@ public class Reportrepair {
 
 
 
-	public Reportrepair(Integer reportId, String repairer, Date reportdate, Date enddate, String details, InformRepair informRepair) {
-	}
 }
