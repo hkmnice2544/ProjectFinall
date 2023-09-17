@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/reportrepairs")
+@RequestMapping(value = "/reportrepairs", produces = "application/json; charset=UTF-8")
 public class ReportRepairController {
 
     @Autowired
