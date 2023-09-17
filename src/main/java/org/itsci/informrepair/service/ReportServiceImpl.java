@@ -46,8 +46,18 @@ public class ReportServiceImpl implements ReportrepairService {
         Date reportdate = new Date();
         Date enddate = new Date();
         Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+
+        // สร้าง Reportrepair ใหม่
         InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
-        Reportrepair reportrepair = new Reportrepair(report_id,repairer,reportdate,enddate,details,informRepair);
+        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, enddate, details, informRepair);
+
+        // อัปเดตค่า status ใน InformRepair
+        informRepair.setStatus(map.get("status"));
+
+        // บันทึกการเปลี่ยนแปลงในฐานข้อมูล
+        informRepairRepository.save(informRepair);
+
+        // บันทึก Reportrepair ใหม่
         return reportrepairRepository.save(reportrepair);
     }
 
