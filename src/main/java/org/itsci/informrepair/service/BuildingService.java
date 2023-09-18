@@ -9,4 +9,6 @@ public interface BuildingService {
     Building getBuildingById(Integer building_id);
 
     List<Building> getAllBuilding();
+
+
 }

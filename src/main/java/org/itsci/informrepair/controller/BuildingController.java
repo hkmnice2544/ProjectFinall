@@ -2,10 +2,7 @@ package org.itsci.informrepair.controller;
 
 
 import org.itsci.informrepair.model.Building;
-import org.itsci.informrepair.model.InformRepair;
-import org.itsci.informrepair.repository.BuildingRepositort;
 import org.itsci.informrepair.service.BuildingService;
-import org.itsci.informrepair.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +46,8 @@ public class BuildingController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
 
 
