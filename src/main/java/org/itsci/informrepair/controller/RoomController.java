@@ -35,6 +35,27 @@ public class RoomController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PostMapping("/listAllDistinctRoomfloor")
+    public ResponseEntity<List<String>> getAllDistinctRoomfloor() {
+        try {
+            List<String> distinctRoomfloor = roomService.getAllDistinctRoomfloor();
+            return new ResponseEntity<>(distinctRoomfloor, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/listAllDistinctRoomposition")
+    public ResponseEntity<List<String>> getAllDistinctRoomposition() {
+        try {
+            List<String> distinctRoomposition = roomService.getAllDistinctRoomposition();
+            return new ResponseEntity<>(distinctRoomposition, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 }

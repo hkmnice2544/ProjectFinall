@@ -15,4 +15,14 @@ public class RoomServicelmpl implements RoomService{
     public List<String> getAllDistinctRoomNames() {
         return roomRepository.findAllDistinctRoomNames();
     }
+
+    @Override
+    public List<String> getAllDistinctRoomfloor() {
+        return roomRepository.findAllDistinctoomfloor();
+    }
+
+    @Override
+    public List<String> getAllDistinctRoomposition() {
+        return roomRepository.findAllDistinctoomposition();
+    }
 }
