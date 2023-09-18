@@ -1,5 +1,7 @@
 package org.itsci.informrepair.controller;
 
+import org.itsci.informrepair.model.Building;
+import org.itsci.informrepair.model.Room;
 import org.itsci.informrepair.service.BuildingService;
 import org.itsci.informrepair.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/rooms")
+@RequestMapping(value = "/rooms", produces = "application/json; charset=UTF-8")
 public class RoomController {
 
     @Autowired
@@ -33,4 +35,6 @@ public class RoomController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 }
