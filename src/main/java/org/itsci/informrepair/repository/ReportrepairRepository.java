@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface ReportrepairRepository extends JpaRepository <Reportrepair,Integer> {
 
+
 }
