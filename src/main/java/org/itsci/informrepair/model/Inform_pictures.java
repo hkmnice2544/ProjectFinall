@@ -1,17 +1,9 @@
 package org.itsci.informrepair.model;
-        import jakarta.persistence.*;
-        import lombok.AllArgsConstructor;
-        import lombok.Data;
-        import lombok.NoArgsConstructor;
 
-        import java.io.Serializable;
-        import java.util.Date;
-        import java.util.HashSet;
-        import java.util.Set;
-
-@Data //Set,Get
-@AllArgsConstructor //Constructor
-@NoArgsConstructor //NoConstructor
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "inform_pictures")
@@ -23,5 +15,8 @@ public class Inform_pictures {
     @Column(name = "picture_url", length = 255)
     private String pictureUrl;
 
-
+    @ManyToOne
+    @JoinColumn(name = "informrepair_id") // คอลัมน์ใน "inform_pictures" ที่เชื่อมกับ "roomequipment"
+    private InformRepair informRepair;
+    // constructors, getters, setters, etc.
 }

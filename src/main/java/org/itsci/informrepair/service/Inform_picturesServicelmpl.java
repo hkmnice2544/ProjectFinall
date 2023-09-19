@@ -1,24 +1,17 @@
 package org.itsci.informrepair.service;
 
-import org.itsci.informrepair.model.InformRepair;
-import org.itsci.informrepair.model.Inform_pictures;
 import org.itsci.informrepair.repository.InformRepairRepository;
-import org.itsci.informrepair.repository.Inform_picturesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 @Service
 public class Inform_picturesServicelmpl implements Inform_picturesService{
-
-    @Autowired
-    private Inform_picturesRepository inform_picturesRepository;
-
-    @Autowired
-    private InformRepairRepository informRepairRepository;
+//
+//    @Autowired
+//    private Inform_picturesRepository inform_picturesRepository;
+//
+//    @Autowired
+//    private InformRepairRepository informRepairRepository;
 //
 //    @Override
 //    public List<Inform_pictures> saveInform_pictures(List<String> picture_url, int informrepair_id) {

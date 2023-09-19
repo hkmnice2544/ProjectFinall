@@ -1,9 +1,5 @@
 package org.itsci.informrepair.service;
 
-import org.itsci.informrepair.model.Equipment;
-import org.itsci.informrepair.model.InformRepair;
-import org.itsci.informrepair.model.Inform_pictures;
-import org.itsci.informrepair.model.User;
 import org.itsci.informrepair.repository.EquipmentRepository;
 import org.itsci.informrepair.repository.InformRepairRepository;
 import org.itsci.informrepair.repository.RoomRepository;
@@ -12,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.stereotype.Service;
-
-import java.util.*;
 
 @Service
 public class InformRepairServiceImpl implements InformRepairService{

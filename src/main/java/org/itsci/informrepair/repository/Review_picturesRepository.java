@@ -1,6 +1,5 @@
 package org.itsci.informrepair.repository;
 
-import org.itsci.informrepair.model.Inform_pictures;
 import org.itsci.informrepair.model.Review_pictures;
 import org.springframework.data.jpa.repository.JpaRepository;
 

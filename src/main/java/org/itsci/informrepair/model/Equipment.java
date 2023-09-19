@@ -36,5 +36,4 @@ public class Equipment {
     private Set<Room> rooms = new HashSet<Room>();
 
 
-
 }
