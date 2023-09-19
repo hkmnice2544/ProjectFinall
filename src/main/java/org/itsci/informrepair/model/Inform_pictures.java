@@ -23,9 +23,5 @@ public class Inform_pictures {
     @Column(name = "picture_url", length = 255)
     private String pictureUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "informrepair_id")
-    private InformRepair informRepair;
-
 
 }

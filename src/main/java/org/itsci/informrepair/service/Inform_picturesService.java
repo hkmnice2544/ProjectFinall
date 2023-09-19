@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface Inform_picturesService {
-    List<Inform_pictures> saveInform_pictures(List<String> pictureUrls, int informRepairId);
+//    List<Inform_pictures> saveInform_pictures(List<String> pictureUrls, int informRepairId);
 
 
 }

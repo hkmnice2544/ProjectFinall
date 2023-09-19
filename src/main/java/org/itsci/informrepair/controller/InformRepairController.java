@@ -24,56 +24,56 @@ public class InformRepairController {
         return "hi";
     }
 
-    @PostMapping("/add")
-    public ResponseEntity addInformRepair(@RequestBody List<Map<String, String>> mapList) {
-        try {
-            List<InformRepair> informRepairs = informRepairService.saveInformRepair(mapList);
-            return new ResponseEntity<>(informRepairs, HttpStatus.OK);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
-
-    @PostMapping("/update")
-    public ResponseEntity updateInformRepair(@RequestBody Map<String,String>map){
-        try {
-            InformRepair informRepair = informRepairService.updateInformRepair(map);
-            return new ResponseEntity<>(informRepair, HttpStatus.OK);
-
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping("/deleteInformRepair/{informrepair_id}")
-    public ResponseEntity<String> deleteInformRepairById(@PathVariable Integer informrepair_id) {
-        try {
-            InformRepair informRepair = informRepairService.deleteInformRepair(informrepair_id);
-            return new ResponseEntity<>("Deleted successfully: " + informRepair, HttpStatus.OK);
-        } catch (EntityNotFoundException ex) {
-            return new ResponseEntity<>("Failed to delete: " + ex.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>("Failed to delete"+informrepair_id, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping("/getInformRepair/{informrepair_id}")
-    public ResponseEntity<?> getInformRepairById(@PathVariable Integer informrepair_id) {
-        try {
-            InformRepair informrepair = informRepairService.getInformRepairById(informrepair_id);
-            return ResponseEntity.ok(informrepair);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.notFound().build();
-        }
-    }
-
+//    @PostMapping("/add")
+//    public ResponseEntity addInformRepair(@RequestBody List<Map<String, String>> mapList) {
+//        try {
+//            List<InformRepair> informRepairs = informRepairService.saveInformRepair(mapList);
+//            return new ResponseEntity<>(informRepairs, HttpStatus.OK);
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+//
+//
+//
+//    @PostMapping("/update")
+//    public ResponseEntity updateInformRepair(@RequestBody Map<String,String>map){
+//        try {
+//            InformRepair informRepair = informRepairService.updateInformRepair(map);
+//            return new ResponseEntity<>(informRepair, HttpStatus.OK);
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+//
+//    @PostMapping("/deleteInformRepair/{informrepair_id}")
+//    public ResponseEntity<String> deleteInformRepairById(@PathVariable Integer informrepair_id) {
+//        try {
+//            InformRepair informRepair = informRepairService.deleteInformRepair(informrepair_id);
+//            return new ResponseEntity<>("Deleted successfully: " + informRepair, HttpStatus.OK);
+//        } catch (EntityNotFoundException ex) {
+//            return new ResponseEntity<>("Failed to delete: " + ex.getMessage(), HttpStatus.NOT_FOUND);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new ResponseEntity<>("Failed to delete"+informrepair_id, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+//
+//    @PostMapping("/getInformRepair/{informrepair_id}")
+//    public ResponseEntity<?> getInformRepairById(@PathVariable Integer informrepair_id) {
+//        try {
+//            InformRepair informrepair = informRepairService.getInformRepairById(informrepair_id);
+//            return ResponseEntity.ok(informrepair);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+//
 
 //
 //    @PostMapping("/getInformRepair/{informrepair_id}")
@@ -101,16 +101,16 @@ public class InformRepairController {
 //        }
 //    }
 
-    @PostMapping("/list")
-    public ResponseEntity<List<InformRepair>> listInformRepair() {
-        try {
-            List<InformRepair> informRepairs = informRepairService.getAllInformRepairs();
-            return new ResponseEntity<>(informRepairs, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping("/list")
+//    public ResponseEntity<List<InformRepair>> listInformRepair() {
+//        try {
+//            List<InformRepair> informRepairs = informRepairService.getAllInformRepairs();
+//            return new ResponseEntity<>(informRepairs, HttpStatus.OK);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
 
 
@@ -124,17 +124,17 @@ public class InformRepairController {
 //            return new ResponseEntity<>("Failed to get: InformRepair with ID "+informrepair_id+" not found", HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
 //    }
-
-    @PostMapping("/getEquipmentFromInformRepair/{informrepair_id}")
-    public ResponseEntity<?> getEquipmentFromInformRepair(@PathVariable Integer informrepair_id) {
-        Equipment equipment = (Equipment) informRepairService.getEquipmentFromInformRepair(informrepair_id);
-        if (equipment != null) {
-            return ResponseEntity.ok(equipment);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
+//
+//    @PostMapping("/getEquipmentFromInformRepair/{informrepair_id}")
+//    public ResponseEntity<?> getEquipmentFromInformRepair(@PathVariable Integer informrepair_id) {
+//        Equipment equipment = (Equipment) informRepairService.getEquipmentFromInformRepair(informrepair_id);
+//        if (equipment != null) {
+//            return ResponseEntity.ok(equipment);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+//
 
 
 

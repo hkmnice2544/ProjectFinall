@@ -29,10 +29,6 @@ public class InformRepair {
 	private String status;
 
 	@ManyToOne
-	@JoinColumn(name = "equipment_id")
-	private Equipment equipment;
-
-	@ManyToOne
 	@JoinColumns({
 			@JoinColumn(name = "user_id")
 	})
