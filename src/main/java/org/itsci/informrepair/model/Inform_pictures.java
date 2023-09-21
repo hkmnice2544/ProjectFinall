@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data //Set,Get
+@AllArgsConstructor //Constructor
+@NoArgsConstructor //NoConstructor
 @Entity
 @Table(name = "inform_pictures")
 public class Inform_pictures {
@@ -18,5 +21,6 @@ public class Inform_pictures {
     @ManyToOne
     @JoinColumn(name = "informrepair_id") // คอลัมน์ใน "inform_pictures" ที่เชื่อมกับ "roomequipment"
     private InformRepair informRepair;
-    // constructors, getters, setters, etc.
+
+
 }
