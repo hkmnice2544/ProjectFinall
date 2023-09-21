@@ -3,6 +3,7 @@ package org.itsci.informrepair.controller;
 import jakarta.persistence.EntityNotFoundException;
 import org.itsci.informrepair.model.Equipment;
 import org.itsci.informrepair.model.InformRepair;
+import org.itsci.informrepair.model.Review;
 import org.itsci.informrepair.service.InformRepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,14 +25,16 @@ public class InformRepairController {
         return "hi";
     }
 
+
     @PostMapping("/addInformRepair")
-    public ResponseEntity<?> addInformRepair(@RequestBody Map<String, String> map) {
+    public ResponseEntity addInformRepair(@RequestBody Map<String,String> map){
         try {
             InformRepair informRepair = informRepairService.saveInformRepair(map);
             return new ResponseEntity<>(informRepair, HttpStatus.OK);
-        } catch (Exception e) {
+
+        }catch (Exception e){
             e.printStackTrace();
-            return new ResponseEntity<>("Error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

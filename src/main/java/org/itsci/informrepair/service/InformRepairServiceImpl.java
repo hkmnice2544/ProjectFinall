@@ -1,6 +1,8 @@
 package org.itsci.informrepair.service;
 
 import org.itsci.informrepair.model.InformRepair;
+import org.itsci.informrepair.model.Reportrepair;
+import org.itsci.informrepair.model.Review;
 import org.itsci.informrepair.model.User;
 import org.itsci.informrepair.repository.EquipmentRepository;
 import org.itsci.informrepair.repository.InformRepairRepository;
@@ -79,7 +81,7 @@ public class InformRepairServiceImpl implements InformRepairService{
 //    }
 
 
-        @Override
+    @Override
     public InformRepair saveInformRepair(Map<String, String> map) {
         Integer informrepair_id = generateInformRepairId(informRepairRepository.count()+1);
         String informdetails = map.get("informdetails");
@@ -92,6 +94,7 @@ public class InformRepairServiceImpl implements InformRepairService{
         InformRepair informRepair = new InformRepair( informrepair_id, informdate, informdetails, status,user);
         return informRepairRepository.save(informRepair);
     }
+
 
 
     @Override
