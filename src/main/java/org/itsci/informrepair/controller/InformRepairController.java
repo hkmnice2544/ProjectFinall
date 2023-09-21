@@ -24,18 +24,31 @@ public class InformRepairController {
         return "hi";
     }
 
-//    @PostMapping("/add")
-//    public ResponseEntity addInformRepair(@RequestBody List<Map<String, String>> mapList) {
-//        try {
-//            List<InformRepair> informRepairs = informRepairService.saveInformRepair(mapList);
-//            return new ResponseEntity<>(informRepairs, HttpStatus.OK);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//
+    @PostMapping("/addInformRepair")
+    public ResponseEntity<?> addInformRepair(@RequestBody Map<String, String> map) {
+        try {
+            InformRepair informRepair = informRepairService.saveInformRepair(map);
+            return new ResponseEntity<>(informRepair, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/addRoomEquipmentInform")
+    public ResponseEntity<?> addRoomEquipmentInform(@RequestBody Map<String, String> map) {
+        try {
+            InformRepair informRepair = informRepairService.saveRoomEquipment(map);
+            return new ResponseEntity<>(informRepair, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Failed to save room equipment data: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+
+//saveRoomEquipment
 //
 //
 //    @PostMapping("/update")

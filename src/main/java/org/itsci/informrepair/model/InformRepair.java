@@ -49,6 +49,9 @@ public class InformRepair {
 	private Set<Equipment> equipment = new HashSet<Equipment>();
 
 
-	// เมธอด getEquipment
+	public InformRepair(Integer informrepairId, Date informdate, String informdetails, String status) {
+	}
 
+	public InformRepair(Integer informrepairId, Date informdate, String informdetails, String status, User user) {
+	}
 }

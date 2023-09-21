@@ -1,8 +1,7 @@
 package org.itsci.informrepair.service;
 
-import jakarta.persistence.Query;
-import org.itsci.informrepair.model.Equipment;
 import org.itsci.informrepair.model.InformRepair;
+import org.itsci.informrepair.model.User;
 import org.itsci.informrepair.repository.EquipmentRepository;
 import org.itsci.informrepair.repository.InformRepairRepository;
 import org.itsci.informrepair.repository.RoomRepository;
@@ -10,13 +9,14 @@ import org.itsci.informrepair.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 @Service
 public class InformRepairServiceImpl implements InformRepairService{
@@ -35,6 +35,10 @@ public class InformRepairServiceImpl implements InformRepairService{
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate; // สร้าง JdbcTemplate สำหรับทำงานกับฐานข้อมูล
+
 
 
 
@@ -75,19 +79,37 @@ public class InformRepairServiceImpl implements InformRepairService{
 //    }
 
 
-    //    @Override
-//    public InformRepair saveInformRepair(Map<String, String> map) {
-//        Integer informrepair_id = generateInformRepairId(informRepairRepository.count() + 1);
-//        String informdetails = map.get("informdetails");
-//        Date informdate = new Date();
-//        String status = map.get("status");
-//        Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
-//        Equipment equipment = equipmentRepository.getReferenceById(equipment_id);
-//
-//
-//        InformRepair informRepair = new InformRepair(informrepair_id, informdate, informdetails, status,equipment);
-//        return informRepairRepository.save(informRepair);
-//    }
+        @Override
+    public InformRepair saveInformRepair(Map<String, String> map) {
+        Integer informrepair_id = generateInformRepairId(informRepairRepository.count()+1);
+        String informdetails = map.get("informdetails");
+        Date informdate = new Date();
+        String status = map.get("status");
+        Integer user_id = Integer.parseInt(map.get("user_id"));
+        User user = userRepository.getReferenceById(user_id); // ใช้อ็อบเจกต์ userRepository ที่ถูกสร้างขึ้นแล้ว
+
+
+        InformRepair informRepair = new InformRepair( informrepair_id, informdate, informdetails, status,user);
+        return informRepairRepository.save(informRepair);
+    }
+
+
+    @Override
+    public InformRepair saveRoomEquipment(Map<String, String> map) {
+        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+        Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
+        Integer room_id = Integer.parseInt(map.get("room_id"));
+
+        // ทำการบันทึกข้อมูลลงในตาราง roomequipment
+        String sql = "INSERT INTO roomequipment (informrepair_id, equipment_id, room_id) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, informrepair_id, equipment_id, room_id);
+
+        // หลังจากบันทึกเรียบร้อยแล้ว คุณสามารถสร้าง InformRepair หรือดึงข้อมูลที่เกี่ยวข้อง
+        // เพื่อคืนค่า InformRepair หรือค่าที่ต้องการกลับไปใน Controller
+        InformRepair informRepair = new InformRepair(); // สร้างหรือดึงข้อมูลที่ต้องการคืนค่า
+        return informRepair;
+    }
+
 //    @Override
 //    public List<InformRepair> saveInformRepair(List<Map<String, String>> informRepairDataList) {
 //        List<InformRepair> informRepairs = new ArrayList<>();
@@ -154,12 +176,12 @@ public class InformRepairServiceImpl implements InformRepairService{
 //        }
 //        return null;
 //    }
-//
-//    public Integer generateInformRepairId(long rewId){
-//        Integer result = Integer.parseInt(Long.toString(rewId));
-//        result =  10000 + result;
-//        return result;
-//    }
+
+    public Integer generateInformRepairId(long rewId){
+        int result = (int) rewId;
+        result = 10000 + result;
+        return result;
+    }
 
 
 

@@ -11,6 +11,13 @@ public interface InformRepairService { //เหมือนManager
 
     InformRepair getInformRepairById(Integer informrepair_id);
 
+    InformRepair saveInformRepair(Map<String, String> map);
+
+
+
+    InformRepair saveRoomEquipment(Map<String, String> map);
+
+
 //    InformRepair getInformEquip(Map<String, String> map);
 
 //    InformRepair saveInformRepair(Map<String, String> map);
