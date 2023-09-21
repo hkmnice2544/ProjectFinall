@@ -27,11 +27,9 @@ public class InformRepair {
 	private Date informdate;
 	private String informdetails;
 	private String status;
-
-	@ManyToOne
-	@JoinColumns({
-			@JoinColumn(name = "user_id")
-	})
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToMany(fetch = FetchType.EAGER) // กำหนด FetchType เป็น EAGER เพื่อโหลดข้อมูลแบบอัตโนมัติ
@@ -48,7 +46,12 @@ public class InformRepair {
 			uniqueConstraints = {@UniqueConstraint(columnNames = {"informrepair_id", "equipment_id"})})
 	private Set<Equipment> equipment = new HashSet<Equipment>();
 
-
-	public InformRepair(Integer informrepairId, Date informdate, String informdetails, String status, User user) {
+	public InformRepair(Integer informrepair_id, Date informdate, String informdetails, String status, User user) {
+		this.informrepair_id = informrepair_id;
+		this.informdate = informdate;
+		this.informdetails = informdetails;
+		this.status = status;
+		this.user = user;
 	}
+
 }
