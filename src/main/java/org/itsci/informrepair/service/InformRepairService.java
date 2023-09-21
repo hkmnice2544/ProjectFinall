@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface InformRepairService { //เหมือนManager
-//    List<InformRepair> getAllInformRepairs();
-//
-//    InformRepair getInformRepairById(Integer informrepair_id);
+    List<InformRepair> getAllInformRepairs();
+
+    InformRepair getInformRepairById(Integer informrepair_id);
 
 //    InformRepair getInformEquip(Map<String, String> map);
 

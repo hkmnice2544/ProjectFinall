@@ -48,16 +48,16 @@ public class EquipmentController {
 //        }
 //    }
 
-    @PostMapping("/equipment/{equipment_id}/rooms")
-    public ResponseEntity<Set<Room>> getRoomDoesNotHaveEquipment(@PathVariable Integer equipment_id) {
-        Set<Room> rooms = equipmentService.getRoomDoesNotHaveEquipment(equipment_id);
-
-        if (rooms.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // No rooms found
-        }
-
-        return new ResponseEntity<>(rooms, HttpStatus.OK);
-    }
+//    @PostMapping("/equipment/{equipment_id}/rooms")
+//    public ResponseEntity<Set<Room>> getRoomDoesNotHaveEquipment(@PathVariable Integer equipment_id) {
+//        Set<Room> rooms = equipmentService.getRoomDoesNotHaveEquipment(equipment_id);
+//
+//        if (rooms.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND); // No rooms found
+//        }
+//
+//        return new ResponseEntity<>(rooms, HttpStatus.OK);
+//    }
 
     @PostMapping("/getequipment/{equipment_id}")
     public ResponseEntity<String> getEquipmentById(@PathVariable Integer equipment_id) {

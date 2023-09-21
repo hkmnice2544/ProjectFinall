@@ -34,8 +34,21 @@ public class InformRepair {
 	})
 	private User user;
 
+	@ManyToMany(fetch = FetchType.EAGER) // กำหนด FetchType เป็น EAGER เพื่อโหลดข้อมูลแบบอัตโนมัติ
+	@JoinTable(name = "roomequipment",
+			joinColumns = {@JoinColumn(name = "informrepair_id")},
+			inverseJoinColumns = {@JoinColumn(name = "equipment_id")},
+			uniqueConstraints = {@UniqueConstraint(columnNames = {"informrepair_id", "room_id"})})
+	private Set<Room> rooms = new HashSet<Room>();
+
+	@ManyToMany(fetch = FetchType.EAGER) // กำหนด FetchType เป็น EAGER เพื่อโหลดข้อมูลแบบอัตโนมัติ
+	@JoinTable(name = "roomequipment",
+			joinColumns = {@JoinColumn(name = "informrepair_id")},
+			inverseJoinColumns = {@JoinColumn(name = "room_id")},
+			uniqueConstraints = {@UniqueConstraint(columnNames = {"informrepair_id", "equipment_id"})})
+	private Set<Equipment> equipment = new HashSet<Equipment>();
 
 
-
+	// เมธอด getEquipment
 
 }

@@ -55,13 +55,13 @@ public class EquipmentServicelmpl implements EquipmentService{
 //        return equipment.getRooms();
 //    }
 
-    public Set<Room> getRoomDoesNotHaveEquipment(Integer equipment_id) {
-        Equipment equipment = equipmentRepository.getReferenceById(equipment_id);
-        if (equipment == null) {
-            return new HashSet<>(); // Equipment not found, return empty set
-        }
-        return equipment.getRooms();
-    }
+//    public Set<Room> getRoomDoesNotHaveEquipment(Integer equipment_id) {
+//        Equipment equipment = equipmentRepository.getReferenceById(equipment_id);
+//        if (equipment == null) {
+//            return new HashSet<>(); // Equipment not found, return empty set
+//        }
+//        return equipment.getRooms();
+//    }
 
 
 

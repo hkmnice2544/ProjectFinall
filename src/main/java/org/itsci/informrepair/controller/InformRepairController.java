@@ -62,18 +62,18 @@ public class InformRepairController {
 //            return new ResponseEntity<>("Failed to delete"+informrepair_id, HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
 //    }
-//
-//    @PostMapping("/getInformRepair/{informrepair_id}")
-//    public ResponseEntity<?> getInformRepairById(@PathVariable Integer informrepair_id) {
-//        try {
-//            InformRepair informrepair = informRepairService.getInformRepairById(informrepair_id);
-//            return ResponseEntity.ok(informrepair);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-//
+
+    @PostMapping("/getInformRepair/{informrepair_id}")
+    public ResponseEntity<?> getInformRepairById(@PathVariable Integer informrepair_id) {
+        try {
+            InformRepair informrepair = informRepairService.getInformRepairById(informrepair_id);
+            return ResponseEntity.ok(informrepair);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 //
 //    @PostMapping("/getInformRepair/{informrepair_id}")
@@ -101,16 +101,18 @@ public class InformRepairController {
 //        }
 //    }
 
-//    @PostMapping("/list")
-//    public ResponseEntity<List<InformRepair>> listInformRepair() {
-//        try {
-//            List<InformRepair> informRepairs = informRepairService.getAllInformRepairs();
-//            return new ResponseEntity<>(informRepairs, HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @PostMapping("/list")
+    public ResponseEntity<List<InformRepair>> listInformRepair() {
+        try {
+            List<InformRepair> informRepairs = informRepairService.getAllInformRepairs();
+            return new ResponseEntity<>(informRepairs, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 
 

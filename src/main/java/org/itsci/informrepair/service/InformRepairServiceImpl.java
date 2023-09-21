@@ -1,5 +1,8 @@
 package org.itsci.informrepair.service;
 
+import jakarta.persistence.Query;
+import org.itsci.informrepair.model.Equipment;
+import org.itsci.informrepair.model.InformRepair;
 import org.itsci.informrepair.repository.EquipmentRepository;
 import org.itsci.informrepair.repository.InformRepairRepository;
 import org.itsci.informrepair.repository.RoomRepository;
@@ -9,8 +12,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class InformRepairServiceImpl implements InformRepairService{
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     private InformRepairRepository informRepairRepository;
@@ -26,16 +38,29 @@ public class InformRepairServiceImpl implements InformRepairService{
 
 
 
+    @Override
+    public List<InformRepair> getAllInformRepairs() {
+        return informRepairRepository.findAll(); //เรียกข้อมูลทั้งหมด
+    }
 //    @Override
 //    public List<InformRepair> getAllInformRepairs() {
-//        return informRepairRepository.findAll(); //เรียกข้อมูลทั้งหมด
-//    }
+//        List<InformRepair> informRepairs = informRepairRepository.findAll(); // เรียกข้อมูลทั้งหมด
 //
+//        // ดึงข้อมูล Equipment ที่มีข้อมูลแอตทริบิวต์ "status" มาด้วย
+//        informRepairs.forEach(informRepair -> {
+//            Set<Equipment> equipments = informRepair.getEquipment();
+//            for (Equipment equipment : equipments) {
+//            }
+//        });
 //
-//    @Override
-//    public InformRepair getInformRepairById(Integer informrepair_id) {
-//        return informRepairRepository.getReferenceById(informrepair_id);
+//        return informRepairs;
 //    }
+
+
+    @Override
+    public InformRepair getInformRepairById(Integer informrepair_id) {
+        return informRepairRepository.getReferenceById(informrepair_id);
+    }
 //
 //    @Override
 //    public InformRepair getInformEquip(Map<String, String> map) {
