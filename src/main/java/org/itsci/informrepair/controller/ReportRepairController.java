@@ -34,18 +34,18 @@ public class ReportRepairController {
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//
-//    @PostMapping("/list")
-//    public ResponseEntity listReportRepair(){
-//        try{
-//
-//            List<Reportrepair> reportrepairs = reportrepairService.getAllReportrepairs();
-//            return  new ResponseEntity(reportrepairs,HttpStatus.OK);
-//        }catch (Exception e){
-//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//
+
+    @PostMapping("/list")
+    public ResponseEntity listReportRepair(){
+        try{
+
+            List<Reportrepair> reportrepairs = reportrepairService.getAllReportrepairs();
+            return  new ResponseEntity(reportrepairs,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 //
 //
 //    @PostMapping("/get/{report_id}")

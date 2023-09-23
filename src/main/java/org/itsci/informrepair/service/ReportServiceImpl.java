@@ -35,10 +35,10 @@ public class ReportServiceImpl implements ReportrepairService {
 
 //    @Autowired
 //    private ReviewRepository reviewRepository;
-//    @Override
-//    public List<Reportrepair> getAllReportrepairs() {
-//        return reportrepairRepository.findAll();
-//    }
+    @Override
+    public List<Reportrepair> getAllReportrepairs() {
+        return reportrepairRepository.findAll();
+    }
 
 //
 //    @Override
