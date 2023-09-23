@@ -31,5 +31,8 @@ public class Reportrepair {
 	private InformRepairDetails informRepairDetails;
 
 
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "review_id")
+	private Review review;
 
 }

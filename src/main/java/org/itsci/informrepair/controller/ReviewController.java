@@ -17,46 +17,46 @@ import java.util.Map;
 @RestController
 @RequestMapping("/reviews")
 public class ReviewController {
-    @Autowired
-    private ReviewService reviewService;
-
-    @RequestMapping("/test")
-    public String test() {
-        return "hi";
-    }
-
-    @PostMapping("/add")
-    public ResponseEntity addReview(@RequestBody Map<String,String> map){
-        try {
-            Review review = reviewService.saveReview(map);
-            return new ResponseEntity<>(review, HttpStatus.OK);
-
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PostMapping(value = "/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Review>> listReview() {
-        try {
-            List<Review> reviews = reviewService.getAllReviews();
-            return new ResponseEntity<>(reviews, HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
-    @PostMapping("/get/{review_id}")
-    public ResponseEntity<?> getReportrepairById(@PathVariable Integer review_id) {
-        try {
-            Review reviews = reviewService.getReviewById(review_id);
-            return ResponseEntity.ok(reviews);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @Autowired
+//    private ReviewService reviewService;
+//
+//    @RequestMapping("/test")
+//    public String test() {
+//        return "hi";
+//    }
+//
+//    @PostMapping("/add")
+//    public ResponseEntity addReview(@RequestBody Map<String,String> map){
+//        try {
+//            Review review = reviewService.saveReview(map);
+//            return new ResponseEntity<>(review, HttpStatus.OK);
+//
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+//
+//    @PostMapping(value = "/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//    public ResponseEntity<List<Review>> listReview() {
+//        try {
+//            List<Review> reviews = reviewService.getAllReviews();
+//            return new ResponseEntity<>(reviews, HttpStatus.OK);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+//
+//
+//    @PostMapping("/get/{review_id}")
+//    public ResponseEntity<?> getReportrepairById(@PathVariable Integer review_id) {
+//        try {
+//            Review reviews = reviewService.getReviewById(review_id);
+//            return ResponseEntity.ok(reviews);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 }
