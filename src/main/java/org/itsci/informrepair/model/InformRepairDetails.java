@@ -15,7 +15,6 @@ import java.util.Date;
 @Table(name = "informRepairdetails")
 public class InformRepairDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int informdetails_id;
 
     private int amount;
@@ -32,5 +31,7 @@ public class InformRepairDetails {
             @JoinColumn(name = "room_id", referencedColumnName = "room_id")
     })
     private RoomEquipment roomEquipment;
+
+
 
 }

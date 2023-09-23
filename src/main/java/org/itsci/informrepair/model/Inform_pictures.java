@@ -23,4 +23,6 @@ public class Inform_pictures {
     private InformRepairDetails informRepairDetails;
 
 
+
+
 }
