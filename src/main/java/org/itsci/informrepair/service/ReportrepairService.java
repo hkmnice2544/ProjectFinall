@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface ReportrepairService {
     List<Reportrepair> getAllReportrepairs();
-//    Reportrepair getReportrepairById(Integer report_id);
+    Reportrepair getReportrepairById(Integer report_id);
     Reportrepair saveReportrepair(Map<String, String> map);
 //    Reportrepair updateReportrepair(Map<String, String> map);
 ////    String uploadInformRepairImg (MultipartFile file) throws IOException;

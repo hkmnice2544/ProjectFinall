@@ -27,12 +27,12 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewRepository.findAll();
     }
 
-//    @Override
-//    public Review getReviewById(Integer review_id) {
-//
-//        return reviewRepository.getReferenceById(review_id);
-//    }
-//
+    @Override
+    public Review getReviewById(Integer review_id) {
+
+        return reviewRepository.getReferenceById(review_id);
+    }
+
     @Override
     public Review saveReview(Map<String, String> map) {
         Integer review_id = generateReviewId(reviewRepository.count()+1);

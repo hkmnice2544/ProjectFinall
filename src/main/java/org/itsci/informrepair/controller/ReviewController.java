@@ -47,16 +47,16 @@ public class ReviewController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//
-//
-//    @PostMapping("/get/{review_id}")
-//    public ResponseEntity<?> getReportrepairById(@PathVariable Integer review_id) {
-//        try {
-//            Review reviews = reviewService.getReviewById(review_id);
-//            return ResponseEntity.ok(reviews);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+
+
+    @PostMapping("/get/{review_id}")
+    public ResponseEntity<?> getReportrepairById(@PathVariable Integer review_id) {
+        try {
+            Review reviews = reviewService.getReviewById(review_id);
+            return ResponseEntity.ok(reviews);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

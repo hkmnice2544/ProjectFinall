@@ -32,7 +32,7 @@ public class ReportServiceImpl implements ReportrepairService {
 
     @Autowired
     private ReviewRepository reviewRepository;
-
+//
 //    @Autowired
 //    private ReviewRepository reviewRepository;
     @Override
@@ -40,11 +40,11 @@ public class ReportServiceImpl implements ReportrepairService {
         return reportrepairRepository.findAll();
     }
 
-//
-//    @Override
-//    public Reportrepair getReportrepairById(Integer report_id) {
-//        return reportrepairRepository.getReferenceById(report_id);
-//    }
+
+    @Override
+    public Reportrepair getReportrepairById(Integer report_id) {
+        return reportrepairRepository.getReferenceById(report_id);
+    }
 
     @Override
     public Reportrepair saveReportrepair(Map<String, String> map) {

@@ -46,18 +46,18 @@ public class ReportRepairController {
         }
     }
 
-//
-//
-//    @PostMapping("/get/{report_id}")
-//    public ResponseEntity<?> getReportrepairById(@PathVariable Integer report_id) {
-//        try {
-//            Reportrepair reportrepairs = reportrepairService.getReportrepairById(report_id);
-//            return ResponseEntity.ok(reportrepairs);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+
+
+    @PostMapping("/get/{report_id}")
+    public ResponseEntity<?> getReportrepairById(@PathVariable Integer report_id) {
+        try {
+            Reportrepair reportrepairs = reportrepairService.getReportrepairById(report_id);
+            return ResponseEntity.ok(reportrepairs);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
+    }
 //
 //    @PostMapping("/update")
 //    public ResponseEntity updateReportrepair(@RequestBody Map<String,String>map){
