@@ -26,9 +26,9 @@ public class Reportrepair {
 
 	@ManyToOne
 	@JoinColumns({
-			@JoinColumn(name = "informrepair_id", referencedColumnName = "informrepair_id")
+			@JoinColumn(name = "informdetails_id", referencedColumnName = "informdetails_id")
 	})
-	private InformRepair informRepair;
+	private InformRepairDetails informRepairDetails;
 
 
 

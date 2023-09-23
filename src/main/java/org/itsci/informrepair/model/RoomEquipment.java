@@ -13,17 +13,18 @@ import lombok.NoArgsConstructor;
 @Table(name = "roomequipment")
 public class RoomEquipment {
 
-    @EmbeddedId
-    private RoomEquipmentId id;
+    @Id
+    private int equipment_id;
+    @Id
+    private int room_id;
+
+    private String status;
 
     @ManyToOne
-    @MapsId("room_id") // ระบุว่าใช้คอลัมน์ room_id เป็นส่วนหนึ่งของคีย์หลักร่วม
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id", insertable = false, updatable = false)
     private Room room;
 
     @ManyToOne
-    @MapsId("equipment_id") // ระบุว่าใช้คอลัมน์ equipment_id เป็นส่วนหนึ่งของคีย์หลักร่วม
-    @JoinColumn(name = "equipment_id")
+    @JoinColumn(name = "equipment_id", insertable = false, updatable = false)
     private Equipment equipment;
-
 }

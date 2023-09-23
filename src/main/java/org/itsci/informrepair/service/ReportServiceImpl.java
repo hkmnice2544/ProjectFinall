@@ -19,83 +19,83 @@ import java.util.Map;
 @Service
 public class ReportServiceImpl implements ReportrepairService {
 
-    @Autowired
-    private ReportrepairRepository reportrepairRepository;
+//    @Autowired
+//    private ReportrepairRepository reportrepairRepository;
+//
+//    @Autowired
+//    private InformRepairRepository informRepairRepository;
+//
+//    @Autowired
+//    private ReviewRepository reviewRepository;
+//    @Override
+//    public List<Reportrepair> getAllReportrepairs() {
+//        return reportrepairRepository.findAll();
+//    }
 
-    @Autowired
-    private InformRepairRepository informRepairRepository;
-
-    @Autowired
-    private ReviewRepository reviewRepository;
-    @Override
-    public List<Reportrepair> getAllReportrepairs() {
-        return reportrepairRepository.findAll();
-    }
-
-
-    @Override
-    public Reportrepair getReportrepairById(Integer report_id) {
-        return reportrepairRepository.getReferenceById(report_id);
-    }
-
-    @Override
-    public Reportrepair saveReportrepair(Map<String, String> map) {
-        Integer report_id = generateReportRepairId(reportrepairRepository.count()+1);
-        String repairer = map.get("repairer");
-        String details = map.get("details");
-        Date reportdate = new Date();
-        Date enddate = new Date();
-        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
-
-        // สร้าง Reportrepair ใหม่
-        InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
-        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, enddate, details, informRepair);
-
-        // อัปเดตค่า status ใน InformRepair
-        informRepair.setStatus(map.get("status"));
-
-        // บันทึกการเปลี่ยนแปลงในฐานข้อมูล
-        informRepairRepository.save(informRepair);
-
-        // บันทึก Reportrepair ใหม่
-        return reportrepairRepository.save(reportrepair);
-    }
-
-
-    @Override
-    public Reportrepair updateReportrepair(Map<String, String> map) {
-        Integer report_id = Integer.parseInt(map.get("report_id"));
-        String repairer = map.get("repairer");
-        String details = map.get("details");
-        Date reportdate = new Date();
-        Date enddate = new Date();
-        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
-        InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
-
-        // สร้าง Reportrepair ใหม่
-        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, enddate, details, informRepair);
-
-        // อัปเดตค่า informRepair!.status
-        informRepair.setStatus(map.get("status"));
-
-        // บันทึกการเปลี่ยนแปลงในฐานข้อมูล
-        informRepairRepository.save(informRepair);
-
-        // คืนค่า Reportrepair
-        return reportrepair;
-    }
-
-    @Override
-    public void deleteReportrepair(Integer report_id) {
-        Reportrepair reportrepair = reportrepairRepository.getReferenceById(report_id);
-        reportrepairRepository.delete(reportrepair);
-
-    }
-
-
-    public Integer generateReportRepairId(long report_id){
-        Integer result = Integer.parseInt(Long.toString(report_id));
-        result =  10000 + result;
-        return result;
-    }
+//
+//    @Override
+//    public Reportrepair getReportrepairById(Integer report_id) {
+//        return reportrepairRepository.getReferenceById(report_id);
+//    }
+//
+//    @Override
+//    public Reportrepair saveReportrepair(Map<String, String> map) {
+//        Integer report_id = generateReportRepairId(reportrepairRepository.count()+1);
+//        String repairer = map.get("repairer");
+//        String details = map.get("details");
+//        Date reportdate = new Date();
+//        Date enddate = new Date();
+//        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+//
+//        // สร้าง Reportrepair ใหม่
+//        InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
+//        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, enddate, details, informRepair);
+//
+//        // อัปเดตค่า status ใน InformRepair
+//        informRepair.setStatus(map.get("status"));
+//
+//        // บันทึกการเปลี่ยนแปลงในฐานข้อมูล
+//        informRepairRepository.save(informRepair);
+//
+//        // บันทึก Reportrepair ใหม่
+//        return reportrepairRepository.save(reportrepair);
+//    }
+//
+//
+//    @Override
+//    public Reportrepair updateReportrepair(Map<String, String> map) {
+//        Integer report_id = Integer.parseInt(map.get("report_id"));
+//        String repairer = map.get("repairer");
+//        String details = map.get("details");
+//        Date reportdate = new Date();
+//        Date enddate = new Date();
+//        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+//        InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
+//
+//        // สร้าง Reportrepair ใหม่
+//        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, enddate, details, informRepair);
+//
+//        // อัปเดตค่า informRepair!.status
+//        informRepair.setStatus(map.get("status"));
+//
+//        // บันทึกการเปลี่ยนแปลงในฐานข้อมูล
+//        informRepairRepository.save(informRepair);
+//
+//        // คืนค่า Reportrepair
+//        return reportrepair;
+//    }
+//
+//    @Override
+//    public void deleteReportrepair(Integer report_id) {
+//        Reportrepair reportrepair = reportrepairRepository.getReferenceById(report_id);
+//        reportrepairRepository.delete(reportrepair);
+//
+//    }
+//
+//
+//    public Integer generateReportRepairId(long report_id){
+//        Integer result = Integer.parseInt(Long.toString(report_id));
+//        result =  10000 + result;
+//        return result;
+//    }
 }
