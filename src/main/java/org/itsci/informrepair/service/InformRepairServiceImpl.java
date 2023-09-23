@@ -84,13 +84,13 @@ public class InformRepairServiceImpl implements InformRepairService{
     @Override
     public InformRepair saveInformRepair(Map<String, String> map) {
         Integer informrepair_id = generateInformRepairId(informRepairRepository.count() + 1);
-        String informdetails = map.get("informdetails");
+        String informtype = map.get("informtype");
         Date informdate = new Date();
         String status = map.get("status");
         Integer user_id = Integer.parseInt(map.get("user_id"));
         User user = userRepository.getReferenceById(user_id);
 
-        InformRepair informRepair = new InformRepair(informrepair_id,informdate,informdetails,status,user);
+        InformRepair informRepair = new InformRepair(informrepair_id,informdate,informtype,status,user);
         return informRepairRepository.save(informRepair);
     }
 
