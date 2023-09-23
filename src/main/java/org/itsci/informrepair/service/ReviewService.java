@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface ReviewService {
-//    List<Review> getAllReviews();
+    List<Review> getAllReviews();
 //    Review getReviewById(Integer review_id);
-//    Review saveReview(Map<String, String> map);
+    Review saveReview(Map<String, String> map);
 //    Review updateReview(Map<String, String> map);
 ////    String uploadInformRepairImg (MultipartFile file) throws IOException;
 //

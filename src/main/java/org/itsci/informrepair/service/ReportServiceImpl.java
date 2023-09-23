@@ -56,15 +56,8 @@ public class ReportServiceImpl implements ReportrepairService {
         Integer informdetails_id = Integer.parseInt(map.get("informdetails_id"));
         InformRepairDetails informRepairDetails = informRepiarDetailsRepository.getReferenceById(informdetails_id);
 
-        // เช็คค่า "review_id" ใน map
-        Review review = null;
-        String reviewIdString = map.get("review_id");
-        if (reviewIdString != null && !reviewIdString.equals("null")) {
-            Integer reviewId = Integer.parseInt(reviewIdString);
-            review = reviewRepository.getReferenceById(reviewId);
-        }
         // เริ่มต้นการสร้าง Reportrepair
-        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, enddate, details, informRepairDetails, review);
+        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, enddate, details, informRepairDetails);
 
         // บันทึก Reportrepair ใหม่
         Reportrepair savedReportrepair = reportrepairRepository.save(reportrepair);

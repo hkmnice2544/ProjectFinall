@@ -24,4 +24,8 @@ public class Review {
 	private String repairscore; 
 	private String comment;
 
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "report_id")
+	private Reportrepair reportrepair;
+
 }

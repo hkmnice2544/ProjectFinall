@@ -1,6 +1,7 @@
 package org.itsci.informrepair.service;
 
 import org.itsci.informrepair.model.InformRepair;
+import org.itsci.informrepair.model.InformRepairDetails;
 import org.itsci.informrepair.model.Reportrepair;
 import org.itsci.informrepair.model.Review;
 import org.itsci.informrepair.repository.InformRepairRepository;
@@ -15,35 +16,37 @@ import java.util.Map;
 
 @Service
 public class ReviewServiceImpl implements ReviewService {
-//    @Autowired
-//    private ReviewRepository reviewRepository;
-//
-//    @Autowired
-//    private ReportrepairRepository reportrepairRepository;
-//
-//    @Override
-//    public List<Review> getAllReviews() {
-//        return reviewRepository.findAll();
-//    }
-//
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    @Autowired
+    private ReportrepairRepository reportrepairRepository;
+
+    @Override
+    public List<Review> getAllReviews() {
+        return reviewRepository.findAll();
+    }
+
 //    @Override
 //    public Review getReviewById(Integer review_id) {
 //
 //        return reviewRepository.getReferenceById(review_id);
 //    }
 //
-//    @Override
-//    public Review saveReview(Map<String, String> map) {
-//        Integer review_id = generateReviewId(reviewRepository.count()+1);
-//        String reviewer = map.get("reviewer");
-//        String repairscore = map.get("repairscore");
-//        String comment = map.get("comment");
-//        Date reviewdate = new Date();
-//        Integer report_id = Integer.parseInt(map.get("report_id"));
-//        Reportrepair reportrepair = reportrepairRepository.getReferenceById(report_id);
-//        Review review = new Review(review_id,reviewer,reviewdate,repairscore,comment,reportrepair);
-//        return reviewRepository.save(review);
-//    }
+    @Override
+    public Review saveReview(Map<String, String> map) {
+        Integer review_id = generateReviewId(reviewRepository.count()+1);
+        String reviewer = map.get("reviewer");
+        String repairscore = map.get("repairscore");
+        String comment = map.get("comment");
+        Date reviewdate = new Date();
+        Integer report_id = Integer.parseInt(map.get("report_id"));
+        Reportrepair reportrepair = reportrepairRepository.getReferenceById(report_id);
+
+
+        Review review = new Review(review_id,reviewer,reviewdate,repairscore,comment,reportrepair);
+        return reviewRepository.save(review);
+    }
 //
 //    @Override
 //    public Review updateReview(Map<String, String> map) {
@@ -65,9 +68,9 @@ public class ReviewServiceImpl implements ReviewService {
 //
 //    }
 //
-//    public Integer generateReviewId(long rewId){
-//        Integer result = Integer.parseInt(Long.toString(rewId));
-//        result =  10000 + result;
-//        return result;
-//    }
+    public Integer generateReviewId(long rewId){
+        Integer result = Integer.parseInt(Long.toString(rewId));
+        result =  10000 + result;
+        return result;
+    }
 }

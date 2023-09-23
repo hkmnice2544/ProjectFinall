@@ -17,25 +17,25 @@ import java.util.Map;
 @RestController
 @RequestMapping("/reviews")
 public class ReviewController {
-//    @Autowired
-//    private ReviewService reviewService;
-//
+    @Autowired
+    private ReviewService reviewService;
+
 //    @RequestMapping("/test")
 //    public String test() {
 //        return "hi";
 //    }
 //
-//    @PostMapping("/add")
-//    public ResponseEntity addReview(@RequestBody Map<String,String> map){
-//        try {
-//            Review review = reviewService.saveReview(map);
-//            return new ResponseEntity<>(review, HttpStatus.OK);
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @PostMapping("/add")
+    public ResponseEntity addReview(@RequestBody Map<String,String> map){
+        try {
+            Review review = reviewService.saveReview(map);
+            return new ResponseEntity<>(review, HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 //
 //    @PostMapping(value = "/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 //    public ResponseEntity<List<Review>> listReview() {
