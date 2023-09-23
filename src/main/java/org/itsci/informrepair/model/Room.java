@@ -24,9 +24,8 @@ public class Room {
     private String floor;
     private String position;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "building_id")
     private Building building;
-
 
 }
