@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "reportrepair")
 public class Reportrepair {
-	
+
 	@Id
 	private int report_id;
 	
@@ -34,5 +34,16 @@ public class Reportrepair {
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "review_id")
 	private Review review;
+
+
+	public Reportrepair(Integer reportId, String repairer, Date reportdate, Date enddate, String details, InformRepairDetails informRepairDetails, Review review) {
+		this.report_id = reportId;
+		this.repairer = repairer;
+		this.reportdate = reportdate;
+		this.enddate = enddate;
+		this.details = details;
+		this.informRepairDetails = informRepairDetails;
+		this.review = review;
+	}
 
 }
