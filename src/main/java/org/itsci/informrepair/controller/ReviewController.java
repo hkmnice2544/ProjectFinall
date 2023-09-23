@@ -36,17 +36,17 @@ public class ReviewController {
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//
-//    @PostMapping(value = "/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-//    public ResponseEntity<List<Review>> listReview() {
-//        try {
-//            List<Review> reviews = reviewService.getAllReviews();
-//            return new ResponseEntity<>(reviews, HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+
+    @PostMapping(value = "/list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<List<Review>> listReview() {
+        try {
+            List<Review> reviews = reviewService.getAllReviews();
+            return new ResponseEntity<>(reviews, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 //
 //
 //    @PostMapping("/get/{review_id}")

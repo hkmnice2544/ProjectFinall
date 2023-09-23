@@ -67,7 +67,7 @@ public class InformRepairServiceImpl implements InformRepairService{
     public InformRepair getInformRepairById(Integer informrepair_id) {
         return informRepairRepository.getReferenceById(informrepair_id);
     }
-//
+
 //    @Override
 //    public InformRepair getInformEquip(Map<String, String> map) {
 //        return null;

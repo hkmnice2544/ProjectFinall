@@ -67,4 +67,9 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
         result = 1000 + result;
         return result;
     }
+
+    @Override
+    public InformRepairDetails getInformRepairDetailsById(Integer informdetails_id) {
+        return informRepiarDetailsRepository.getReferenceById(informdetails_id);
+    }
 }
