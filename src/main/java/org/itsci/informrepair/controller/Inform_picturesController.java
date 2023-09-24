@@ -31,6 +31,18 @@ public class Inform_picturesController {
         return new ResponseEntity<>(savedInformPicture, HttpStatus.CREATED);
     }
 
+    @PostMapping("/addInformPictures")
+    public ResponseEntity saveInformPictures(@RequestBody List<Inform_pictures> informPicturesList) {
+        try {
+            List<Inform_pictures> savedInformPictures = inform_picturesService.saveInformPictures(informPicturesList);
+            return new ResponseEntity<>(savedInformPictures, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
@@ -40,6 +52,27 @@ public class Inform_picturesController {
             FileUploadUtil.saveFile(uploadDir, fileName, file);
 
             return new ResponseEntity<>("ไฟล์ถูกอัพโหลดและบันทึกเรียบร้อย", HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("เกิดข้อผิดพลาดในการอัพโหลดและบันทึกไฟล์", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/uploadMultiple")
+    public ResponseEntity<String> uploadMultipleFiles(@RequestParam("files") List<MultipartFile> files) {
+        try {
+            String uploadDir = "C:\\Users\\HKMGF\\IdeaProjects\\ProjectFinall\\src\\main\\java\\org\\itsci\\informrepair\\pictrues";
+
+            for (MultipartFile file : files) {
+                String fileName = file.getOriginalFilename();
+
+                // บันทึกไฟล์ลงในเครื่องเซิร์ฟเวอร์
+                FileUploadUtil.saveFile(uploadDir, fileName, file);
+
+                // ทำอะไรต่อกับข้อมูล (เช่น บันทึกข้อมูลไฟล์ลงในฐานข้อมูล) สามารถทำที่นี่
+            }
+
+            return new ResponseEntity<>("รูปภาพถูกอัพโหลดและข้อมูลถูกบันทึกเรียบร้อย", HttpStatus.OK);
         } catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>("เกิดข้อผิดพลาดในการอัพโหลดและบันทึกไฟล์", HttpStatus.INTERNAL_SERVER_ERROR);

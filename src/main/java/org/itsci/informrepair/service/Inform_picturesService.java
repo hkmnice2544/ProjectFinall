@@ -8,7 +8,10 @@ import java.util.List;
 
 public interface Inform_picturesService {
 
+
     Inform_pictures saveInformPicture(Inform_pictures informPictures) ;
+
+    List<Inform_pictures> saveInformPictures(List<Inform_pictures> informPicturesList);
 //    List<Inform_pictures> saveInform_pictures(List<String> pictureUrls, int informRepairId);
 //
 
