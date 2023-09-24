@@ -14,5 +14,5 @@ public interface InformRepairDetailsService {
 
     List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList);
 
-//    List<InformRepairDetails> updateInformRepairDetails(List<Map<String, String>> dataList);
+    InformRepairDetails updateInformRepairDetails(Map<String, String> map);
 }
