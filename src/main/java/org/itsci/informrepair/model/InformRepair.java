@@ -28,7 +28,7 @@ public class InformRepair {
 	private String informtype;
 	private String status;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 

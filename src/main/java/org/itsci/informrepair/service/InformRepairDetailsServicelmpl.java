@@ -1,5 +1,7 @@
 package org.itsci.informrepair.service;
 
+
+import jakarta.transaction.Transactional;
 import org.itsci.informrepair.model.*;
 import org.itsci.informrepair.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,10 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
 
 //    @PersistenceContext
 //    private EntityManager entityManager;
+    public InformRepairDetails findInformRepairDetailsById(Integer informdetails_id) {
+        return informRepiarDetailsRepository.findById(informdetails_id).orElse(null);
+    }
+
 
     public List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList) {
         List<InformRepairDetails> savedDetailsList = new ArrayList<>();
@@ -123,6 +129,7 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
     }
 
 
+
     public Integer generateInformRepairDetailsId(long rewId) {
         int result = (int) rewId;
         result = 1000 + result;
@@ -138,13 +145,12 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
     public InformRepairDetails getInformRepairDetailsById(Integer informdetails_id) {
         return informRepiarDetailsRepository.getReferenceById(informdetails_id);
     }
-//    @Override
-//    @Transactional
-//    public void deleteInformRepairDetailsById(Integer informdetails_id) {
-//        // ลบข้อมูลในตาราง inform_pictures ที่มี informdetails_id เท่ากับ informdetails_id ที่ต้องการลบ
-//        inform_picturesRepository.deleteByInformRepairDetailsInformdetails_id(informdetails_id);
-//
-//        // ลบข้อมูลในตาราง inform_repairdetails
-//        informRepiarDetailsRepository.deleteById(informdetails_id);
-//    }
+
+
+    @Override
+    public InformRepairDetails deleteInformRepairDetailsById(Integer informdetails_id) {
+        InformRepairDetails informRepairDetails = informRepiarDetailsRepository.getReferenceById(informdetails_id);
+        informRepiarDetailsRepository.delete(informRepairDetails);
+        return informRepairDetails;
+    }
 }

@@ -6,5 +6,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface Inform_picturesRepository extends JpaRepository<Inform_pictures,Integer> {
-//    void deleteByInformRepairDetailsInformdetails_id(Integer informdetailsId);
 }

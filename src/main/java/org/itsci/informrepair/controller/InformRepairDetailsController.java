@@ -1,5 +1,6 @@
 package org.itsci.informrepair.controller;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.itsci.informrepair.model.InformRepair;
 import org.itsci.informrepair.model.InformRepairDetails;
 import org.itsci.informrepair.service.InformRepairDetailsService;
@@ -21,6 +22,17 @@ public class InformRepairDetailsController {
     public String test() {
         return "hi";
     }
+
+    @PostMapping("find/{informdetails_id}")
+    public ResponseEntity<?> findInformRepairDetailsById(@PathVariable Integer informdetails_id) {
+        InformRepairDetails informRepairDetails = informRepairDetailsService.getInformRepairDetailsById(informdetails_id);
+        if (informRepairDetails != null) {
+            return ResponseEntity.ok(informRepairDetails);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @PostMapping("/list")
     public ResponseEntity<List<InformRepairDetails>> listInformRepairDetails() {
@@ -68,15 +80,18 @@ public class InformRepairDetailsController {
     }
 
     // เพิ่มเมธอดลบข้อมูล
-//    @DeleteMapping("/{informdetails_id}")
-//    public ResponseEntity<String> deleteInformRepairDetails(@PathVariable Integer informdetails_id) {
-//        try {
-//            informRepairDetailsService.deleteInformRepairDetailsById(informdetails_id);
-//            return ResponseEntity.ok("Deleted informRepairDetails with ID: " + informdetails_id);
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete informRepairDetails");
-//        }
-//    }
-
-
+    @PostMapping("deleteInformRepairDetails/{informdetails_id}")
+    public ResponseEntity<String> deleteInformRepairById(@PathVariable Integer informdetails_id) {
+        try {
+            InformRepairDetails informRepairDetails = informRepairDetailsService.deleteInformRepairDetailsById(informdetails_id);
+            return new ResponseEntity<>("Deleted successfully: " + informRepairDetails, HttpStatus.OK);
+        } catch (EntityNotFoundException ex) {
+            return new ResponseEntity<>("Failed to delete: " + ex.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Failed to delete"+informdetails_id, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
+
+

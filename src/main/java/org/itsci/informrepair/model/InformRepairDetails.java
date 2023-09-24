@@ -20,7 +20,7 @@ public class InformRepairDetails {
     private int amount;
     private String details;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "informrepair_id")
     private InformRepair informRepair;
 
