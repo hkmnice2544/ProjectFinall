@@ -57,6 +57,22 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
 
         informRepairDetails.setRoomEquipment(roomEquipment);
 
+        InformRepairDetails savedInformRepairDetails = informRepiarDetailsRepository.save(informRepairDetails);
+
+        // อัพเดต "status" ในตาราง RoomEquipment
+        String status = map.get("status");
+
+        if (roomEquipment != null) {
+            roomEquipment.setStatus(status);
+            roomEquipmentRepository.save(roomEquipment);
+        } else {
+            // สร้าง RoomEquipment และตั้งค่า "status" หากไม่มีอยู่
+            roomEquipment = new RoomEquipment();
+            roomEquipment.setRoomEquipmentId(roomEquipmentId);
+            roomEquipment.setStatus(status);
+            roomEquipmentRepository.save(roomEquipment);
+        }
+
         return informRepiarDetailsRepository.save(informRepairDetails);
     }
 
