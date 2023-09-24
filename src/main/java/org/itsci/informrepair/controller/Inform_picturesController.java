@@ -24,6 +24,11 @@ public class Inform_picturesController {
     public String test() {
         return "hi";
     }
+
+    @PostMapping("get/{informpicturesId}")
+    public Inform_pictures getInformPictures(@PathVariable Integer informpicturesId) {
+        return inform_picturesService.getInformPicturesById(informpicturesId);
+    }
     @PostMapping("/add")
     public ResponseEntity<Inform_pictures> addInformPicture(@RequestBody Inform_pictures informPictures) {
         // รับข้อมูลรูปภาพและเรียกใช้ Service เพื่อบันทึกข้อมูล
@@ -83,6 +88,16 @@ public class Inform_picturesController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PostMapping("/delete")
+    public ResponseEntity<List<Inform_pictures>> deleteInformPictures(@RequestBody List<Inform_pictures> informPicturesList) {
+        try {
+            List<Inform_pictures> deletedInformPictures = inform_picturesService.deleteInformPictures(informPicturesList);
+            return new ResponseEntity<>(deletedInformPictures, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 
@@ -125,6 +140,8 @@ public class Inform_picturesController {
             return new ResponseEntity<>("เกิดข้อผิดพลาดในการอัพโหลดและบันทึกไฟล์", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
 
 //

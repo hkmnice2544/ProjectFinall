@@ -16,6 +16,10 @@ public interface Inform_picturesService {
     Inform_pictures updateInformPicture(Integer informpicturesId, Inform_pictures updatedInformPicture);
 
     List<Inform_pictures> updateInformPictures(List<Inform_pictures> informPicturesList);
+
+    List<Inform_pictures> deleteInformPictures(List<Inform_pictures> informPicturesList);
+
+    Inform_pictures getInformPicturesById(Integer informpicturesId);
 //    List<Inform_pictures> saveInform_pictures(List<String> pictureUrls, int informRepairId);
 //
 

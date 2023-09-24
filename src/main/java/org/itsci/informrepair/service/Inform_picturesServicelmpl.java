@@ -20,6 +20,11 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
     @Autowired
     private InformRepairRepository informRepairRepository;
 
+    public Inform_pictures getInformPicturesById(Integer informpicturesId) {
+        // ดึงข้อมูลจาก inform_picturesRepository ตรง ๆ โดยใช้ ID
+        return inform_picturesRepository.findById(informpicturesId).orElse(null);
+    }
+
 
     public Inform_pictures saveInformPicture(Inform_pictures informPictures) {
         long nextId = inform_picturesRepository.count() + 1;
@@ -80,6 +85,22 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
         return updatedInformPictures;
     }
 
+    public List<Inform_pictures> deleteInformPictures(List<Inform_pictures> informPicturesList) {
+        List<Inform_pictures> deletedInformPictures = new ArrayList<>();
+
+        for (Inform_pictures informPictures : informPicturesList) {
+            // ตรวจสอบว่ารูปภาพที่ต้องการลบมีอยู่ในฐานข้อมูลหรือไม่
+            Inform_pictures existingInformPicture = inform_picturesRepository.findById(informPictures.getInformpictures_id()).orElse(null);
+
+            if (existingInformPicture != null) {
+                // ลบรูปภาพ
+                inform_picturesRepository.delete(existingInformPicture);
+                deletedInformPictures.add(existingInformPicture);
+            }
+        }
+
+        return deletedInformPictures;
+    }
 
 
 
