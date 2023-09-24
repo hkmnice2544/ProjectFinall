@@ -1,13 +1,7 @@
 package org.itsci.informrepair.service;
 
-import org.itsci.informrepair.model.InformRepair;
-import org.itsci.informrepair.model.InformRepairDetails;
-import org.itsci.informrepair.model.Reportrepair;
-import org.itsci.informrepair.model.Review;
-import org.itsci.informrepair.repository.InformRepairRepository;
-import org.itsci.informrepair.repository.InformRepiarDetailsRepository;
-import org.itsci.informrepair.repository.ReportrepairRepository;
-import org.itsci.informrepair.repository.ReviewRepository;
+import org.itsci.informrepair.model.*;
+import org.itsci.informrepair.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -32,9 +26,14 @@ public class ReportServiceImpl implements ReportrepairService {
 
     @Autowired
     private ReviewRepository reviewRepository;
+
+    @Autowired
+    private RoomEquipmentRepository roomEquipmentRepository;
 //
 //    @Autowired
 //    private ReviewRepository reviewRepository;
+
+
     @Override
     public List<Reportrepair> getAllReportrepairs() {
         return reportrepairRepository.findAll();
@@ -64,10 +63,28 @@ public class ReportServiceImpl implements ReportrepairService {
 
         // อัปเดตค่า status ใน InformRepair
         InformRepair informRepair = informRepairDetails.getInformRepair();
-        informRepair.setStatus(map.get("status"));
+        informRepair.setStatus(map.get("statusinformRepair"));
 
         // บันทึกการเปลี่ยนแปลงใน InformRepair ในฐานข้อมูล
         informRepairRepository.save(informRepair);
+
+        String status = map.get("statusroomEquipmentId");
+        RoomEquipment roomEquipment = informRepairDetails.getRoomEquipment();
+
+        if (roomEquipment != null) {
+            roomEquipment.setStatus(status);
+            roomEquipmentRepository.save(roomEquipment);
+        } else {
+            // สร้าง RoomEquipment และตั้งค่า "status" หากไม่มีอยู่
+            Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
+            Integer room_id = Integer.parseInt(map.get("room_id"));
+            RoomEquipmentId roomEquipmentId = new RoomEquipmentId(equipment_id, room_id);
+
+            roomEquipment = new RoomEquipment();
+            roomEquipment.setRoomEquipmentId(roomEquipmentId);
+            roomEquipment.setStatus(status);
+            roomEquipmentRepository.save(roomEquipment);
+        }
 
         return savedReportrepair;
     }
