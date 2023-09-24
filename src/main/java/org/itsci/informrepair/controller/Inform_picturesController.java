@@ -31,17 +31,21 @@ public class Inform_picturesController {
         return new ResponseEntity<>(savedInformPicture, HttpStatus.CREATED);
     }
 
-    @PostMapping("/addInformPictures")
-    public ResponseEntity saveInformPictures(@RequestBody List<Inform_pictures> informPicturesList) {
+    @PostMapping("/update/{informpictures_id}")
+    public ResponseEntity<Inform_pictures> updateInformPicture(@PathVariable Integer informpictures_id, @RequestBody Inform_pictures updatedInformPicture) {
         try {
-            List<Inform_pictures> savedInformPictures = inform_picturesService.saveInformPictures(informPicturesList);
-            return new ResponseEntity<>(savedInformPictures, HttpStatus.OK);
+            Inform_pictures updatedPicture = inform_picturesService.updateInformPicture(informpictures_id, updatedInformPicture);
+
+            if (updatedPicture != null) {
+                return new ResponseEntity<>(updatedPicture, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
@@ -57,6 +61,31 @@ public class Inform_picturesController {
             return new ResponseEntity<>("เกิดข้อผิดพลาดในการอัพโหลดและบันทึกไฟล์", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/addInformPictures")
+    public ResponseEntity saveInformPictures(@RequestBody List<Inform_pictures> informPicturesList) {
+        try {
+            List<Inform_pictures> savedInformPictures = inform_picturesService.saveInformPictures(informPicturesList);
+            return new ResponseEntity<>(savedInformPictures, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/updateInformPictures")
+    public ResponseEntity<List<Inform_pictures>> updateInformPictures(@RequestBody List<Inform_pictures> informPicturesList) {
+        try {
+            List<Inform_pictures> updatedInformPictures = inform_picturesService.updateInformPictures(informPicturesList);
+            return new ResponseEntity<>(updatedInformPictures, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
 
     @PostMapping("/uploadMultiple")
     public ResponseEntity<String> uploadMultipleFiles(@RequestParam("files") List<MultipartFile> files) {

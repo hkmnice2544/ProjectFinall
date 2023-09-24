@@ -30,6 +30,22 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
         return inform_picturesRepository.save(informPictures);
     }
 
+    public Inform_pictures updateInformPicture(Integer informpictures_id, Inform_pictures updatedInformPicture) {
+        // ค้นหารูปภาพที่ต้องการแก้ไขจากฐานข้อมูล
+        Inform_pictures existingInformPicture = inform_picturesRepository.findById(informpictures_id).orElse(null);
+
+        if (existingInformPicture != null) {
+            // ทำการอัปเดตข้อมูลรูปภาพที่ต้องการแก้ไข
+            existingInformPicture.setPictureUrl(updatedInformPicture.getPictureUrl());
+
+            // บันทึกการเปลี่ยนแปลงลงในฐานข้อมูล
+            return inform_picturesRepository.save(existingInformPicture);
+        } else {
+            // หากไม่พบรูปภาพที่ต้องการแก้ไข
+            return null;
+        }
+    }
+
     public List<Inform_pictures> saveInformPictures(List<Inform_pictures> informPicturesList) {
         List<Inform_pictures> savedInformPictures = new ArrayList<>();
 
@@ -44,6 +60,28 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
 
         return savedInformPictures;
     }
+
+    public List<Inform_pictures> updateInformPictures(List<Inform_pictures> informPicturesList) {
+        List<Inform_pictures> updatedInformPictures = new ArrayList<>();
+
+        for (Inform_pictures informPictures : informPicturesList) {
+            // ตรวจสอบว่ารูปภาพที่ต้องการอัปเดตมีอยู่ในฐานข้อมูลหรือไม่
+            Inform_pictures existingInformPicture = inform_picturesRepository.findById(informPictures.getInformpictures_id()).orElse(null);
+
+            if (existingInformPicture != null) {
+                // แก้ไขข้อมูลรูปภาพ
+                existingInformPicture.setPictureUrl(informPictures.getPictureUrl());
+
+                // บันทึกข้อมูลรูปภาพที่อัปเดตลงในฐานข้อมูล
+                updatedInformPictures.add(inform_picturesRepository.save(existingInformPicture));
+            }
+        }
+
+        return updatedInformPictures;
+    }
+
+
+
 
 
     public Integer generateInformRepairDetailsId(long nextId) {
