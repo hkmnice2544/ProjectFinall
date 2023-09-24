@@ -10,10 +10,9 @@ import java.util.Map;
 public interface InformRepairDetailsService {
     List<InformRepairDetails> getAllInformRepairDetails();
 
-    InformRepairDetails saveInformRepairDetails(Map<String, String> map);
-
-    InformRepairDetails updateInformRepairDetails(Map<String, String> map);
-
     InformRepairDetails getInformRepairDetailsById(Integer informdetails_id);
 
+    List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList);
+
+//    List<InformRepairDetails> updateInformRepairDetails(List<Map<String, String>> dataList);
 }

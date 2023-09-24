@@ -34,28 +34,26 @@ public class InformRepairDetailsController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity addInformRepairDetails(@RequestBody Map<String,String> map){
+    public ResponseEntity addInformRepairDetails(@RequestBody List<Map<String, String>> dataList) {
         try {
-            InformRepairDetails informRepairDetails = informRepairDetailsService.saveInformRepairDetails(map);
-            return new ResponseEntity<>(informRepairDetails, HttpStatus.OK);
-
-        }catch (Exception e){
+            List<InformRepairDetails> informRepairDetailsList = informRepairDetailsService.saveInformRepairDetails(dataList);
+            return new ResponseEntity<>(informRepairDetailsList, HttpStatus.OK);
+        } catch (Exception e) {
             e.printStackTrace();
-            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-    @PostMapping("/update")
-    public ResponseEntity updateInformRepairDetails(@RequestBody Map<String,String> map){
-        try {
-            InformRepairDetails informRepairDetails = informRepairDetailsService.updateInformRepairDetails(map);
-            return new ResponseEntity<>(informRepairDetails, HttpStatus.OK);
-
-        }catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping("/update")
+//    public ResponseEntity updateInformRepairDetails(@RequestBody List<Map<String, String>> dataList) {
+//        try {
+//            List<InformRepairDetails> informRepairDetailsList = informRepairDetailsService.updateInformRepairDetails(dataList);
+//            return new ResponseEntity<>(informRepairDetailsList, HttpStatus.OK);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @PostMapping("/getInformRepairDetails/{informdetails_id}")
     public ResponseEntity<?> getInformRepairDetailsById(@PathVariable Integer informdetails_id) {
@@ -67,4 +65,17 @@ public class InformRepairDetailsController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // เพิ่มเมธอดลบข้อมูล
+//    @DeleteMapping("/{informdetails_id}")
+//    public ResponseEntity<String> deleteInformRepairDetails(@PathVariable Integer informdetails_id) {
+//        try {
+//            informRepairDetailsService.deleteInformRepairDetailsById(informdetails_id);
+//            return ResponseEntity.ok("Deleted informRepairDetails with ID: " + informdetails_id);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete informRepairDetails");
+//        }
+//    }
+
+
 }
