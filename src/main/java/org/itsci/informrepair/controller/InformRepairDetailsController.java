@@ -45,6 +45,18 @@ public class InformRepairDetailsController {
         }
     }
 
+    @PostMapping("/update")
+    public ResponseEntity updateInformRepairDetails(@RequestBody Map<String,String> map){
+        try {
+            InformRepairDetails informRepairDetails = informRepairDetailsService.updateInformRepairDetails(map);
+            return new ResponseEntity<>(informRepairDetails, HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/getInformRepairDetails/{informdetails_id}")
     public ResponseEntity<?> getInformRepairDetailsById(@PathVariable Integer informdetails_id) {
         try {

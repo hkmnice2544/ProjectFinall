@@ -12,6 +12,8 @@ public interface InformRepairDetailsService {
 
     InformRepairDetails saveInformRepairDetails(Map<String, String> map);
 
+    InformRepairDetails updateInformRepairDetails(Map<String, String> map);
+
     InformRepairDetails getInformRepairDetailsById(Integer informdetails_id);
 
 }
