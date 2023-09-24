@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -123,6 +124,28 @@ public class Inform_picturesController {
         }
     }
 
+    @PostMapping("/deleteMultipleFiles")
+    public ResponseEntity<String> deleteMultipleFiles(@RequestParam("fileNames") List<String> fileNames) {
+        try {
+            String uploadDir = "C:\\Users\\HKMGF\\IdeaProjects\\ProjectFinall\\src\\main\\java\\org\\itsci\\informrepair\\pictrues";
+
+            for (String fileName : fileNames) {
+                File file = new File(uploadDir + File.separator + fileName);
+
+                if (file.exists() && file.delete()) {
+                    System.out.println("ลบไฟล์ " + fileName + " เรียบร้อย");
+                } else {
+                    System.out.println("ไม่สามารถลบไฟล์ " + fileName);
+                }
+            }
+
+            return new ResponseEntity<>("ลบไฟล์เรียบร้อย", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("ข้อผิดพลาด: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("/uploadAndSaveData")
     public ResponseEntity<String> uploadFileAndSaveData(@RequestParam("file") MultipartFile file, @RequestParam("data") String data) {
         try {
@@ -140,6 +163,7 @@ public class Inform_picturesController {
             return new ResponseEntity<>("เกิดข้อผิดพลาดในการอัพโหลดและบันทึกไฟล์", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
 
 

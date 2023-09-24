@@ -66,18 +66,18 @@ public class InformRepairController {
 //        }
 //    }
 //
-//    @PostMapping("/deleteInformRepair/{informrepair_id}")
-//    public ResponseEntity<String> deleteInformRepairById(@PathVariable Integer informrepair_id) {
-//        try {
-//            InformRepair informRepair = informRepairService.deleteInformRepair(informrepair_id);
-//            return new ResponseEntity<>("Deleted successfully: " + informRepair, HttpStatus.OK);
-//        } catch (EntityNotFoundException ex) {
-//            return new ResponseEntity<>("Failed to delete: " + ex.getMessage(), HttpStatus.NOT_FOUND);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>("Failed to delete"+informrepair_id, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @PostMapping("/deleteInformRepair/{informrepair_id}")
+    public ResponseEntity<String> deleteInformRepairById(@PathVariable Integer informrepair_id) {
+        try {
+            InformRepair informRepair = informRepairService.deleteInformRepair(informrepair_id);
+            return new ResponseEntity<>("Deleted successfully: " + informRepair, HttpStatus.OK);
+        } catch (EntityNotFoundException ex) {
+            return new ResponseEntity<>("Failed to delete: " + ex.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Failed to delete"+informrepair_id, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping("/getInformRepair/{informrepair_id}")
     public ResponseEntity<?> getInformRepairById(@PathVariable Integer informrepair_id) {

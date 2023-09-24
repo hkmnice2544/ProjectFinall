@@ -41,7 +41,7 @@ public interface InformRepairService { //เหมือนManager
 ////    String uploadInformRepairImg (MultipartFile file) throws IOException;
 
     //    Path downloadPostImg (String filePath) ;
-//    InformRepair deleteInformRepair(Integer informrepair_id);
+    InformRepair deleteInformRepair(Integer informrepair_id);
 //
 //    Object getEquipmentFromInformRepair(Integer informrepairId);
 }

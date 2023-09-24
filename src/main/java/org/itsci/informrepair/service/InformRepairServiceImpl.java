@@ -164,12 +164,12 @@ public class InformRepairServiceImpl implements InformRepairService{
 //        InformRepair informRepair = new InformRepair( informrepair_id, informdate, informdetails, status,equipment,user);
 //        return informRepairRepository.save(informRepair);
 //    }
-//    @Override
-//    public InformRepair deleteInformRepair(Integer informrepair_id) {
-//        InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
-//        informRepairRepository.delete(informRepair);
-//        return informRepair;
-//    }
+    @Override
+    public InformRepair deleteInformRepair(Integer informrepair_id) {
+        InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
+        informRepairRepository.delete(informRepair);
+        return informRepair;
+    }
 //
 //    @Override
 //    public Equipment getEquipmentFromInformRepair(Integer informrepair_id) {
