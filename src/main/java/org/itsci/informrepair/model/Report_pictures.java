@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 public class Report_pictures {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reportpictures_id;
 
     @Column(name = "picture_url", length = 255)

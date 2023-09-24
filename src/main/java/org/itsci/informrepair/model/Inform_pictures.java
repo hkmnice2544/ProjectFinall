@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "inform_pictures")
 public class Inform_pictures {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int informpictures_id;
 
     @Column(name = "picture_url", length = 255)
