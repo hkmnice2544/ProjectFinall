@@ -1,7 +1,6 @@
 package org.itsci.informrepair.service;
 
 
-import jakarta.transaction.Transactional;
 import org.itsci.informrepair.model.*;
 import org.itsci.informrepair.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -153,4 +152,6 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
         informRepiarDetailsRepository.delete(informRepairDetails);
         return informRepairDetails;
     }
+
+
 }

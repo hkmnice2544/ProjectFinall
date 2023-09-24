@@ -92,6 +92,7 @@ public class InformRepairDetailsController {
             return new ResponseEntity<>("Failed to delete"+informdetails_id, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }
 
 

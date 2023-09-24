@@ -17,4 +17,5 @@ public interface InformRepairDetailsService {
     InformRepairDetails updateInformRepairDetails(Map<String, String> map);
 
     InformRepairDetails deleteInformRepairDetailsById(Integer informdetailsId);
+
 }
