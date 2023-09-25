@@ -137,7 +137,7 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
 
     @Override
     public List<InformRepairDetails> getAllInformRepairDetails() {
-        return null;
+        return informRepiarDetailsRepository.findAll();
     }
 
     @Override
