@@ -34,23 +34,20 @@ public class LoginServicelmpl implements LoginService{
         }
     }
     @Override
-    public Integer login(Map<String, String> map) {
-        // รับข้อมูลจาก map ในกรณีนี้คือ username และ password
-        String username = map.get("username");
-        String password = map.get("password");
-
+    public Integer login(String username) {
         // ค้นหาผู้ใช้โดยใช้ชื่อผู้ใช้ (username) จากฐานข้อมูล
         User user = userRepository.findByUsername(username);
 
-        // ตรวจสอบว่าพบผู้ใช้และรหัสผ่านถูกต้องหรือไม่
-        if (user != null && user.getPassword().equals(password)) {
-            // ถ้าถูกต้องคืน ID ของผู้ใช้
+        // ตรวจสอบว่าพบผู้ใช้หรือไม่
+        if (user != null) {
+            // ถ้าพบให้คืน ID ของผู้ใช้
             return user.getUser_id();
         } else {
-            // ถ้าไม่ถูกต้องคืนค่า null หรือทำการระบบการยืนยันตัวตนเพิ่มเติมตามความเหมาะสม
+            // ถ้าไม่พบให้คืนค่า null หรือทำการระบบการยืนยันตัวตนเพิ่มเติมตามความเหมาะสม
             return null;
         }
     }
+
 
     public User getLoginById(Integer user_id) {
         return userRepository.getReferenceById(user_id);

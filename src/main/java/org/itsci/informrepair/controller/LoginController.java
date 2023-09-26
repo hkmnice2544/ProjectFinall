@@ -40,9 +40,11 @@ public class LoginController {
 
     @PostMapping("/getidlogin")
     public ResponseEntity login(@RequestBody Map<String, String> loginData) {
-        // ตรวจสอบการเข้าสู่ระบบโดยใช้ LoginService
-        Integer user = loginService.login(loginData);
+        // รับ username จาก loginData
+        String username = loginData.get("username");
 
+        // ตรวจสอบการเข้าสู่ระบบโดยใช้ LoginService
+        Integer user = loginService.login(username);
 
         if (user != null) {
             // เข้าสู่ระบบสำเร็จ
@@ -52,6 +54,7 @@ public class LoginController {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @PostMapping("/get/{user_id}")
     public ResponseEntity<?> getLoginById(@PathVariable Integer user_id) {
