@@ -153,7 +153,6 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
         return informRepairDetails;
     }
 
-    @Override
     public List<Map<String, Object>> getInformRepairDetails() {
         List<Map<String, Object>> result = new ArrayList<>();
 
@@ -162,9 +161,9 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
         for (Object[] row : queryResult) {
             Map<String, Object> details = new HashMap<>();
             details.put("informrepair_id", row[0]);
-            details.put("totalAmount", row[1]);
-            details.put("status", row[2]);
-            details.put("informDate", row[3]);
+            details.put("TotalAmount", row[1]);
+            details.put("Status", row[2]);
+            details.put("InformDate", row[3]);
 
             result.add(details);
         }

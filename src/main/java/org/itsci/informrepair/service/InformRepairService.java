@@ -13,7 +13,7 @@ public interface InformRepairService { //เหมือนManager
 
     InformRepair saveInformRepair(Map<String, String> map);
 
-
+    int findSumamountById(int informrepair_id);
 
     InformRepair saveRoomEquipment(Map<String, String> map);
 

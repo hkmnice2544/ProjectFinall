@@ -62,6 +62,11 @@ public class InformRepairServiceImpl implements InformRepairService{
 //        return informRepairs;
 //    }
 
+    @Override
+    public int findSumamountById(int informrepair_id) {
+        return informRepairRepository.findSumamountById(informrepair_id);
+    }
+
 
     @Override
     public InformRepair getInformRepairById(Integer informrepair_id) {

@@ -127,8 +127,26 @@ public class InformRepairController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PostMapping("/amount/{informrepair_id}")
+    public ResponseEntity findSumamountById(@PathVariable Integer informrepair_id){
+        try {
+            int amount = informRepairService.findSumamountById(informrepair_id);
+            return new ResponseEntity<>(amount, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-
+//    @PostMapping("/getEquipmentFromInformRepair/{informrepair_id}")
+//    public ResponseEntity<?> getEquipmentFromInformRepair(@PathVariable Integer informrepair_id) {
+//        Equipment equipment = (Equipment) informRepairService.getEquipmentFromInformRepair(informrepair_id);
+//        if (equipment != null) {
+//            return ResponseEntity.ok(equipment);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
 
 
