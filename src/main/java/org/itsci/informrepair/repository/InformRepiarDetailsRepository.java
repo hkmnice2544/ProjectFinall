@@ -11,7 +11,6 @@ import java.util.List;
 public interface InformRepiarDetailsRepository extends JpaRepository<InformRepairDetails, Integer> {
 
 
-
-
-
+    @Query("SELECT IR.informrepair_id, SUM(IRD.amount) AS TotalAmount, IR.status AS Status, IR.informdate AS InformDate FROM InformRepairDetails IRD INNER JOIN IRD.informRepair IR GROUP BY IR.informrepair_id, IR.status, IR.informdate")
+    List<Object[]> findAllDetailsWithSumAndDate();
 }

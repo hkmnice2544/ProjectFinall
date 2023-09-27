@@ -33,5 +33,15 @@ public class InformRepairDetails {
     private RoomEquipment roomEquipment;
 
 
+    public void setInformrepair_id(Integer integer) {
+    }
 
+    public void setTotalAmount(Integer integer) {
+    }
+
+    public void setStatus(String s) {
+    }
+
+    public void setInformDate(Date date) {
+    }
 }

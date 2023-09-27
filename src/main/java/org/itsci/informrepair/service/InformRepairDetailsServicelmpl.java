@@ -6,9 +6,9 @@ import org.itsci.informrepair.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+
 @Service
 public class InformRepairDetailsServicelmpl implements InformRepairDetailsService {
     @Autowired
@@ -152,6 +152,36 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
         informRepiarDetailsRepository.delete(informRepairDetails);
         return informRepairDetails;
     }
+
+    @Override
+    public List<Map<String, Object>> getInformRepairDetails() {
+        List<Map<String, Object>> result = new ArrayList<>();
+
+        List<Object[]> queryResult = informRepiarDetailsRepository.findAllDetailsWithSumAndDate();
+
+        for (Object[] row : queryResult) {
+            Map<String, Object> details = new HashMap<>();
+            details.put("informrepair_id", row[0]);
+            details.put("totalAmount", row[1]);
+            details.put("status", row[2]);
+            details.put("informDate", row[3]);
+
+            result.add(details);
+        }
+
+        return result;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

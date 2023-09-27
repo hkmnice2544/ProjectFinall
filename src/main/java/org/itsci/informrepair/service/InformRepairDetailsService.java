@@ -1,7 +1,5 @@
 package org.itsci.informrepair.service;
 
-import org.itsci.informrepair.model.Building;
-import org.itsci.informrepair.model.InformRepair;
 import org.itsci.informrepair.model.InformRepairDetails;
 
 import java.util.List;
@@ -17,5 +15,9 @@ public interface InformRepairDetailsService {
     InformRepairDetails updateInformRepairDetails(Map<String, String> map);
 
     InformRepairDetails deleteInformRepairDetailsById(Integer informdetailsId);
+
+
+    List<Map<String, Object>> getInformRepairDetails();
+
 
 }

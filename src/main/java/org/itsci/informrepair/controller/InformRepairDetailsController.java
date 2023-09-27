@@ -1,10 +1,8 @@
 package org.itsci.informrepair.controller;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.itsci.informrepair.model.InformRepair;
 import org.itsci.informrepair.model.InformRepairDetails;
 import org.itsci.informrepair.service.InformRepairDetailsService;
-import org.itsci.informrepair.service.InformRepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -93,6 +91,14 @@ public class InformRepairDetailsController {
         }
     }
 
+    @PostMapping("/allList")
+    public List<Map<String, Object>> getAllInformRepairDetails() {
+        return informRepairDetailsService.getInformRepairDetails();
+    }
+
+
 }
+
+
 
 
