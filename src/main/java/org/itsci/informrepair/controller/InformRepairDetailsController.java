@@ -98,7 +98,7 @@ public class InformRepairDetailsController {
     @PostMapping("/viewinformdetails/{informrepair_id}")
     public ResponseEntity findSumamountById(@PathVariable Integer informrepair_id){
         try {
-            List<Object[]> viewinformdetails = informRepairDetailsService.findViewInformDetailsById(informrepair_id);
+            List<InformRepairDetails> viewinformdetails = informRepairDetailsService.findViewInformDetailsById(informrepair_id);
             return new ResponseEntity<>(viewinformdetails, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

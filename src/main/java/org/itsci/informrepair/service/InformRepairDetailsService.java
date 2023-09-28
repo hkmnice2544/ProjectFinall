@@ -19,7 +19,7 @@ public interface InformRepairDetailsService {
 
     List<Map<String, Object>> getInformRepairDetails();
 
-    List<Object[]> findViewInformDetailsById(int informrepair_id) ;
+    List<InformRepairDetails> findViewInformDetailsById(int informrepair_id) ;
 
 
 }

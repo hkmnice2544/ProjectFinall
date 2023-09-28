@@ -171,8 +171,8 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
     }
 
     @Override
-    public List<Object[]> findViewInformDetailsById(int informrepair_id) {
-        return informRepiarDetailsRepository.findViewInformDetailsById(informrepair_id);
+    public List<InformRepairDetails> findViewInformDetailsById(int informrepair_id) {
+        return informRepiarDetailsRepository.findAllDetailsByInformRepairId(informrepair_id);
     }
 
 
