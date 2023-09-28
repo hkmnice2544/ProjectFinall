@@ -10,4 +10,5 @@ import java.util.List;
 public interface InformRepairRepository extends JpaRepository<InformRepair, Integer> {
     @Query(value = "select sum(amount) from inform_repairdetails where informrepair_id = :informrepair_id",nativeQuery = true)
     int findSumamountById(int informrepair_id);
+
 }

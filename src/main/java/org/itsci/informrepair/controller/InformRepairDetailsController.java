@@ -95,6 +95,16 @@ public class InformRepairDetailsController {
     public List<Map<String, Object>> getAllInformRepairDetails() {
         return informRepairDetailsService.getInformRepairDetails();
     }
+    @PostMapping("/viewinformdetails/{informrepair_id}")
+    public ResponseEntity findSumamountById(@PathVariable Integer informrepair_id){
+        try {
+            List<Object[]> viewinformdetails = informRepairDetailsService.findViewInformDetailsById(informrepair_id);
+            return new ResponseEntity<>(viewinformdetails, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 }

@@ -13,4 +13,29 @@ public interface InformRepiarDetailsRepository extends JpaRepository<InformRepai
 
     @Query("SELECT IR.informrepair_id, SUM(IRD.amount) AS TotalAmount, IR.status AS Status, IR.informdate AS InformDate FROM InformRepairDetails IRD INNER JOIN IRD.informRepair IR GROUP BY IR.informrepair_id, IR.status, IR.informdate")
     List<Object[]> findAllDetailsWithSumAndDate();
+
+    @Query(value = "SELECT " +
+            "    R.roomname, " +
+            "    R.floor, " +
+            "    R.position, " +
+            "    B.buildingname " +
+            "FROM " +
+            "    informrepair_db.inform_repairdetails IRD " +
+            "JOIN " +
+            "    roomequipment RE ON IRD.room_id = RE.room_id " +
+            "JOIN " +
+            "    room R ON RE.room_id = R.room_id " +
+            "JOIN " +
+            "    building B ON R.building_id = B.building_id " +
+            "WHERE " +
+            "    IRD.informrepair_id = :informrepair_id " +
+            "GROUP BY " +
+            "    R.roomname, " +
+            "    R.floor, " +
+            "    R.position, " +
+            "    B.buildingname", nativeQuery = true)
+    List<Object[]> findViewInformDetailsById(int informrepair_id);
+
+
+
 }
