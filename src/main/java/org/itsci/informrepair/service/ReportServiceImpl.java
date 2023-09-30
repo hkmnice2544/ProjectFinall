@@ -68,26 +68,33 @@ public class ReportServiceImpl implements ReportrepairService {
         // บันทึกการเปลี่ยนแปลงใน InformRepair ในฐานข้อมูล
         informRepairRepository.save(informRepair);
 
+        // ค้นหา RoomEquipment ที่มี InformRepair เหมือนกันกับ InformRepair ที่คุณกำลังใช้งาน
+        List<InformRepairDetails> roomEquipmentWithSameInformRepair = informRepiarDetailsRepository.findByInformRepair(informRepair);
+
         String status = map.get("statusroomEquipmentId");
-        RoomEquipment roomEquipment = informRepairDetails.getRoomEquipment();
 
-        if (roomEquipment != null) {
-            roomEquipment.setStatus(status);
-            roomEquipmentRepository.save(roomEquipment);
-        } else {
-            // สร้าง RoomEquipment และตั้งค่า "status" หากไม่มีอยู่
-            Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
-            Integer room_id = Integer.parseInt(map.get("room_id"));
-            RoomEquipmentId roomEquipmentId = new RoomEquipmentId(equipment_id, room_id);
+        for (InformRepairDetails repairDetails : roomEquipmentWithSameInformRepair) {
+            RoomEquipment roomEquipment = repairDetails.getRoomEquipment();
 
-            roomEquipment = new RoomEquipment();
-            roomEquipment.setRoomEquipmentId(roomEquipmentId);
-            roomEquipment.setStatus(status);
-            roomEquipmentRepository.save(roomEquipment);
+            if (roomEquipment != null) {
+                roomEquipment.setStatus(status);
+                roomEquipmentRepository.save(roomEquipment);
+            } else {
+                // สร้าง RoomEquipment และตั้งค่า "status" หากไม่มีอยู่
+                Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
+                Integer room_id = Integer.parseInt(map.get("room_id"));
+                RoomEquipmentId roomEquipmentId = new RoomEquipmentId(equipment_id, room_id);
+
+                roomEquipment = new RoomEquipment();
+                roomEquipment.setRoomEquipmentId(roomEquipmentId);
+                roomEquipment.setStatus(status);
+                roomEquipmentRepository.save(roomEquipment);
+            }
         }
 
         return savedReportrepair;
     }
+
 
 
     //
