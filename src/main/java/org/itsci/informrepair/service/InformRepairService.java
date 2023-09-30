@@ -15,6 +15,8 @@ public interface InformRepairService { //เหมือนManager
 
     int findSumamountById(int informrepair_id);
 
+    int findInformDetailIDById(int informrepair_id);
+
     InformRepair saveRoomEquipment(Map<String, String> map);
 
 

@@ -138,6 +138,17 @@ public class InformRepairController {
         }
     }
 
+    @PostMapping("/findInformDetailIDById/{informrepair_id}")
+    public ResponseEntity findInformDetailIDById(@PathVariable Integer informrepair_id){
+        try {
+            int amount = informRepairService.findInformDetailIDById(informrepair_id);
+            return new ResponseEntity<>(amount, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 //    @PostMapping("/getEquipmentFromInformRepair/{informrepair_id}")
 //    public ResponseEntity<?> getEquipmentFromInformRepair(@PathVariable Integer informrepair_id) {
 //        Equipment equipment = (Equipment) informRepairService.getEquipmentFromInformRepair(informrepair_id);
