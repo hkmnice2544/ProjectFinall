@@ -10,9 +10,10 @@ public interface LoginService {
 
     User loginUser(Map<String, String> map);
 
-    Integer login(String username);
 
     User getLoginById(Integer userId);
 
     List<User> getAllUsers();
+    User getUserByUsername(String username);
+
 }

@@ -33,20 +33,12 @@ public class LoginServicelmpl implements LoginService{
             return null;
         }
     }
-    @Override
-    public Integer login(String username) {
-        // ค้นหาผู้ใช้โดยใช้ชื่อผู้ใช้ (username) จากฐานข้อมูล
-        User user = userRepository.findByUsername(username);
 
-        // ตรวจสอบว่าพบผู้ใช้หรือไม่
-        if (user != null) {
-            // ถ้าพบให้คืน ID ของผู้ใช้
-            return user.getUser_id();
-        } else {
-            // ถ้าไม่พบให้คืนค่า null หรือทำการระบบการยืนยันตัวตนเพิ่มเติมตามความเหมาะสม
-            return null;
-        }
+    @Override
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
+
 
 
     public User getLoginById(Integer user_id) {

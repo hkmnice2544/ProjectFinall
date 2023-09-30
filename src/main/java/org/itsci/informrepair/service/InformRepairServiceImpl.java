@@ -104,9 +104,6 @@ public class InformRepairServiceImpl implements InformRepairService{
         return informRepairRepository.save(informRepair);
     }
 
-
-
-
     @Override
     public InformRepair saveRoomEquipment(Map<String, String> map) {
         Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
