@@ -91,10 +91,7 @@ public class InformRepairDetailsController {
         }
     }
 
-    @PostMapping("/allList")
-    public List<Map<String, Object>> getAllInformRepairDetails() {
-        return informRepairDetailsService.getInformRepairDetails();
-    }
+
     @PostMapping("/viewinformdetails/{informrepair_id}")
     public ResponseEntity findSumamountById(@PathVariable Integer informrepair_id){
         try {

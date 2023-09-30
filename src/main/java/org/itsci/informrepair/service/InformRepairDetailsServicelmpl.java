@@ -152,23 +152,6 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
         return informRepairDetails;
     }
 
-    public List<Map<String, Object>> getInformRepairDetails() {
-        List<Map<String, Object>> result = new ArrayList<>();
-
-        List<Object[]> queryResult = informRepiarDetailsRepository.findAllDetailsWithSumAndDate();
-
-        for (Object[] row : queryResult) {
-            Map<String, Object> details = new HashMap<>();
-            details.put("informrepair_id", row[0]);
-            details.put("TotalAmount", row[1]);
-            details.put("Status", row[2]);
-            details.put("InformDate", row[3]);
-
-            result.add(details);
-        }
-
-        return result;
-    }
 
     @Override
     public List<InformRepairDetails> findViewInformDetailsById(int informrepair_id) {

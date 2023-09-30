@@ -17,7 +17,6 @@ public interface InformRepairDetailsService {
     InformRepairDetails deleteInformRepairDetailsById(Integer informdetailsId);
 
 
-    List<Map<String, Object>> getInformRepairDetails();
 
     List<InformRepairDetails> findViewInformDetailsById(int informrepair_id) ;
 
