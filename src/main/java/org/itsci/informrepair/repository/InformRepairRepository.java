@@ -15,4 +15,6 @@ public interface InformRepairRepository extends JpaRepository<InformRepair, Inte
     int findInformDetailIDById(int informrepair_id);
 
 
+
+
 }

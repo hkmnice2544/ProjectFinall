@@ -21,5 +21,7 @@ public interface InformRepairDetailsService {
 
     List<InformRepairDetails> findViewInformDetailsById(int informrepair_id) ;
 
+    List<InformRepairDetails> ViewListInformDetails(int informrepair_id) ;
+
 
 }

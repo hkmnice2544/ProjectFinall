@@ -17,36 +17,14 @@ public interface InformRepiarDetailsRepository extends JpaRepository<InformRepai
     @Query(value = "SELECT distinct* FROM inform_repairdetails where informrepair_id = :informrepair_id", nativeQuery = true)
     List<InformRepairDetails> findAllDetailsByInformRepairId(int informrepair_id);
 
-    @Query(value = "SELECT " +
-            "    IRD.informrepair_id, " +
-            "    IR.informdate, " +
-            "    R.roomname, " +
-            "    R.floor, " +
-            "    R.position, " +
-            "    B.buildingname " +
-            "FROM " +
-            "    informrepair_db.inform_repairdetails IRD " +
-            "JOIN " +
-            "    roomequipment RE ON IRD.room_id = RE.room_id " +
-            "JOIN " +
-            "    room R ON RE.room_id = R.room_id " +
-            "JOIN " +
-            "    building B ON R.building_id = B.building_id " +
-            "JOIN " +
-            "    informrepair IR ON IRD.informrepair_id = IR.informrepair_id " +
-            "WHERE " +
-            "    IRD.informrepair_id = :informrepair_id " +
-            "GROUP BY " +
-            "    IRD.informrepair_id, " +
-            "    IR.informdate, " +
-            "    R.roomname, " +
-            "    R.floor, " +
-            "    R.position, " +
-            "    B.buildingname", nativeQuery = true)
-    List<Object[]> findViewInformDetailsById(int informrepair_id);
-
 
     @Query("SELECT d FROM InformRepairDetails d WHERE d.informRepair = :informRepair")
     List<InformRepairDetails> findByInformRepair(@Param("informRepair") InformRepair informRepair);
+
+    @Query(value = "select * from inform_repairdetails where informrepair_id = :informrepair_id", nativeQuery = true)
+    List<InformRepairDetails> ViewListInformDetails(int informrepair_id);
+
+
+
 
 }

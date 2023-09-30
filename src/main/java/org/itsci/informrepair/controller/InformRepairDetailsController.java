@@ -106,6 +106,18 @@ public class InformRepairDetailsController {
         }
     }
 
+    @PostMapping("/ViewListInformDetails/{informrepair_id}")
+    public ResponseEntity ViewListInformDetails(@PathVariable Integer informrepair_id){
+        try {
+            List<InformRepairDetails> viewinformdetails = informRepairDetailsService.ViewListInformDetails(informrepair_id);
+            return new ResponseEntity<>(viewinformdetails, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 }
 
