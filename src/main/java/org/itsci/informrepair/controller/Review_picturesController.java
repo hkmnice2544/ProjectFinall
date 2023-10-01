@@ -1,10 +1,10 @@
 package org.itsci.informrepair.controller;
 
 import org.itsci.informrepair.model.FileUploadUtil;
-import org.itsci.informrepair.model.Inform_pictures;
 import org.itsci.informrepair.model.Report_pictures;
-import org.itsci.informrepair.service.Inform_picturesService;
+import org.itsci.informrepair.model.Review_pictures;
 import org.itsci.informrepair.service.Report_picturesService;
+import org.itsci.informrepair.service.Review_picturesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,33 +15,30 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/report_pictures")
-public class Report_picturesController {
-
-
+@RequestMapping("/review_pictures")
+public class Review_picturesController {
     @Autowired
-    private Report_picturesService reportPicturesService;
+    private Review_picturesService reviewPicturesService;
 
     @RequestMapping("/test")
     public String test() {
         return "hi";
     }
 
-    @PostMapping("/addReport_pictures")
-    public ResponseEntity saveReport_pictures(@RequestBody List<Report_pictures> Report_picturesList) {
+    @PostMapping("/addReview_pictures")
+    public ResponseEntity saveReview_pictures(@RequestBody List<Review_pictures> Review_picturesList) {
         try {
-            List<Report_pictures> saveReport_pictures = reportPicturesService.saveReport_pictures(Report_picturesList);
-            return new ResponseEntity<>(saveReport_pictures, HttpStatus.OK);
+            List<Review_pictures> saveReview_pictures = reviewPicturesService.saveReview_pictures(Review_picturesList);
+            return new ResponseEntity<>(saveReview_pictures, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @PostMapping("/uploadMultiple")
     public ResponseEntity<String> uploadMultipleFiles(@RequestParam("files") List<MultipartFile> files) {
         try {
-            String uploadDir = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\Report Pictures";
+            String uploadDir = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\Review Pictures";
 
 
             for (MultipartFile file : files) {
