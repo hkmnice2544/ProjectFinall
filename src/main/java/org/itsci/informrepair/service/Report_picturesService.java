@@ -1,0 +1,10 @@
+package org.itsci.informrepair.service;
+
+import org.itsci.informrepair.model.Report_pictures;
+
+import java.util.List;
+
+public interface Report_picturesService {
+
+    List<Report_pictures> saveReport_pictures(List<Report_pictures> Report_picturesList);
+}
