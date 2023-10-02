@@ -20,6 +20,11 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
     @Autowired
     private InformRepairRepository informRepairRepository;
 
+    @Override
+    public List<Inform_pictures> ListInformPictures() {
+        return inform_picturesRepository.findAll();
+    }
+
     public Inform_pictures getInformPicturesById(Integer informpicturesId) {
         // ดึงข้อมูลจาก inform_picturesRepository ตรง ๆ โดยใช้ ID
         return inform_picturesRepository.findById(informpicturesId).orElse(null);

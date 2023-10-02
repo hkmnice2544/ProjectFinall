@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 public interface Inform_picturesService {
+    List<Inform_pictures> ListInformPictures();
 
 
     Inform_pictures saveInformPicture(Inform_pictures informPictures) ;

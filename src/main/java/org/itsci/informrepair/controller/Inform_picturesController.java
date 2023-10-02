@@ -26,6 +26,17 @@ public class Inform_picturesController {
         return "hi";
     }
 
+    @PostMapping("/all")
+    public ResponseEntity<List<Inform_pictures>> getAllImages() {
+        List<Inform_pictures> images = inform_picturesService.ListInformPictures();
+
+        if (!images.isEmpty()) {
+            return ResponseEntity.ok().body(images);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("get/{informpicturesId}")
     public Inform_pictures getInformPictures(@PathVariable Integer informpicturesId) {
         return inform_picturesService.getInformPicturesById(informpicturesId);

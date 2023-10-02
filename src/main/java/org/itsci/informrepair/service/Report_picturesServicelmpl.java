@@ -2,7 +2,9 @@ package org.itsci.informrepair.service;
 
 import org.itsci.informrepair.model.Inform_pictures;
 import org.itsci.informrepair.model.Report_pictures;
+import org.itsci.informrepair.model.Reportrepair;
 import org.itsci.informrepair.repository.Report_picturesRepository;
+import org.itsci.informrepair.repository.ReportrepairRepository;
 import org.itsci.informrepair.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,17 @@ import java.util.List;
 public class Report_picturesServicelmpl implements Report_picturesService{
     @Autowired
     private Report_picturesRepository reportPicturesRepository;
+
+
+    @Override
+    public List<Report_pictures> ListReport_pictures() {
+        return reportPicturesRepository.findAll();
+    }
+    @Override
+    public List<Report_pictures> getReportPicturesByReportpicturesId(Integer report_id) {
+        return reportPicturesRepository.findByReportpicturesId(report_id);
+    }
+
 
     public List<Report_pictures> saveReport_pictures(List<Report_pictures> Report_picturesList) {
         List<Report_pictures> savedsaveReport_pictures = new ArrayList<>();

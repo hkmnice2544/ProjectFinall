@@ -6,12 +6,19 @@ import org.itsci.informrepair.model.Report_pictures;
 import org.itsci.informrepair.service.Inform_picturesService;
 import org.itsci.informrepair.service.Report_picturesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -57,6 +64,57 @@ public class Report_picturesController {
         } catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>("เกิดข้อผิดพลาดในการอัพโหลดและบันทึกไฟล์", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    private final String imageDirectory = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\Report Pictures";
+
+    @GetMapping("/list/{report_id}")
+    public ResponseEntity<List<String>> getReportImagesByReportId(@PathVariable Integer report_id) {
+        try {
+            List<String> reportImages = new ArrayList<>();
+            Path imageDirPath = Paths.get(imageDirectory);
+
+            if (Files.exists(imageDirPath) && Files.isDirectory(imageDirPath)) {
+                try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(imageDirPath)) {
+                    for (Path filePath : directoryStream) {
+                        if (Files.isRegularFile(filePath)) {
+                            String fileName = filePath.getFileName().toString();
+                            // ตรวจสอบชื่อไฟล์ว่าตรงกับ report_id หรือไม่
+                            if (fileName.startsWith("report_" + report_id + "_")) {
+                                // เพิ่มชื่อไฟล์ลงในรายการ
+                                reportImages.add(fileName);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (!reportImages.isEmpty()) {
+                return ResponseEntity.ok().body(reportImages);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+
+    @GetMapping("/image/{imageName}")
+    public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
+        try {
+            Path imagePath = Paths.get(imageDirectory).resolve(imageName);
+            Resource resource = new UrlResource(imagePath.toUri());
+
+            if (resource.exists() && resource.isReadable()) {
+                return ResponseEntity.ok().body(resource);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
         }
     }
 
