@@ -14,6 +14,12 @@ public class Review_picturesServicelmpl implements Review_picturesService {
     @Autowired
     private Review_picturesRepository reviewPicturesRepository;
 
+    @Override
+    public List<Review_pictures> getReview_picturesByReportpicturesId(Integer review_id) {
+        return reviewPicturesRepository.findByReview_picturesId(review_id);
+    }
+
+
     public List<Review_pictures> saveReview_pictures(List<Review_pictures> Review_picturesList ) {
         List<Review_pictures> savedsaveReview_pictures = new ArrayList<>();
 
