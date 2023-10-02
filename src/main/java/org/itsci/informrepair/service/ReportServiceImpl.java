@@ -46,6 +46,11 @@ public class ReportServiceImpl implements ReportrepairService {
     }
 
     @Override
+    public List<Reportrepair> findViewInformRepairDetailsById(int informdetails_id) {
+        return reportrepairRepository.findAllDetailsByInformRepairId(informdetails_id);
+    }
+
+    @Override
     public Reportrepair saveReportrepair(Map<String, String> map) {
         Integer report_id = generateReportRepairId(reportrepairRepository.count() + 1);
         String repairer = map.get("repairer");
@@ -94,6 +99,7 @@ public class ReportServiceImpl implements ReportrepairService {
 
         return savedReportrepair;
     }
+
 
 
 
