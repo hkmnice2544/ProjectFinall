@@ -68,41 +68,20 @@ public class Report_picturesController {
     }
     private final String imageDirectory = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\Report Pictures";
 
-    @GetMapping("/list/{report_id}")
-    public ResponseEntity<List<String>> getReportImagesByReportId(@PathVariable Integer report_id) {
-        try {
-            List<String> reportImages = new ArrayList<>();
-            Path imageDirPath = Paths.get(imageDirectory);
+    @PostMapping("list/{report_id}")
+    public ResponseEntity<List<Report_pictures>> getReportPicturesByReportpicturesId(@PathVariable Integer report_id) {
+        List<Report_pictures> reportPictures = reportPicturesService.getReportPicturesByReportpicturesId(report_id);
 
-            if (Files.exists(imageDirPath) && Files.isDirectory(imageDirPath)) {
-                try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(imageDirPath)) {
-                    for (Path filePath : directoryStream) {
-                        if (Files.isRegularFile(filePath)) {
-                            String fileName = filePath.getFileName().toString();
-                            // ตรวจสอบชื่อไฟล์ว่าตรงกับ report_id หรือไม่
-                            if (fileName.startsWith("report_" + report_id + "_")) {
-                                // เพิ่มชื่อไฟล์ลงในรายการ
-                                reportImages.add(fileName);
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (!reportImages.isEmpty()) {
-                return ResponseEntity.ok().body(reportImages);
-            } else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().build();
+        if (!reportPictures.isEmpty()) {
+            return ResponseEntity.ok().body(reportPictures);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
 
-    @GetMapping("/image/{imageName}")
-    public ResponseEntity<Resource> getImage(@PathVariable String imageName) {
+    @GetMapping ("/image/{picture_url}")
+    public ResponseEntity<Resource> getImage(@PathVariable("picture_url") String imageName) {
         try {
             Path imagePath = Paths.get(imageDirectory).resolve(imageName);
             Resource resource = new UrlResource(imagePath.toUri());
