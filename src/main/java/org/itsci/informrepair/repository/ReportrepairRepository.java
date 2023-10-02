@@ -12,7 +12,7 @@ public interface ReportrepairRepository extends JpaRepository <Reportrepair,Inte
 
 
 
-    @Query(value = "SELECT * FROM reportrepair WHERE informdetails_id = :informdetails_id AND details = \"เสร็จแล้ว\"", nativeQuery = true)
+    @Query(value = "SELECT * FROM reportrepair WHERE informdetails_id = :informdetails_id Order by reportdate DESC LIMIT 1", nativeQuery = true)
     List<Reportrepair> findAllDetailsByInformRepairId(int informdetails_id);
 
 
