@@ -9,15 +9,13 @@ import java.io.Serializable;
 @Embeddable
 public class RoomEquipmentId implements Serializable {
 
-    @Column(name = "equipment_id")
-    private Integer equipment_id;
+    private Integer equipmentId;
+    private Integer roomId;
 
-    @Column(name = "room_id")
-    private Integer room_id;
 
-    public RoomEquipmentId(Integer equipment_id, Integer room_id) {
-        this.equipment_id = equipment_id;
-        this.room_id = room_id;
+    public RoomEquipmentId(Integer equipmentId, Integer roomId) {
+        this.equipmentId = equipmentId;
+        this.roomId = roomId;
     }
 
 

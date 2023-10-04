@@ -1,6 +1,5 @@
 package org.itsci.informrepair.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,29 +7,29 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Data //Set,Get
-@AllArgsConstructor //Constructor
-@NoArgsConstructor //NoConstructor
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "informRepairdetails")
 public class InformRepairDetails {
-    @Id
-    private int informdetails_id;
-
-    private int amount;
-    private String details;
-
-    @ManyToOne
-    @JoinColumn(name = "informrepair_id")
-    private InformRepair informRepair;
-
+    @EmbeddedId
+    private InformRepairDetailsID id;
 
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name = "equipment_id", referencedColumnName = "equipment_id"),
-            @JoinColumn(name = "room_id", referencedColumnName = "room_id")
+            @JoinColumn(name = "equipment_id", referencedColumnName = "equipment_id", insertable = false, updatable = false),
+            @JoinColumn(name = "room_id", referencedColumnName = "room_id", insertable = false, updatable = false)
     })
     private RoomEquipment roomEquipment;
+
+    @ManyToOne
+    @JoinColumn(name = "informrepair_id", referencedColumnName = "informrepair_id", insertable = false, updatable = false)
+    @MapsId("informrepair_id")
+    private InformRepair informrepairid;
+
+    private int amount;
+    private String details;
 
 
     public void setInformrepair_id(Integer integer) {

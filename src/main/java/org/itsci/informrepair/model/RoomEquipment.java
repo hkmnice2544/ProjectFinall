@@ -15,7 +15,6 @@ public class RoomEquipment {
     @EmbeddedId
     private RoomEquipmentId id;
 
-    private String status;
 
     @ManyToOne
     @JoinColumn(name = "room_id", insertable = false, updatable = false)

@@ -20,15 +20,19 @@ public class Reportrepair {
 	
 	private String repairer;
 	private Date reportdate;
-	private Date enddate;
 	private String details;
+	private String status;
+	private Date statusdate;
 
 
 	@ManyToOne
 	@JoinColumns({
-			@JoinColumn(name = "informdetails_id", referencedColumnName = "informdetails_id")
+			@JoinColumn(name = "equipment_id", referencedColumnName = "equipment_id"),
+			@JoinColumn(name = "room_id", referencedColumnName = "room_id"),
+			@JoinColumn(name = "informrepair_id", referencedColumnName = "informrepair_id")
 	})
 	private InformRepairDetails informRepairDetails;
+
 
 
 

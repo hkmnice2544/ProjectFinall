@@ -18,9 +18,11 @@ public class Inform_pictures {
     private String pictureUrl;
 
     @ManyToOne
-    @JoinColumn(name = "informdetails_id") // คอลัมน์ใน "inform_pictures" ที่เชื่อมกับ "roomequipment"
+    @JoinColumns({
+            @JoinColumn(name = "equipment_id", referencedColumnName = "equipment_id"),
+            @JoinColumn(name = "room_id", referencedColumnName = "room_id"),
+            @JoinColumn(name = "informrepair_id", referencedColumnName = "informrepair_id")
+    })
     private InformRepairDetails informRepairDetails;
-
-
 
 }
