@@ -27,7 +27,7 @@ public interface InformRepairService { //เหมือนManager
 
 //    List<InformRepair> saveInformRepair(List<Map<String, String>> informRepairDataList);
 //
-//    InformRepair updateInformRepair(Map<String, String> map);
+    InformRepair updateInformRepair(Map<String, String> map);
 ////    String uploadInformRepairImg (MultipartFile file) throws IOException;
 
     //    Path downloadPostImg (String filePath) ;

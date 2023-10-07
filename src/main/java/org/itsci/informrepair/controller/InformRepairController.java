@@ -54,17 +54,17 @@ public class InformRepairController {
 //saveRoomEquipment
 //
 //
-//    @PostMapping("/update")
-//    public ResponseEntity updateInformRepair(@RequestBody Map<String,String>map){
-//        try {
-//            InformRepair informRepair = informRepairService.updateInformRepair(map);
-//            return new ResponseEntity<>(informRepair, HttpStatus.OK);
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @PostMapping("/update")
+    public ResponseEntity updateInformRepair(@RequestBody Map<String,String>map){
+        try {
+            InformRepair informRepair = informRepairService.updateInformRepair(map);
+            return new ResponseEntity<>(informRepair, HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping("/deleteInformRepair/{informrepair_id}")
     public ResponseEntity<String> deleteInformRepairById(@PathVariable Integer informrepair_id) {

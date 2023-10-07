@@ -154,20 +154,21 @@ public class InformRepairServiceImpl implements InformRepairService {
 
 
 
-//    @Override
-//    public InformRepair updateInformRepair(Map<String, String> map) {
-//        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
-//        String informdetails = map.get("informdetails");
-//        Date informdate = new Date();
-//        String status = map.get("status");
-//        Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
-//        Equipment equipment = equipmentRepository.getReferenceById(equipment_id);Integer user_id = Integer.parseInt(map.get("user_id"));
-//        User user = userRepository.getReferenceById(user_id); // ใช้อ็อบเจกต์ userRepository ที่ถูกสร้างขึ้นแล้ว
-//
-//
-//        InformRepair informRepair = new InformRepair( informrepair_id, informdate, informdetails, status,equipment,user);
-//        return informRepairRepository.save(informRepair);
-//    }
+    @Override
+    public InformRepair updateInformRepair(Map<String, String> map) {
+        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+    String informtype = map.get("informtype");
+    Date informdate = new Date();
+    String status = map.get("status");
+    Integer user_id = Integer.parseInt(map.get("user_id"));
+    User user = userRepository.getReferenceById(user_id);
+    Integer room_id = Integer.parseInt(map.get("room_id"));
+    Room room = roomRepository.getReferenceById(room_id);
+
+    InformRepair informRepair = new InformRepair(informrepair_id, informdate, informtype, status, user, room);
+        return informRepairRepository.save(informRepair);
+    }
+
     @Override
     public InformRepair deleteInformRepair(Integer informrepair_id) {
         InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
