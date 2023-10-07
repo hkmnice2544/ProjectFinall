@@ -32,7 +32,7 @@ public class InformRepair {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@ManyToOne (cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "room_id")
 	private Room room;
 
