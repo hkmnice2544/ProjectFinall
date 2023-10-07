@@ -15,6 +15,9 @@ public class InformRepairDetailsID  implements Serializable {
     @Column(name = "informrepair_id")
     private Integer informrepair_id;
 
+    public InformRepairDetailsID() {
+    }
+
     public InformRepairDetailsID(Integer equipment_id, Integer room_id, Integer informrepair_id) {
         this.equipment_id = equipment_id;
         this.room_id = room_id;

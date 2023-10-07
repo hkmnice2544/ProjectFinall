@@ -1,31 +1,31 @@
-//package org.itsci.informrepair.service;
-//
-//
-//import org.itsci.informrepair.model.*;
-//import org.itsci.informrepair.repository.*;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.*;
-//
-//@Service
-//public class InformRepairDetailsServicelmpl implements InformRepairDetailsService {
-//    @Autowired
-//    private InformRepiarDetailsRepository informRepiarDetailsRepository;
-//    @Autowired
-//    private InformRepairRepository informRepairRepository;
+package org.itsci.informrepair.service;
+
+
+import org.itsci.informrepair.model.*;
+import org.itsci.informrepair.repository.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+@Service
+public class InformRepairDetailsServicelmpl implements InformRepairDetailsService {
+    @Autowired
+    private InformRepiarDetailsRepository informRepiarDetailsRepository;
+    @Autowired
+    private InformRepairRepository informRepairRepository;
 //    @Autowired
 //    private RoomEquipmentRepository roomEquipmentRepository;
 //    @Autowired
 //    private Inform_picturesRepository inform_picturesRepository;
-//
-////    @PersistenceContext
-////    private EntityManager entityManager;
+
+//    @PersistenceContext
+//    private EntityManager entityManager;
 //    public InformRepairDetails findInformRepairDetailsById(Integer informdetails_id) {
 //        return informRepiarDetailsRepository.findById(informdetails_id).orElse(null);
 //    }
 //
-//
+
 //    public List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList) {
 //        List<InformRepairDetails> savedDetailsList = new ArrayList<>();
 //
@@ -83,9 +83,9 @@
 //
 //        return savedDetailsList;
 //    }
-//
-//
-//
+
+
+
 //    public InformRepairDetails updateInformRepairDetails (Map<String, String> map) {
 //        Integer informdetails_id = Integer.parseInt(map.get("informdetails_id"));
 //        String amountStr = map.get("amount");
@@ -125,20 +125,20 @@
 //
 //        return savedInformRepairDetails;
 //    }
-//
-//
-//
-//    public Integer generateInformRepairDetailsId(long rewId) {
-//        int result = (int) rewId;
-//        result = 1000 + result;
-//        return result;
-//    }
-//
-//    @Override
-//    public List<InformRepairDetails> getAllInformRepairDetails() {
-//        return informRepiarDetailsRepository.findAll();
-//    }
-//
+
+
+
+    public Integer generateInformRepairDetailsId(long rewId) {
+        int result = (int) rewId;
+        result = 1000 + result;
+        return result;
+    }
+
+    @Override
+    public List<InformRepairDetails> getAllInformRepairDetails() {
+        return informRepiarDetailsRepository.findAll();
+    }
+
 //    @Override
 //    public InformRepairDetails getInformRepairDetailsById(Integer informdetails_id) {
 //        return informRepiarDetailsRepository.getReferenceById(informdetails_id);
@@ -162,19 +162,19 @@
 //    public List<InformRepairDetails> ViewListInformDetails(int informrepair_id) {
 //        return informRepiarDetailsRepository.ViewListInformDetails(informrepair_id);
 //    }
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
