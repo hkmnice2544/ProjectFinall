@@ -79,16 +79,16 @@ public class InformRepairController {
 //        }
 //    }
 //
-//    @PostMapping("/getInformRepair/{informrepair_id}")
-//    public ResponseEntity<?> getInformRepairById(@PathVariable Integer informrepair_id) {
-//        try {
-//            InformRepair informrepair = informRepairService.getInformRepairById(informrepair_id);
-//            return ResponseEntity.ok(informrepair);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PostMapping("/getInformRepair/{informrepair_id}")
+    public ResponseEntity<?> getInformRepairById(@PathVariable Integer informrepair_id) {
+        try {
+            InformRepair informrepair = informRepairService.getInformRepairById(informrepair_id);
+            return ResponseEntity.ok(informrepair);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
 //

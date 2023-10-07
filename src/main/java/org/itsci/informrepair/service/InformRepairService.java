@@ -8,8 +8,8 @@ import java.util.Map;
 
 public interface InformRepairService { //เหมือนManager
     List<InformRepair> getAllInformRepairs();
-//
-//    InformRepair getInformRepairById(Integer informrepair_id);
+
+    InformRepair getInformRepairById(Integer informrepair_id);
 //
 //    InformRepair saveInformRepair(Map<String, String> map);
 //
