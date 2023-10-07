@@ -25,18 +25,18 @@ public class InformRepairController {
         return "hi";
     }
 
-//
-//    @PostMapping("/addInformRepair")
-//    public ResponseEntity addInformRepair(@RequestBody Map<String,String> map){
-//        try {
-//            InformRepair informRepair = informRepairService.saveInformRepair(map);
-//            return new ResponseEntity<>(informRepair, HttpStatus.OK);
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+
+    @PostMapping("/addInformRepair")
+    public ResponseEntity addInformRepair(@RequestBody Map<String,String> map){
+        try {
+            InformRepair informRepair = informRepairService.saveInformRepair(map);
+            return new ResponseEntity<>(informRepair, HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 //
 //    @PostMapping("/addRoomEquipmentInform")
 //    public ResponseEntity<?> addRoomEquipmentInform(@RequestBody Map<String, String> map) {

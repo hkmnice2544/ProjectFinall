@@ -1,9 +1,6 @@
 package org.itsci.informrepair.service;
 
-import org.itsci.informrepair.model.InformRepair;
-import org.itsci.informrepair.model.Reportrepair;
-import org.itsci.informrepair.model.Review;
-import org.itsci.informrepair.model.User;
+import org.itsci.informrepair.model.*;
 import org.itsci.informrepair.repository.InformRepairRepository;
 import org.itsci.informrepair.repository.RoomRepository;
 import org.itsci.informrepair.repository.UserRepository;
@@ -20,14 +17,13 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class InformRepairServiceImpl implements InformRepairService{
+public class InformRepairServiceImpl implements InformRepairService {
 
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
     private InformRepairRepository informRepairRepository;
-
 
 
     @Autowired
@@ -40,13 +36,12 @@ public class InformRepairServiceImpl implements InformRepairService{
     private JdbcTemplate jdbcTemplate; // สร้าง JdbcTemplate สำหรับทำงานกับฐานข้อมูล
 
 
-
-
     @Override
     public List<InformRepair> getAllInformRepairs() {
         return informRepairRepository.findAll(); //เรียกข้อมูลทั้งหมด
     }
-//    @Override
+
+    //    @Override
 //    public List<InformRepair> getAllInformRepairs() {
 //        List<InformRepair> informRepairs = informRepairRepository.findAll(); // เรียกข้อมูลทั้งหมด
 //
@@ -83,24 +78,28 @@ public class InformRepairServiceImpl implements InformRepairService{
 //
 //    }
 
-//    @Override
+    //    @Override
 //    public InformRepair saveInformRepair(Map<String, String> map) {
 //        return null;
 //    }
 //
 //
-//    @Override
-//    public InformRepair saveInformRepair(Map<String, String> map) {
-//        Integer informrepair_id = generateInformRepairId(informRepairRepository.count() + 1);
-//        String informtype = map.get("informtype");
-//        Date informdate = new Date();
-//        String status = map.get("status");
-//        Integer user_id = Integer.parseInt(map.get("user_id"));
-//        User user = userRepository.getReferenceById(user_id);
-//
-//        InformRepair informRepair = new InformRepair(informrepair_id,informdate,informtype,status,user);
-//        return informRepairRepository.save(informRepair);
-//    }
+    @Override
+    public InformRepair saveInformRepair(Map<String, String> map) {
+        Integer informrepair_id = generateInformRepairId(informRepairRepository.count() + 1);
+        String informtype = map.get("informtype");
+        Date informdate = new Date();
+        String status = map.get("status");
+        Integer user_id = Integer.parseInt(map.get("user_id"));
+        User user = userRepository.getReferenceById(user_id);
+        Integer room_id = Integer.parseInt(map.get("room_id"));
+        Room room = roomRepository.getReferenceById(room_id);
+
+        InformRepair informRepair = new InformRepair(informrepair_id, informdate, informtype, status, user, room);
+        return informRepairRepository.save(informRepair);
+    }
+
+
 //
 //    @Override
 //    public InformRepair saveRoomEquipment(Map<String, String> map) {

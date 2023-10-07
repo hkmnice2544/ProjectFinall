@@ -22,21 +22,9 @@ public interface InformRepairService { //เหมือนManager
 
 //    InformRepair getInformEquip(Map<String, String> map);
 
-//    InformRepair saveInformRepair(Map<String, String> map);
+    InformRepair saveInformRepair(Map<String, String> map);
 
-    //    @Override
-//    public InformRepair saveInformRepair(Map<String, String> map) {
-//        Integer informrepair_id = generateInformRepairId(informRepairRepository.count() + 1);
-//        String informdetails = map.get("informdetails");
-//        Date informdate = new Date();
-//        String status = map.get("status");
-//        Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
-//        Equipment equipment = equipmentRepository.getReferenceById(equipment_id);
-//
-//
-//        InformRepair informRepair = new InformRepair(informrepair_id, informdate, informdetails, status,equipment);
-//        return informRepairRepository.save(informRepair);
-//    }
+
 //    List<InformRepair> saveInformRepair(List<Map<String, String>> informRepairDataList);
 //
 //    InformRepair updateInformRepair(Map<String, String> map);
