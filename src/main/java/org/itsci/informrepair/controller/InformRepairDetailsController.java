@@ -2,6 +2,8 @@ package org.itsci.informrepair.controller;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.itsci.informrepair.model.InformRepairDetails;
+import org.itsci.informrepair.model.InformRepairDetailsID;
+import org.itsci.informrepair.repository.InformRepiarDetailsRepository;
 import org.itsci.informrepair.service.InformRepairDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,9 @@ import java.util.Map;
 public class InformRepairDetailsController {
     @Autowired
     private InformRepairDetailsService informRepairDetailsService;
+    @Autowired
+    private InformRepiarDetailsRepository informRepiarDetailsRepository;
+
     @RequestMapping("/test")
     public String test() {
         return "hi";
@@ -42,6 +47,8 @@ public class InformRepairDetailsController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
 
 //    @PostMapping("/add")
 //    public ResponseEntity addInformRepairDetails(@RequestBody List<Map<String, String>> dataList) {
@@ -76,6 +83,8 @@ public class InformRepairDetailsController {
 //            return ResponseEntity.notFound().build();
 //        }
 //    }
+
+
 
     // เพิ่มเมธอดลบข้อมูล
 //    @PostMapping("deleteInformRepairDetails/{informdetails_id}")

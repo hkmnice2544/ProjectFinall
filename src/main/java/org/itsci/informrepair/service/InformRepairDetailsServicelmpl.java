@@ -139,12 +139,22 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
         return informRepiarDetailsRepository.findAll();
     }
 
-//    @Override
-//    public InformRepairDetails getInformRepairDetailsById(Integer informdetails_id) {
-//        return informRepiarDetailsRepository.getReferenceById(informdetails_id);
+    @Override
+    public InformRepairDetails getInformRepairDetailsById(Integer equipmentId, Integer roomId, Integer informRepairId) {
+        InformRepairDetailsID id = new InformRepairDetailsID(equipmentId, roomId, informRepairId);
+        return (InformRepairDetails) informRepiarDetailsRepository.findById(id).orElse(null);
+    }
+
+//    public InformRepairDetails getInformRepairDetailsById(Integer equipment_id, Integer room_id, Integer informrepair_id) {
+//        InformRepairDetailsID id = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
+//        Optional<InformRepairDetails> detailsOptional = informRepiarDetailsRepository.findById(id);
+//        return detailsOptional.orElse(null);
 //    }
-//
-//
+
+
+
+
+
 //    @Override
 //    public InformRepairDetails deleteInformRepairDetailsById(Integer informdetails_id) {
 //        InformRepairDetails informRepairDetails = informRepiarDetailsRepository.getReferenceById(informdetails_id);

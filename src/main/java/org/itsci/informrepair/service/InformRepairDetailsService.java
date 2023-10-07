@@ -1,14 +1,16 @@
 package org.itsci.informrepair.service;
 
 import org.itsci.informrepair.model.InformRepairDetails;
+import org.itsci.informrepair.model.InformRepairDetailsID;
 
 import java.util.List;
-import java.util.Map;
 
 public interface InformRepairDetailsService {
     List<InformRepairDetails> getAllInformRepairDetails();
-//
-//    InformRepairDetails getInformRepairDetailsById(Integer informdetails_id);
+    InformRepairDetails getInformRepairDetailsById(Integer equipmentId, Integer roomId, Integer informRepairId);
+
+
+//    InformRepairDetails getInformRepairDetailsById(Integer equipment_id, Integer room_id, Integer informrepair_id) ;
 //
 //    List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList);
 //
