@@ -1,46 +1,49 @@
-//package org.itsci.informrepair.service;
-//
-//import org.itsci.informrepair.model.InformRepair;
-//import org.itsci.informrepair.model.Inform_pictures;
-//import org.itsci.informrepair.repository.InformRepairRepository;
-//import org.itsci.informrepair.repository.Inform_picturesRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//@Service
-//public class Inform_picturesServicelmpl implements Inform_picturesService{
-//
-//    @Autowired
-//    private Inform_picturesRepository inform_picturesRepository;
-//
-//
-//    @Autowired
-//    private InformRepairRepository informRepairRepository;
-//
-//    @Override
-//    public List<Inform_pictures> ListInformPictures() {
-//        return inform_picturesRepository.findAll();
-//    }
-//
-//    public Inform_pictures getInformPicturesById(Integer informpicturesId) {
-//        // ดึงข้อมูลจาก inform_picturesRepository ตรง ๆ โดยใช้ ID
-//        return inform_picturesRepository.findById(informpicturesId).orElse(null);
-//    }
-//
-//
-//    public Inform_pictures saveInformPicture(Inform_pictures informPictures) {
-//        long nextId = inform_picturesRepository.count() + 1;
-//        Integer informpictures_id = generateInformRepairDetailsId(nextId);
-//        informPictures.setInformpictures_id(informpictures_id);
-//
-//        // บันทึกข้อมูลรูปภาพลงในฐานข้อมูล
-//        return inform_picturesRepository.save(informPictures);
-//    }
-//
-//    public Inform_pictures updateInformPicture(Integer informpictures_id, Inform_pictures updatedInformPicture) {
+package org.itsci.informrepair.service;
+
+import org.itsci.informrepair.model.*;
+import org.itsci.informrepair.repository.InformRepairRepository;
+import org.itsci.informrepair.repository.InformRepiarDetailsRepository;
+import org.itsci.informrepair.repository.Inform_picturesRepository;
+import org.itsci.informrepair.repository.RoomEquipmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class Inform_picturesServicelmpl implements Inform_picturesService{
+
+    @Autowired
+    private Inform_picturesRepository inform_picturesRepository;
+
+
+    @Autowired
+    private InformRepairRepository informRepairRepository;
+
+    @Autowired
+    private InformRepiarDetailsRepository informRepiarDetailsRepository;
+
+    @Autowired
+    private RoomEquipmentRepository roomEquipmentRepository;
+
+    @Override
+    public List<Inform_pictures> ListInformPictures() {
+        return inform_picturesRepository.findAll();
+    }
+
+    public Inform_pictures getInformPicturesById(Integer informpicturesId) {
+        // ดึงข้อมูลจาก inform_picturesRepository ตรง ๆ โดยใช้ ID
+        return inform_picturesRepository.findById(informpicturesId).orElse(null);
+    }
+
+
+
+
+
+
+    //    public Inform_pictures updateInformPicture(Integer informpictures_id, Inform_pictures updatedInformPicture) {
 //        // ค้นหารูปภาพที่ต้องการแก้ไขจากฐานข้อมูล
 //        Inform_pictures existingInformPicture = inform_picturesRepository.findById(informpictures_id).orElse(null);
 //
@@ -110,14 +113,14 @@
 //
 //
 //
-//    public Integer generateInformRepairDetailsId(long nextId) {
-//        int result = (int) nextId;
-//        result = 1000 + result;
-//        return result;
-//    }
-//
-//
-//}
-//
-//
-//
+    public Integer generateInformRepairDetailsId(long nextId) {
+        int result = (int) nextId;
+        result = 1000 + result;
+        return result;
+    }
+
+
+}
+
+
+
