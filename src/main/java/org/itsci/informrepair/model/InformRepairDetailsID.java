@@ -23,5 +23,7 @@ public class InformRepairDetailsID  implements Serializable {
         this.room_id = room_id;
         this.informrepair_id = informrepair_id;
     }
+
+
 }
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/informrepairdetails", produces = "application/json; charset=UTF-8")
@@ -50,16 +51,30 @@ public class InformRepairDetailsController {
 
 
 
-//    @PostMapping("/add")
-//    public ResponseEntity addInformRepairDetails(@RequestBody List<Map<String, String>> dataList) {
-//        try {
-//            List<InformRepairDetails> informRepairDetailsList = informRepairDetailsService.saveInformRepairDetails(dataList);
-//            return new ResponseEntity<>(informRepairDetailsList, HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @PostMapping("/add")
+    public ResponseEntity<List<InformRepairDetails>> addInformRepairDetails(@RequestBody List<Map<String, String>> dataList) {
+        try {
+            List<InformRepairDetails> informRepairDetailsList = informRepairDetailsService.saveInformRepairDetails(dataList);
+            return new ResponseEntity<>(informRepairDetailsList, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @PostMapping("/update")
+    public ResponseEntity<List<InformRepairDetails>> updateInformRepairDetails(@RequestBody List<Map<String, String>> dataList) {
+        try {
+            List<InformRepairDetails> informRepairDetailsList = informRepairDetailsService.updateInformRepairDetails(dataList);
+            return new ResponseEntity<>(informRepairDetailsList, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 
 //    @PostMapping("/update")
 //    public ResponseEntity updateInformRepairDetails(@RequestBody Map<String, String> map) {

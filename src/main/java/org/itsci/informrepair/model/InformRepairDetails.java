@@ -32,15 +32,6 @@ public class InformRepairDetails {
     private String details;
 
 
-    public void setInformrepair_id(Integer integer) {
-    }
 
-    public void setTotalAmount(Integer integer) {
-    }
 
-    public void setStatus(String s) {
-    }
-
-    public void setInformDate(Date date) {
-    }
 }

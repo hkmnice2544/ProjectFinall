@@ -30,4 +30,7 @@ public class RoomEquipment {
 
     public void setRoomEquipmentId(RoomEquipmentId roomEquipmentId) {
     }
+
+    public void setStatus(String status) {
+    }
 }

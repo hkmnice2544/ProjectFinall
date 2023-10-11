@@ -4,6 +4,7 @@ import org.itsci.informrepair.model.InformRepairDetails;
 import org.itsci.informrepair.model.InformRepairDetailsID;
 
 import java.util.List;
+import java.util.Map;
 
 public interface InformRepairDetailsService {
     List<InformRepairDetails> getAllInformRepairDetails();
@@ -12,7 +13,8 @@ public interface InformRepairDetailsService {
 
 //    InformRepairDetails getInformRepairDetailsById(Integer equipment_id, Integer room_id, Integer informrepair_id) ;
 //
-//    List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList);
+    List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList);
+    List<InformRepairDetails> updateInformRepairDetails(List<Map<String, String>> dataList) ;
 //
 //    InformRepairDetails updateInformRepairDetails(Map<String, String> map);
 //

@@ -14,75 +14,119 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
     private InformRepiarDetailsRepository informRepiarDetailsRepository;
     @Autowired
     private InformRepairRepository informRepairRepository;
-//    @Autowired
-//    private RoomEquipmentRepository roomEquipmentRepository;
+    @Autowired
+    private RoomEquipmentRepository roomEquipmentRepository;
 //    @Autowired
 //    private Inform_picturesRepository inform_picturesRepository;
 
 //    @PersistenceContext
 //    private EntityManager entityManager;
+
+
 //    public InformRepairDetails findInformRepairDetailsById(Integer informdetails_id) {
 //        return informRepiarDetailsRepository.findById(informdetails_id).orElse(null);
 //    }
 //
 
-//    public List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList) {
-//        List<InformRepairDetails> savedDetailsList = new ArrayList<>();
-//
-//
-//        for (Map<String, String> map : dataList) {
-//            String amountStr = map.get("amount");
-//            String details = map.get("details");
-//            Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
-//            InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
-//
-//            Integer amount = Integer.parseInt(amountStr);
-//
-//            InformRepairDetails informRepairDetails = new InformRepairDetails();
-//            informRepairDetails.setAmount(amount);
-//            informRepairDetails.setDetails(details);
-//
-//             Integer informdetails_id = generateInformRepairDetailsId(informRepiarDetailsRepository.count() + 1);
-//             informRepairDetails.setInformdetails_id(informdetails_id);
-//
-//            informRepairDetails.setInformRepair(informRepair);
-//
-//            Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
-//            Integer room_id = Integer.parseInt(map.get("room_id"));
-//            RoomEquipmentId roomEquipmentId = new RoomEquipmentId(equipment_id, room_id);
-//
-//            RoomEquipment roomEquipment = (RoomEquipment) roomEquipmentRepository.findById(roomEquipmentId).orElse(null);
-//
-//            if (roomEquipment == null) {
-//                roomEquipment = new RoomEquipment();
-//                roomEquipment.setRoomEquipmentId(roomEquipmentId);
-//                roomEquipmentRepository.save(roomEquipment);
-//            }
-//
-//            informRepairDetails.setRoomEquipment(roomEquipment);
-//
-//            // บันทึกข้อมูลแต่ละรายการแยกกัน
-//            InformRepairDetails savedInformRepairDetails = informRepiarDetailsRepository.save(informRepairDetails);
-//
-//            // Update "status" in RoomEquipment
-//            String status = map.get("status");
-//
-//            if (roomEquipment != null) {
-//                roomEquipment.setStatus(status);
-//                roomEquipmentRepository.save(roomEquipment);
-//            } else {
-//                // Create RoomEquipment and set "status" if it doesn't exist
-//                roomEquipment = new RoomEquipment();
-//                roomEquipment.setRoomEquipmentId(roomEquipmentId);
-//                roomEquipment.setStatus(status);
-//                roomEquipmentRepository.save(roomEquipment);
-//            }
-//
-//            savedDetailsList.add(savedInformRepairDetails);
-//        }
-//
-//        return savedDetailsList;
-//    }
+    public List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList) {
+        List<InformRepairDetails> savedDetailsList = new ArrayList<>();
+
+        for (Map<String, String> map : dataList) {
+            Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+            InformRepair informRepair = informRepairRepository.findById(informrepair_id).orElse(null);
+
+            if (informRepair == null) {
+                // ทำการจัดการเมื่อไม่พบ InformRepair ที่เกี่ยวข้อง (ตามความเหมาะสม)
+                // ยกเลิกการบันทึกหรือทำบางอย่างอื่นๆ ตามที่คุณต้องการ
+                continue;
+            }
+
+            Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
+            Integer room_id = Integer.parseInt(map.get("room_id"));
+
+            RoomEquipmentId roomEquipmentId = new RoomEquipmentId(equipment_id, room_id);
+            RoomEquipment roomEquipment = (RoomEquipment) roomEquipmentRepository.findById(roomEquipmentId).orElse(null);
+
+            if (roomEquipment == null) {
+                // ทำการจัดการเมื่อไม่พบ RoomEquipment ที่เกี่ยวข้อง (ตามความเหมาะสม)
+                // ยกเลิกการบันทึกหรือทำบางอย่างอื่นๆ ตามที่คุณต้องการ
+                continue;
+            }
+
+            // คำนวณค่าอื่น ๆ เช่น amount, details ตามปกติ
+            // ...
+
+            // เมื่อคุณมี informrepair_id, informRepair, equipment_id, room_id, roomEquipment ที่ถูกต้องและมีค่า
+            // สร้างและบันทึก InformRepairDetails
+            String amountStr = map.get("amount");
+            Integer amount = Integer.parseInt(amountStr);
+            String details = map.get("details");
+
+            InformRepairDetails informRepairDetails = new InformRepairDetails();
+            InformRepairDetailsID id = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
+            informRepairDetails.setId(id);
+            informRepairDetails.setAmount(amount);
+            informRepairDetails.setDetails(details);
+            informRepairDetails.setInformrepairid(informRepair);
+            informRepairDetails.setRoomEquipment(roomEquipment);
+
+            InformRepairDetails savedInformRepairDetails = informRepiarDetailsRepository.save(informRepairDetails);
+            savedDetailsList.add(savedInformRepairDetails);
+        }
+
+        return savedDetailsList;
+    }
+
+
+        public List<InformRepairDetails> updateInformRepairDetails(List<Map<String, String>> dataList) {
+            List<InformRepairDetails> savedDetailsList = new ArrayList<>();
+
+            for (Map<String, String> map : dataList) {
+                Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+                InformRepair informRepair = informRepairRepository.findById(informrepair_id).orElse(null);
+
+                if (informRepair == null) {
+                    // ทำการจัดการเมื่อไม่พบ InformRepair ที่เกี่ยวข้อง (ตามความเหมาะสม)
+                    // ยกเลิกการบันทึกหรือทำบางอย่างอื่นๆ ตามที่คุณต้องการ
+                    continue;
+                }
+
+                Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
+                Integer room_id = Integer.parseInt(map.get("room_id"));
+
+                RoomEquipmentId roomEquipmentId = new RoomEquipmentId(equipment_id, room_id);
+                RoomEquipment roomEquipment = (RoomEquipment) roomEquipmentRepository.findById(roomEquipmentId).orElse(null);
+
+                if (roomEquipment == null) {
+                    // ทำการจัดการเมื่อไม่พบ RoomEquipment ที่เกี่ยวข้อง (ตามความเหมาะสม)
+                    // ยกเลิกการบันทึกหรือทำบางอย่างอื่นๆ ตามที่คุณต้องการ
+                    continue;
+                }
+
+                // คำนวณค่าอื่น ๆ เช่น amount, details ตามปกติ
+                // ...
+
+                // เมื่อคุณมี informrepair_id, informRepair, equipment_id, room_id, roomEquipment ที่ถูกต้องและมีค่า
+                // สร้างและบันทึก InformRepairDetails
+                String amountStr = map.get("amount");
+                Integer amount = Integer.parseInt(amountStr);
+                String details = map.get("details");
+
+                InformRepairDetails informRepairDetails = new InformRepairDetails();
+                InformRepairDetailsID id = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
+                informRepairDetails.setId(id);
+                informRepairDetails.setAmount(amount);
+                informRepairDetails.setDetails(details);
+                informRepairDetails.setInformrepairid(informRepair);
+                informRepairDetails.setRoomEquipment(roomEquipment);
+
+                InformRepairDetails savedInformRepairDetails = informRepiarDetailsRepository.save(informRepairDetails);
+                savedDetailsList.add(savedInformRepairDetails);
+            }
+
+            return savedDetailsList;
+        }
+
 
 
 
