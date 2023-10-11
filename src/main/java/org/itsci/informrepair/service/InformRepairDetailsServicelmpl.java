@@ -22,11 +22,10 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
 //    @PersistenceContext
 //    private EntityManager entityManager;
 
+    public InformRepairDetails findInformRepairDetailsById(InformRepairDetailsID id) {
+        return informRepiarDetailsRepository.findById(id).orElse(null);
+    }
 
-//    public InformRepairDetails findInformRepairDetailsById(Integer informdetails_id) {
-//        return informRepiarDetailsRepository.findById(informdetails_id).orElse(null);
-//    }
-//
 
     public List<InformRepairDetails> saveInformRepairDetails(List<Map<String, String>> dataList) {
         List<InformRepairDetails> savedDetailsList = new ArrayList<>();
@@ -126,6 +125,10 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
 
             return savedDetailsList;
         }
+
+    public void deleteInformRepairDetails(InformRepairDetailsID id) {
+        informRepiarDetailsRepository.deleteById(id);
+    }
 
 
 

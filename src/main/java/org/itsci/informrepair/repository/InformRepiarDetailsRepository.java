@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface InformRepiarDetailsRepository extends JpaRepository<InformRepairDetails, Integer> {
+public interface InformRepiarDetailsRepository extends JpaRepository<InformRepairDetails,InformRepairDetailsID> {
 //    Optional<Object> findById(InformRepairDetailsID id);
     Optional<InformRepairDetails> findById(InformRepairDetailsID id);
 

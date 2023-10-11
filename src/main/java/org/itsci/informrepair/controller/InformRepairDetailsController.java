@@ -74,18 +74,35 @@ public class InformRepairDetailsController {
         }
     }
 
+    @PostMapping("/get/{equipment_id}/{room_id}/{informrepair_id}")
+    public ResponseEntity<InformRepairDetails> getInformRepairDetailsById(
+            @PathVariable Integer equipment_id,
+            @PathVariable Integer room_id,
+            @PathVariable Integer informrepair_id
+    ) {
+        InformRepairDetailsID id = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
+        InformRepairDetails informRepairDetails = informRepairDetailsService.findInformRepairDetailsById(id);
+
+        if (informRepairDetails != null) {
+            return ResponseEntity.ok(informRepairDetails);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/deleteInformRepairDetails/{equipment_id}/{room_id}/{informrepair_id}")
+    public ResponseEntity<Void> deleteInformRepairDetails(
+            @PathVariable Integer equipment_id,
+            @PathVariable Integer room_id,
+            @PathVariable Integer informrepair_id
+    ) {
+        InformRepairDetailsID id = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
+        informRepairDetailsService.deleteInformRepairDetails(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
-//    @PostMapping("/update")
-//    public ResponseEntity updateInformRepairDetails(@RequestBody Map<String, String> map) {
-//        try {
-//            InformRepairDetails updatedDetails = (InformRepairDetails) informRepairDetailsService.updateInformRepairDetails(map);
-//            return new ResponseEntity<>(updatedDetails, HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+
 
 
 //    @PostMapping("/getInformRepairDetails/{informdetails_id}")
