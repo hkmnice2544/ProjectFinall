@@ -38,6 +38,42 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
         return inform_picturesRepository.findById(informpicturesId).orElse(null);
     }
 
+    public List<Inform_pictures> savedsaveInform_pictures(List<Map<String, Object>> requestDataList) {
+        List<Inform_pictures> savedInformPictures = new ArrayList<>();
+
+        for (Map<String, Object> requestData : requestDataList) {
+            List<Map<String, String>> picturesList = (List<Map<String, String>>) requestData.get("informPicturesList");
+            Integer equipment_id = Integer.parseInt(requestData.get("equipment_id").toString());
+            Integer room_id = Integer.parseInt(requestData.get("room_id").toString());
+            Integer informrepair_id = Integer.parseInt(requestData.get("informrepair_id").toString());
+
+            for (Map<String, String> pictureData : picturesList) {
+                Inform_pictures informPictures = new Inform_pictures();
+                long nextId = inform_picturesRepository.count() + 1;
+                Integer informPicturesId = generateInformPicturesId(nextId);
+                informPictures.setInformpictures_id(informPicturesId);
+                informPictures.setPictureUrl(pictureData.get("pictureUrl"));
+
+                // สร้าง InformRepairDetails
+                InformRepairDetailsID informRepairDetailsID = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
+                InformRepairDetails informRepairDetails = new InformRepairDetails();
+                informRepairDetails.setId(informRepairDetailsID);
+
+                // เชื่อมโยง Inform_pictures กับ InformRepairDetails
+                informPictures.setInformRepairDetails(informRepairDetails);
+
+                // บันทึกข้อมูลรูปภาพลงในฐานข้อมูลและเก็บใน savedInformPictures
+                savedInformPictures.add(inform_picturesRepository.save(informPictures));
+            }
+        }
+
+        return savedInformPictures;
+    }
+
+
+
+
+
 
 
 
@@ -59,13 +95,26 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
 //        }
 //    }
 //
-//    public List<Inform_pictures> saveInformPictures(List<Inform_pictures> informPicturesList) {
-//        List<Inform_pictures> savedInformPictures = new ArrayList<>();
+//    public List<Inform_pictures> saveInformPictures(List<Inform_pictures> informPicturesList, Map<String, String> map) {
+//        List<Inform_pictures> savedInformPictures = new ArrayList();
 //
 //        for (Inform_pictures informPictures : informPicturesList) {
 //            long nextId = inform_picturesRepository.count() + 1;
-//            Integer informpictures_id = generateInformRepairDetailsId(nextId);
-//            informPictures.setInformpictures_id(informpictures_id);
+//            Integer Inform_pictures_id = generateInformPicturesId(nextId);
+//            // สร้าง InformRepairDetails
+//            Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
+//            Integer room_id = Integer.parseInt(map.get("room_id"));
+//            Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+//            InformRepairDetailsID informRepairDetailsID = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
+//
+//            InformRepairDetails informRepairDetails = new InformRepairDetails();
+//            informRepairDetails.setId(informRepairDetailsID);
+//            String pictureUrl = map.get("pictureUrl");
+//
+//            // เชื่อมโยง Inform_pictures กับ InformRepairDetails
+//            informPictures.setInformRepairDetails(informRepairDetails);
+//            informPictures.setPictureUrl(pictureUrl);
+//            informPictures.setInformpictures_id(Inform_pictures_id);
 //
 //            // บันทึกข้อมูลรูปภาพลงในฐานข้อมูลและเก็บใน savedInformPictures
 //            savedInformPictures.add(inform_picturesRepository.save(informPictures));
@@ -73,7 +122,10 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
 //
 //        return savedInformPictures;
 //    }
-//
+
+
+
+    //
 //    public List<Inform_pictures> updateInformPictures(List<Inform_pictures> informPicturesList) {
 //        List<Inform_pictures> updatedInformPictures = new ArrayList<>();
 //
@@ -113,7 +165,7 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
 //
 //
 //
-    public Integer generateInformRepairDetailsId(long nextId) {
+    public Integer generateInformPicturesId(long nextId) {
         int result = (int) nextId;
         result = 1000 + result;
         return result;

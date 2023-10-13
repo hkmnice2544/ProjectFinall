@@ -36,17 +36,17 @@ public class ReportRepairController {
         }
     }
 
-//    @PostMapping("/list")
-//    public ResponseEntity listReportRepair(){
-//        try{
-//
-//            List<Reportrepair> reportrepairs = reportrepairService.getAllReportrepairs();
-//            return  new ResponseEntity(reportrepairs,HttpStatus.OK);
-//        }catch (Exception e){
-//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//
+    @PostMapping("/list")
+    public ResponseEntity listReportRepair(){
+        try{
+
+            List<Reportrepair> reportrepairs = reportrepairService.getAllReportrepairs();
+            return  new ResponseEntity(reportrepairs,HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 //
 //    @PostMapping("/ViewListInformDetails/{informdetails_id}")
 //    public ResponseEntity findViewInformRepairDetailsById(@PathVariable Integer informdetails_id){
@@ -60,16 +60,16 @@ public class ReportRepairController {
 //    }
 //
 //
-//    @PostMapping("/get/{report_id}")
-//    public ResponseEntity<?> getReportrepairById(@PathVariable Integer report_id) {
-//        try {
-//            Reportrepair reportrepairs = reportrepairService.getReportrepairById(report_id);
-//            return ResponseEntity.ok(reportrepairs);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @PostMapping("/get/{report_id}")
+    public ResponseEntity<?> getReportrepairById(@PathVariable Integer report_id) {
+        try {
+            Reportrepair reportrepairs = reportrepairService.getReportrepairById(report_id);
+            return ResponseEntity.ok(reportrepairs);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.notFound().build();
+        }
+    }
 //
 //    @PostMapping("/update")
 //    public ResponseEntity updateReportrepair(@RequestBody Map<String,String>map){

@@ -42,12 +42,13 @@ public class Inform_picturesController {
         return inform_picturesService.getInformPicturesById(informpicturesId);
     }
 //    @PostMapping("/add")
-//    public ResponseEntity<Inform_pictures> addInformPicture(@RequestBody Inform_pictures informPictures) {
+//    public ResponseEntity<List<Inform_pictures>> saveInformPictures(@RequestBody List<Inform_pictures> informPicturesList, @RequestParam Map<String, String> map) {
 //        // รับข้อมูลรูปภาพและเรียกใช้ Service เพื่อบันทึกข้อมูล
-//        Inform_pictures savedInformPicture = inform_picturesService.saveInformPicture(informPictures);
-//        return new ResponseEntity<>(savedInformPicture, HttpStatus.CREATED);
+//        List<Inform_pictures> savedInformPictures = inform_picturesService.savedsaveInform_pictures((Map<String, Object>) informPicturesList);
+//        return new ResponseEntity<>(savedInformPictures, HttpStatus.CREATED);
 //    }
-//
+
+
 //    @PostMapping("/update/{informpictures_id}")
 //    public ResponseEntity<Inform_pictures> updateInformPicture(@PathVariable Integer informpictures_id, @RequestBody Inform_pictures updatedInformPicture) {
 //        try {
@@ -79,16 +80,18 @@ public class Inform_picturesController {
         }
     }
 
-//    @PostMapping("/addInformPictures")
-//    public ResponseEntity saveInformPictures(@RequestBody List<Inform_pictures> informPicturesList) {
-//        try {
-//            List<Inform_pictures> savedInformPictures = inform_picturesService.saveInformPictures(informPicturesList);
-//            return new ResponseEntity<>(savedInformPictures, HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @PostMapping("/addInformPictures")
+    public ResponseEntity<List<Inform_pictures>> saveInformPictures(@RequestBody List<Map<String, Object>> requestDataList) {
+        try {
+            List<Inform_pictures> savedInformPictures = inform_picturesService.savedsaveInform_pictures(requestDataList);
+            return new ResponseEntity<>(savedInformPictures, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 //
 //    @PostMapping("/updateInformPictures")
 //    public ResponseEntity<List<Inform_pictures>> updateInformPictures(@RequestBody List<Inform_pictures> informPicturesList) {

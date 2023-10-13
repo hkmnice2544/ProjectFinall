@@ -7,8 +7,8 @@ import java.util.Map;
 
 public interface ReportrepairService {
 //    List<Reportrepair> findViewInformRepairDetailsById(int informdetails_id);
-//    List<Reportrepair> getAllReportrepairs();
-//    Reportrepair getReportrepairById(Integer report_id);
+    List<Reportrepair> getAllReportrepairs();
+    Reportrepair getReportrepairById(Integer report_id);
 //    Reportrepair saveReportrepair(Map<String, String> map);
 
     Reportrepair saveReportrepair(Map<String, String> map) ;

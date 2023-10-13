@@ -34,17 +34,17 @@ public class ReportServiceImpl implements ReportrepairService {
 //    private ReviewRepository reviewRepository;
 
 
-//    @Override
-//    public List<Reportrepair> getAllReportrepairs() {
-//        return reportrepairRepository.findAll();
-//    }
-//
-//
-//    @Override
-//    public Reportrepair getReportrepairById(Integer report_id) {
-//        return reportrepairRepository.getReferenceById(report_id);
-//    }
-//
+    @Override
+    public List<Reportrepair> getAllReportrepairs() {
+        return reportrepairRepository.findAll();
+    }
+
+
+    @Override
+    public Reportrepair getReportrepairById(Integer report_id) {
+        return reportrepairRepository.getReferenceById(report_id);
+    }
+
 //    @Override
 //    public List<Reportrepair> findViewInformRepairDetailsById(int informdetails_id) {
 //        return reportrepairRepository.findAllDetailsByInformRepairId(informdetails_id);
