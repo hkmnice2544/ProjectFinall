@@ -210,15 +210,15 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
 //    }
 //
 //
-//    @Override
-//    public List<InformRepairDetails> findViewInformDetailsById(int informrepair_id) {
-//        return informRepiarDetailsRepository.findAllDetailsByInformRepairId(informrepair_id);
-//    }
-//
-//    @Override
-//    public List<InformRepairDetails> ViewListInformDetails(int informrepair_id) {
-//        return informRepiarDetailsRepository.ViewListInformDetails(informrepair_id);
-//    }
+    @Override
+    public List<InformRepairDetails> findViewInformDetailsById(int informrepair_id) {
+        return informRepiarDetailsRepository.findAllDetailsByInformRepairId(informrepair_id);
+    }
+
+    @Override
+    public List<InformRepairDetails> ViewListInformDetails(int informrepair_id) {
+        return informRepiarDetailsRepository.ViewListInformDetails(informrepair_id);
+    }
 
 
 

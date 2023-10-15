@@ -33,6 +33,8 @@ public interface InformRepairService { //เหมือนManager
     //    Path downloadPostImg (String filePath) ;
     InformRepair deleteInformRepair(Integer informrepair_id);
 
+    List<InformRepair> ViewListByinformrepair_id(int informrepair_id);
+
 //    Object getEquipmentFromInformRepair(Integer informrepairId);
 }
 

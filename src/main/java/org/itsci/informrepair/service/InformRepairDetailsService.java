@@ -24,10 +24,10 @@ public interface InformRepairDetailsService {
 //    InformRepairDetails deleteInformRepairDetailsById(Integer informdetailsId);
 //
 //
-//
-//    List<InformRepairDetails> findViewInformDetailsById(int informrepair_id) ;
-//
-//    List<InformRepairDetails> ViewListInformDetails(int informrepair_id) ;
+
+    List<InformRepairDetails> findViewInformDetailsById(int informrepair_id) ;
+
+    List<InformRepairDetails> ViewListInformDetails(int informrepair_id) ;
 
 
 }

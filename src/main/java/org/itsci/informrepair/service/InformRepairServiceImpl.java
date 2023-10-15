@@ -191,6 +191,12 @@ public class InformRepairServiceImpl implements InformRepairService {
         return result;
     }
 
+    @Override
+    public List<InformRepair> ViewListByinformrepair_id(int informrepair_id) {
+        return informRepairRepository.ViewListByinformrepair_id(informrepair_id);
+    }
+
+
 
 
 

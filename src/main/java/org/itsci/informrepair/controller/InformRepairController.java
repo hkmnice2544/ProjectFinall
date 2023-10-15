@@ -3,6 +3,7 @@ package org.itsci.informrepair.controller;
 import jakarta.persistence.EntityNotFoundException;
 import org.itsci.informrepair.model.Equipment;
 import org.itsci.informrepair.model.InformRepair;
+import org.itsci.informrepair.model.InformRepairDetails;
 import org.itsci.informrepair.model.Review;
 import org.itsci.informrepair.service.InformRepairService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -182,6 +183,18 @@ public class InformRepairController {
 //        }
 //    }
 //
+
+    @PostMapping("/ViewListByinformrepair_id/{informrepair_id}")
+    public ResponseEntity ViewListByinformrepair_id(@PathVariable Integer informrepair_id){
+        try {
+            List<InformRepair> ViewListByinformrepair_id = informRepairService.ViewListByinformrepair_id(informrepair_id);
+            return new ResponseEntity<>(ViewListByinformrepair_id, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 
 

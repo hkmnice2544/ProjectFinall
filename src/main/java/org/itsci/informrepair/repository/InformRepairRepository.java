@@ -1,6 +1,7 @@
 package org.itsci.informrepair.repository;
 
 import org.itsci.informrepair.model.InformRepair;
+import org.itsci.informrepair.model.InformRepairDetails;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,6 +14,9 @@ public interface InformRepairRepository extends JpaRepository<InformRepair, Inte
 //
 //    @Query(value = "SELECT informdetails_id FROM inform_repairdetails WHERE informrepair_id = :informrepair_id GROUP BY informdetails_id LIMIT 1;",nativeQuery = true)
 //    int findInformDetailIDById(int informrepair_id);
+
+    @Query(value = "select * from informrepair where informrepair_id = :informrepair_id ", nativeQuery = true)
+    List<InformRepair> ViewListByinformrepair_id(int informrepair_id);
 
 
 
