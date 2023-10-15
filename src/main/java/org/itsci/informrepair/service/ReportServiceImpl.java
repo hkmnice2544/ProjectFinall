@@ -75,7 +75,18 @@ public class ReportServiceImpl implements ReportrepairService {
         // บันทึก Reportrepair ใหม่
         Reportrepair savedReportrepair = reportrepairRepository.save(reportrepair);
 
-        // อัปเดตค่า status ใน InformRepair
+        String newStatus = map.get("status"); // ดึงค่า status ใหม่จาก Map
+
+        InformRepair informRepair = informRepairRepository.findById(informrepair_id).orElse(null); // ค้นหา informRepair โดยใช้ informrepair_id
+
+        if (informRepair != null) {
+            informRepair.setStatus(newStatus); // อัปเดตค่า status ใน informRepair
+            informRepairRepository.save(informRepair); // บันทึกการเปลี่ยนแปลงลงในฐานข้อมูล
+        } else {
+            // คุณอาจจะต้องจัดการข้อผิดพลาดหากไม่พบ informRepair ที่ถูกต้อง
+            // เช่น สร้างข้อความผิดพลาดหรือการจัดการข้อผิดพลาดอื่น ๆ ตามสภาพความเป็นจริงของแอปของคุณ
+        }
+
 
         return savedReportrepair;
     }
