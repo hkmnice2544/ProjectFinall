@@ -45,10 +45,10 @@ public class ReportServiceImpl implements ReportrepairService {
         return reportrepairRepository.getReferenceById(report_id);
     }
 
-//    @Override
-//    public List<Reportrepair> findViewInformRepairDetailsById(int informdetails_id) {
-//        return reportrepairRepository.findAllDetailsByInformRepairId(informdetails_id);
-//    }
+    @Override
+    public List<Reportrepair> findViewInformRepairDetailsById(int informdetails_id) {
+        return reportrepairRepository.findAllDetailsByInformRepairId(informdetails_id);
+    }
 
 
 

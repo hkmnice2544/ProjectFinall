@@ -47,19 +47,19 @@ public class ReportRepairController {
         }
     }
 
-//
-//    @PostMapping("/ViewListInformDetails/{informdetails_id}")
-//    public ResponseEntity findViewInformRepairDetailsById(@PathVariable Integer informdetails_id){
-//        try {
-//            List<Reportrepair> reportrepairs = reportrepairService.findViewInformRepairDetailsById(informdetails_id);
-//            return new ResponseEntity<>(reportrepairs, HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//
-//
+
+    @PostMapping("/ViewListInformDetails/{informrepair_id}")
+    public ResponseEntity findViewInformRepairDetailsById(@PathVariable Integer informrepair_id){
+        try {
+            List<Reportrepair> reportrepairs = reportrepairService.findViewInformRepairDetailsById(informrepair_id);
+            return new ResponseEntity<>(reportrepairs, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @PostMapping("/get/{report_id}")
     public ResponseEntity<?> getReportrepairById(@PathVariable Integer report_id) {
         try {
