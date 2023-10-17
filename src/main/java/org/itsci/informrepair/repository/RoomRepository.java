@@ -17,7 +17,10 @@ public interface RoomRepository extends JpaRepository<Room,Integer> {
     @Query("SELECT DISTINCT r.position FROM Room r")
     List<String> findAllDistinctoomposition();
 
-    @Query(value = "\n" +
-            "SELECT floor FROM room WHERE building_id = :building_id GROUP BY floor ORDER BY CASE WHEN floor = 'G' THEN 0 ELSE CAST(floor AS SIGNED) END,  floor",nativeQuery = true)
+    @Query(value = "SELECT floor FROM room WHERE building_id = :building_id GROUP BY floor ORDER BY CASE WHEN floor = 'G' THEN 0 ELSE CAST(floor AS SIGNED) END,  floor",nativeQuery = true)
     List<String> findfloorByIdbuilding_id(int building_id);
+
+
+    @Query(value = "select position from room where building_id = :building_id and floor = :floor group by position",nativeQuery = true)
+    List<String> findpositionByIdbuilding_id(int building_id,String floor);
 }

@@ -32,4 +32,11 @@ public class RoomServicelmpl implements RoomService{
     }
 
 
+
+    @Override
+    public List<String> findpositionByIdbuilding_id(int building_id,String floor) {
+        return roomRepository.findpositionByIdbuilding_id(building_id,floor);
+    }
+
+
 }

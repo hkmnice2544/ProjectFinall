@@ -58,7 +58,7 @@ public class RoomController {
         }
     }
 
-        @PostMapping("/floor/{building_id}")
+    @PostMapping("/floor/{building_id}")
     public ResponseEntity findfloorByIdbuilding_id(@PathVariable Integer building_id){
         try {
             List<String> floor = roomService.findfloorByIdbuilding_id(building_id);
@@ -69,5 +69,16 @@ public class RoomController {
         }
     }
 
+
+    @PostMapping("/position/{building_id}/{floor}")
+    public ResponseEntity findpositionByIdbuilding_id(@PathVariable Integer building_id, @PathVariable String floor) {
+        try {
+            List<String> position = roomService.findpositionByIdbuilding_id(building_id,floor);
+            return new ResponseEntity<>(position, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
