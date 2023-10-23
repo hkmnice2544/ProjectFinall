@@ -50,5 +50,10 @@ public class RoomServicelmpl implements RoomService{
     }
 
 
+    @Override
+    public List<String> findequipment_idByIdByroom_id(int room_id) {
+        return roomRepository.findequipment_idByIdByroom_id(room_id);
+    }
+
 
 }

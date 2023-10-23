@@ -103,4 +103,15 @@ public class RoomController {
         }
     }
 
+
+    @PostMapping("/findequipment_idByIdByroom_id/{room_id}")
+    public ResponseEntity  findequipment_idByIdByroom_id(@PathVariable Integer room_id) {
+        try {
+            List<String> equipment_id = roomService. findequipment_idByIdByroom_id(room_id);
+            return new ResponseEntity<>(equipment_id, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
