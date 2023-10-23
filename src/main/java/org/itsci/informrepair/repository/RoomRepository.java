@@ -27,6 +27,9 @@ public interface RoomRepository extends JpaRepository<Room,Integer> {
     @Query(value = "select roomname from room where building_id = :building_id and floor = :floor and position = :position ",nativeQuery = true)
     List<String> findroomnameByIdbuilding_id(int building_id,String floor,String position);
 
+    @Query(value = "select room_id from room where building_id = :building_id and floor = :floor and position = :position and roomname = :roomname",nativeQuery = true)
+    List<String> findroom_idByIdByAll(int building_id,String floor,String position,String roomname);
+
 
 
 }

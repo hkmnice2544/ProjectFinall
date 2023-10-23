@@ -29,5 +29,7 @@ public interface InformRepairDetailsService {
 
     List<InformRepairDetails> ViewListInformDetails(int informrepair_id) ;
 
+    List<InformRepairDetails> ListInformDetailsGroupbyinformrepair_id();
+
 
 }

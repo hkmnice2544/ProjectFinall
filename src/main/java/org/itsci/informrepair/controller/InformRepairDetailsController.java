@@ -157,6 +157,19 @@ public class InformRepairDetailsController {
 
 
 
+    @PostMapping("/ListInformDetailsGroupbyinformrepair_id")
+    public ResponseEntity<List<InformRepairDetails>>ListInformDetailsGroupbyinformrepair_id(){
+        try {
+            List<InformRepairDetails> ListInformDetailsGroupbyinformrepair_id = informRepairDetailsService.ListInformDetailsGroupbyinformrepair_id();
+            return new ResponseEntity<>(ListInformDetailsGroupbyinformrepair_id, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
 }
 
 

@@ -92,4 +92,15 @@ public class RoomController {
         }
     }
 
+    @PostMapping("/findroom_idByIdByAll/{building_id}/{floor}/{position}/{roomname}")
+    public ResponseEntity findroom_idByIdByAll(@PathVariable Integer building_id, @PathVariable String floor,@PathVariable String position,@PathVariable String roomname) {
+        try {
+            List<String> room_id = roomService.findroom_idByIdByAll(building_id,floor,position,roomname);
+            return new ResponseEntity<>(room_id, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

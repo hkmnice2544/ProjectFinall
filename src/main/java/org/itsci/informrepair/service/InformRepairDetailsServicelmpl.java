@@ -221,6 +221,11 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
     }
 
 
+    @Override
+    public List<InformRepairDetails> ListInformDetailsGroupbyinformrepair_id() {
+        return informRepiarDetailsRepository.ListInformDetailsGroupbyinformrepair_id();
+    }
+
 
 
 

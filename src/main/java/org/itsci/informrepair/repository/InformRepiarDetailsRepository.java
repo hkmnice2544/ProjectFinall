@@ -29,6 +29,10 @@ public interface InformRepiarDetailsRepository extends JpaRepository<InformRepai
     List<InformRepairDetails> ViewListInformDetails(int informrepair_id);
 
 
+    @Query(value = "select *from inform_repairdetails group by informrepair_id", nativeQuery = true)
+    List<InformRepairDetails> ListInformDetailsGroupbyinformrepair_id();
+
+
 
 
 }

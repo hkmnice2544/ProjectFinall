@@ -12,4 +12,6 @@ public interface RoomService {
 
     List<String> findpositionByIdbuilding_id(int building_id,String floor) ;
     List<String> findroomnameByIdbuilding_id(int building_id,String floor,String position);
+
+    List<String> findroom_idByIdByAll(int building_id,String floor,String position,String roomname);
 }
