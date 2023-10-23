@@ -30,10 +30,16 @@ public interface RoomRepository extends JpaRepository<Room,Integer> {
     @Query(value = "select room_id from room where building_id = :building_id and floor = :floor and position = :position and roomname = :roomname",nativeQuery = true)
     List<String> findroom_idByIdByAll(int building_id,String floor,String position,String roomname);
 
-    @Query(value = "SELECT equipment.equipmentname FROM roomequipment INNER JOIN equipment ON roomequipment.equipment_id = equipment.equipment_id  WHERE roomequipment.room_id = :room_id",nativeQuery = true)
+    @Query(value = "select equipment_id from roomequipment where room_id = :room_id",nativeQuery = true)
     List<String> findequipment_idByIdByroom_id(int room_id);
 
-    //select equipment_id from roomequipment where room_id = 101;
+    //select equipment_id from roomequipment where room_id = :room_id
+
+    //SELECT equipment.equipmentname FROM roomequipment INNER JOIN equipment ON roomequipment.equipment_id = equipment.equipment_id  WHERE roomequipment.room_id = :room_id
+
+    @Query(value = "select equipmentname from equipment where equipment_id = :equipment_id",nativeQuery = true)
+    List<String> findequipmentnameByIdByequipment_id(int equipment_id);
+
 
 
 
