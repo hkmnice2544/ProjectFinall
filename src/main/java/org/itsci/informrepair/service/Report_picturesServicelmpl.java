@@ -1,11 +1,7 @@
 package org.itsci.informrepair.service;
 
-import org.itsci.informrepair.model.Inform_pictures;
 import org.itsci.informrepair.model.Report_pictures;
-import org.itsci.informrepair.model.Reportrepair;
 import org.itsci.informrepair.repository.Report_picturesRepository;
-import org.itsci.informrepair.repository.ReportrepairRepository;
-import org.itsci.informrepair.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

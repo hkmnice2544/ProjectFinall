@@ -1,7 +1,6 @@
 package org.itsci.informrepair.controller;
 
 import org.itsci.informrepair.model.FileUploadUtil;
-import org.itsci.informrepair.model.Inform_pictures;
 import org.itsci.informrepair.model.Report_pictures;
 import org.itsci.informrepair.service.Report_picturesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

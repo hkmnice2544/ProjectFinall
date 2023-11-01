@@ -30,6 +30,7 @@ public class InformRepairDetails {
 
     private int amount;
     private String details;
+    private String pictures;
 
 
 

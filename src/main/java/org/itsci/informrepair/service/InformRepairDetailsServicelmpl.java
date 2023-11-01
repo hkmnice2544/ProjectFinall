@@ -60,12 +60,14 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
             String amountStr = map.get("amount");
             Integer amount = Integer.parseInt(amountStr);
             String details = map.get("details");
+            String pictures = map.get("pictures");
 
             InformRepairDetails informRepairDetails = new InformRepairDetails();
             InformRepairDetailsID id = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
             informRepairDetails.setId(id);
             informRepairDetails.setAmount(amount);
             informRepairDetails.setDetails(details);
+            informRepairDetails.setPictures(pictures);
             informRepairDetails.setInformrepairid(informRepair);
             informRepairDetails.setRoomEquipment(roomEquipment);
 

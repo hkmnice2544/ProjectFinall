@@ -1,6 +1,7 @@
 package org.itsci.informrepair.controller;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.itsci.informrepair.model.FileUploadUtil;
 import org.itsci.informrepair.model.InformRepairDetails;
 import org.itsci.informrepair.model.InformRepairDetailsID;
 import org.itsci.informrepair.repository.InformRepiarDetailsRepository;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -167,7 +170,26 @@ public class InformRepairDetailsController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PostMapping("/uploadMultiple")
+    public ResponseEntity<String> uploadMultipleFiles(@RequestParam("files") List<MultipartFile> files) {
+        try {
+            String uploadDir = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\InformRepairDetails Pictures";
 
+            for (MultipartFile file : files) {
+                String fileName = file.getOriginalFilename();
+
+                // บันทึกไฟล์ลงในเครื่องเซิร์ฟเวอร์
+                FileUploadUtil.saveFile(uploadDir, fileName, file);
+
+                // ทำอะไรต่อกับข้อมูล (เช่น บันทึกข้อมูลไฟล์ลงในฐานข้อมูล) สามารถทำที่นี่
+            }
+
+            return new ResponseEntity<>("รูปภาพถูกอัพโหลดและข้อมูลถูกบันทึกเรียบร้อย", HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("เกิดข้อผิดพลาดในการอัพโหลดและบันทึกไฟล์", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 }

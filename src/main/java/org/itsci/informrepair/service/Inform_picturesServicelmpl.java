@@ -3,7 +3,7 @@ package org.itsci.informrepair.service;
 import org.itsci.informrepair.model.*;
 import org.itsci.informrepair.repository.InformRepairRepository;
 import org.itsci.informrepair.repository.InformRepiarDetailsRepository;
-import org.itsci.informrepair.repository.Inform_picturesRepository;
+//import org.itsci.informrepair.repository.Inform_picturesRepository;
 import org.itsci.informrepair.repository.RoomEquipmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +15,8 @@ import java.util.Map;
 @Service
 public class Inform_picturesServicelmpl implements Inform_picturesService{
 
-    @Autowired
-    private Inform_picturesRepository inform_picturesRepository;
+//    @Autowired
+//    private Inform_picturesRepository inform_picturesRepository;
 
 
     @Autowired
@@ -28,48 +28,48 @@ public class Inform_picturesServicelmpl implements Inform_picturesService{
     @Autowired
     private RoomEquipmentRepository roomEquipmentRepository;
 
-    @Override
-    public List<Inform_pictures> ListInformPictures() {
-        return inform_picturesRepository.findAll();
-    }
-
-    public Inform_pictures getInformPicturesById(Integer informpicturesId) {
-        // ดึงข้อมูลจาก inform_picturesRepository ตรง ๆ โดยใช้ ID
-        return inform_picturesRepository.findById(informpicturesId).orElse(null);
-    }
-
-    public List<Inform_pictures> savedsaveInform_pictures(List<Map<String, Object>> requestDataList) {
-        List<Inform_pictures> savedInformPictures = new ArrayList<>();
-
-        for (Map<String, Object> requestData : requestDataList) {
-            List<Map<String, String>> picturesList = (List<Map<String, String>>) requestData.get("informPicturesList");
-            Integer equipment_id = Integer.parseInt(requestData.get("equipment_id").toString());
-            Integer room_id = Integer.parseInt(requestData.get("room_id").toString());
-            Integer informrepair_id = Integer.parseInt(requestData.get("informrepair_id").toString());
-
-            for (Map<String, String> pictureData : picturesList) {
-                Inform_pictures informPictures = new Inform_pictures();
-                long nextId = inform_picturesRepository.count() + 1;
-                Integer informPicturesId = generateInformPicturesId(nextId);
-                informPictures.setInformpictures_id(informPicturesId);
-                informPictures.setPictureUrl(pictureData.get("pictureUrl"));
-
-                // สร้าง InformRepairDetails
-                InformRepairDetailsID informRepairDetailsID = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
-                InformRepairDetails informRepairDetails = new InformRepairDetails();
-                informRepairDetails.setId(informRepairDetailsID);
-
-                // เชื่อมโยง Inform_pictures กับ InformRepairDetails
-                informPictures.setInformRepairDetails(informRepairDetails);
-
-                // บันทึกข้อมูลรูปภาพลงในฐานข้อมูลและเก็บใน savedInformPictures
-                savedInformPictures.add(inform_picturesRepository.save(informPictures));
-            }
-        }
-
-        return savedInformPictures;
-    }
-
+//    @Override
+//    public List<Inform_pictures> ListInformPictures() {
+//        return inform_picturesRepository.findAll();
+//    }
+//
+//    public Inform_pictures getInformPicturesById(Integer informpicturesId) {
+//        // ดึงข้อมูลจาก inform_picturesRepository ตรง ๆ โดยใช้ ID
+//        return inform_picturesRepository.findById(informpicturesId).orElse(null);
+//    }
+//
+//    public List<Inform_pictures> savedsaveInform_pictures(List<Map<String, Object>> requestDataList) {
+//        List<Inform_pictures> savedInformPictures = new ArrayList<>();
+//
+//        for (Map<String, Object> requestData : requestDataList) {
+//            List<Map<String, String>> picturesList = (List<Map<String, String>>) requestData.get("informPicturesList");
+//            Integer equipment_id = Integer.parseInt(requestData.get("equipment_id").toString());
+//            Integer room_id = Integer.parseInt(requestData.get("room_id").toString());
+//            Integer informrepair_id = Integer.parseInt(requestData.get("informrepair_id").toString());
+//
+//            for (Map<String, String> pictureData : picturesList) {
+//                Inform_pictures informPictures = new Inform_pictures();
+//                long nextId = inform_picturesRepository.count() + 1;
+//                Integer informPicturesId = generateInformPicturesId(nextId);
+//                informPictures.setInformpictures_id(informPicturesId);
+//                informPictures.setPictureUrl(pictureData.get("pictureUrl"));
+//
+//                // สร้าง InformRepairDetails
+//                InformRepairDetailsID informRepairDetailsID = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
+//                InformRepairDetails informRepairDetails = new InformRepairDetails();
+//                informRepairDetails.setId(informRepairDetailsID);
+//
+//                // เชื่อมโยง Inform_pictures กับ InformRepairDetails
+//                informPictures.setInformRepairDetails(informRepairDetails);
+//
+//                // บันทึกข้อมูลรูปภาพลงในฐานข้อมูลและเก็บใน savedInformPictures
+//                savedInformPictures.add(inform_picturesRepository.save(informPictures));
+//            }
+//        }
+//
+//        return savedInformPictures;
+//    }
+//
 
 
 
