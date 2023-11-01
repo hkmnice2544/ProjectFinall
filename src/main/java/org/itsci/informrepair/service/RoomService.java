@@ -1,5 +1,7 @@
 package org.itsci.informrepair.service;
 
+import org.itsci.informrepair.model.Room;
+
 import java.util.List;
 
 public interface RoomService {
@@ -18,4 +20,6 @@ public interface RoomService {
     List<String> findequipment_idByIdByroom_id(int room_id);
 
     List<String> findequipmentnameByIdByequipment_id(int equipment_id);
+
+    List<Room> findlistRoomByIdBybuilding_id(int building_id, String roomtype);
 }

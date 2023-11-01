@@ -40,6 +40,12 @@ public interface RoomRepository extends JpaRepository<Room,Integer> {
     @Query(value = "select equipmentname from equipment where equipment_id = :equipment_id",nativeQuery = true)
     List<String> findequipmentnameByIdByequipment_id(int equipment_id);
 
+    @Query(value = "select *from room where building_id = :building_id and roomtype = :roomtype",nativeQuery = true)
+    List<Room> findlistRoomByIdBybuilding_id(int building_id,String roomtype);
+
+
+
+
 
 
 

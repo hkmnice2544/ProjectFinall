@@ -1,5 +1,6 @@
 package org.itsci.informrepair.service;
 
+import org.itsci.informrepair.model.Room;
 import org.itsci.informrepair.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +60,11 @@ public class RoomServicelmpl implements RoomService{
         return roomRepository.findequipmentnameByIdByequipment_id(equipment_id);
     }
 
+
+    @Override
+    public List<Room> findlistRoomByIdBybuilding_id(int building_id, String roomtype) {
+        return roomRepository.findlistRoomByIdBybuilding_id(building_id,roomtype);
+    }
 
 
 }
