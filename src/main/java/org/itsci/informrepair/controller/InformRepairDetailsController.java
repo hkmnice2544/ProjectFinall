@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.itsci.informrepair.model.FileUploadUtil;
 import org.itsci.informrepair.model.InformRepairDetails;
 import org.itsci.informrepair.model.InformRepairDetailsID;
+import org.itsci.informrepair.model.Room;
 import org.itsci.informrepair.repository.InformRepiarDetailsRepository;
 import org.itsci.informrepair.service.InformRepairDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -188,6 +189,18 @@ public class InformRepairDetailsController {
         } catch (IOException e) {
             e.printStackTrace();
             return new ResponseEntity<>("เกิดข้อผิดพลาดในการอัพโหลดและบันทึกไฟล์", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    @PostMapping("/findequipment_idByIdByinformrepair_id/{informrepair_id}")
+    public ResponseEntity  findequipment_idByIdByinformrepair_id(@PathVariable Integer informrepair_id) {
+        try {
+            List<String> eqid = informRepairDetailsService. findequipment_idByIdByinformrepair_id(informrepair_id);
+            return new ResponseEntity<>(eqid, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

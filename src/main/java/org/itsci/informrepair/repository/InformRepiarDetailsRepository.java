@@ -34,5 +34,10 @@ public interface InformRepiarDetailsRepository extends JpaRepository<InformRepai
 
 
 
+    @Query(value = "select equipment_id from inform_repairdetails where informrepair_id = :informrepair_id",nativeQuery = true)
+    List<String> findequipment_idByIdByinformrepair_id(int informrepair_id);
+
+
+
 
 }

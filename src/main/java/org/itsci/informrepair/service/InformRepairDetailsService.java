@@ -31,5 +31,7 @@ public interface InformRepairDetailsService {
 
     List<InformRepairDetails> ListInformDetailsGroupbyinformrepair_id();
 
+    List<String> findequipment_idByIdByinformrepair_id(int informrepair_id);
+
 
 }
