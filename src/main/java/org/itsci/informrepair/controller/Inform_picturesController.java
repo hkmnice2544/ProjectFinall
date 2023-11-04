@@ -46,7 +46,7 @@ public class Inform_picturesController {
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
-            String uploadDir = "C:\\Users\\HKMGF\\IdeaProjects\\ProjectFinall\\src\\main\\java\\org\\itsci\\informrepair\\pictrues";
+            String uploadDir = "C:\\Users\\HKMGF\\IdeaProjects\\ProjectFinall\\src\\main\\java\\org\\itsci\\informrepair\\InformRepairDetails Pictures";
             String fileName = file.getOriginalFilename();
 
             FileUploadUtil.saveFile(uploadDir, fileName, file);

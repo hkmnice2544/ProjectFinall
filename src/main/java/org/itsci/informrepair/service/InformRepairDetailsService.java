@@ -33,5 +33,11 @@ public interface InformRepairDetailsService {
 
     List<String> findequipment_idByIdByinformrepair_id(int informrepair_id);
 
+    List<String> finddetailsByIdByinformrepair_id(int informrepair_id);
+
+    List<String> findamountByIdByinformrepair_id(int informrepair_id);
+
+    List<String> findpicturesByIdByinformrepair_id(int informrepair_id);
+
 
 }

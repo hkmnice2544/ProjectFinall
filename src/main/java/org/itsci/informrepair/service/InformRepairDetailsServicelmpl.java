@@ -4,6 +4,7 @@ package org.itsci.informrepair.service;
 import org.itsci.informrepair.model.*;
 import org.itsci.informrepair.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -233,6 +234,23 @@ public class InformRepairDetailsServicelmpl implements InformRepairDetailsServic
     public List<String> findequipment_idByIdByinformrepair_id(int informrepair_id) {
         return informRepiarDetailsRepository.findequipment_idByIdByinformrepair_id(informrepair_id);
     }
+
+    @Override
+    public List<String> finddetailsByIdByinformrepair_id(int informrepair_id) {
+        return informRepiarDetailsRepository.finddetailsByIdByinformrepair_id(informrepair_id);
+    }
+    @Override
+    public List<String> findamountByIdByinformrepair_id(int informrepair_id) {
+        return informRepiarDetailsRepository.findamountByIdByinformrepair_id(informrepair_id);
+    }
+
+    @Override
+    public List<String> findpicturesByIdByinformrepair_id(int informrepair_id) {
+        return informRepiarDetailsRepository.findpicturesByIdByinformrepair_id(informrepair_id);
+    }
+
+
+
 
 
 
