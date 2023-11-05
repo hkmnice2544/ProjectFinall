@@ -39,5 +39,5 @@ public interface InformRepairDetailsService {
 
     List<String> findpicturesByIdByinformrepair_id(int informrepair_id);
 
-
+    List<InformRepairDetails> findByIdByDetails(int informrepair_id);
 }

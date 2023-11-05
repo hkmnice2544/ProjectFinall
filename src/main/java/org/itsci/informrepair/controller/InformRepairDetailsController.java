@@ -241,6 +241,19 @@ public class InformRepairDetailsController {
         }
     }
 
+
+    @PostMapping("/findByIdByDetails/{informrepair_id}")
+    public ResponseEntity  findByIdByDetails(@PathVariable Integer informrepair_id) {
+        try {
+            List<InformRepairDetails> detailsList = informRepairDetailsService.findByIdByDetails(informrepair_id);
+            return new ResponseEntity<>(detailsList, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     private final String imageDirectory = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\InformRepairDetails Pictures";
 
     @GetMapping ("/image/{picture_url}")
