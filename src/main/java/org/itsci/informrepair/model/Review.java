@@ -18,14 +18,21 @@ public class Review {
 
 	@Id
 	private int review_id;
-	
+
+	@Column(name = "reviewer", nullable = false, length = 100)
 	private String reviewer;
+
+	@Column(name = "repairer", nullable = false)
 	private Date reviewdate;
-	private String repairscore; 
+
+	@Column(name = "repairscore", nullable = false, length = 1)
+	private String repairscore;
+
+	@Column(name = "comment", nullable = false)
 	private String comment;
 
-	@ManyToOne (cascade = CascadeType.ALL)
-	@JoinColumn(name = "report_id")
+	@ManyToOne (cascade = CascadeType.ALL )
+	@JoinColumn(name = "report_id", nullable = false)
 	private Reportrepair reportrepair;
 
 }

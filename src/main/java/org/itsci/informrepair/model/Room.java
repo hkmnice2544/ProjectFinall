@@ -17,15 +17,20 @@ public class Room {
 
     @Id
     private int room_id;
-
+    @Column(name = "roomtype", nullable = false, length = 50)
     private String roomtype;
+
+    @Column(name = "roomname", nullable = false, length = 100)
     private String roomname;
 
+    @Column(name = "floor", nullable = false, length = 50)
     private String floor;
+
+    @Column(name = "position",length = 50)
     private String position;
 
     @ManyToOne
-    @JoinColumn(name = "building_id")
+    @JoinColumn(name = "building_id", nullable = false)
     private Building building;
 
 }

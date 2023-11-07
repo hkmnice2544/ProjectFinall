@@ -23,17 +23,21 @@ public class InformRepair {
 	@Id
 	private int informrepair_id;
 
-
+	@Column(name = "informdate", nullable = false)
 	private Date informdate;
+
+	@Column(name = "informtype", nullable = false, length = 100)
 	private String informtype;
+
+	@Column(name = "status", nullable = false, length = 50)
 	private String status;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "room_id")
+	@JoinColumn(name = "room_id", nullable = false)
 	private Room room;
 
 

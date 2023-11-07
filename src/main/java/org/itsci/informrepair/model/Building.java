@@ -17,7 +17,8 @@ public class Building {
 	
 	@Id
 	private int building_id;
-	
+
+	@Column(name = "buildingname", nullable = false, length = 45)
 	private String buildingname;
 
 }

@@ -23,13 +23,18 @@ public class InformRepairDetails {
     })
     private RoomEquipment roomEquipment;
 
-    @ManyToOne
+    @ManyToOne  (cascade = CascadeType.ALL )
     @JoinColumn(name = "informrepair_id", referencedColumnName = "informrepair_id", insertable = false, updatable = false)
     @MapsId("informrepair_id")
     private InformRepair informrepairid;
 
+    @Column(name = "amount", nullable = false, length = 11)
     private int amount;
+
+    @Column(name = "details", nullable = false)
     private String details;
+
+    @Column(name = "pictures", nullable = false, length = 100)
     private String pictures;
 
 

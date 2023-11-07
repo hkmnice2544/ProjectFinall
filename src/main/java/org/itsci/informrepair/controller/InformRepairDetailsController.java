@@ -182,6 +182,7 @@ public class InformRepairDetailsController {
 
             for (MultipartFile file : files) {
                 String fileName = file.getOriginalFilename();
+                System.out.println("FILE NAME IS : " + fileName);
 
                 // บันทึกไฟล์ลงในเครื่องเซิร์ฟเวอร์
                 FileUploadUtil.saveFile(uploadDir, fileName, file);

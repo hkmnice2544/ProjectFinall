@@ -15,11 +15,11 @@ public class Report_pictures {
     @Id
     private int reportpictures_id;
 
-    @Column(name = "picture_url", length = 255)
+    @Column(name = "pictureUrl", nullable = false, length = 100)
     private String pictureUrl;
 
     @ManyToOne
-    @JoinColumn(name = "report_id")
+    @JoinColumn(name = "report_id", nullable = false)
     private Reportrepair reportrepair;
 
 

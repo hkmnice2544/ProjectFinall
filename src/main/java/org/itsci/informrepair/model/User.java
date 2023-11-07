@@ -20,11 +20,22 @@ public class User {
     @Id
     private int user_id;
 
+    @Column(name = "usertype", nullable = false, length = 50)
     private String usertype;
+
+    @Column(name = "firstname", nullable = false, length = 100)
     private String firstname;
+
+    @Column(name = "lastname", nullable = false, length = 100)
     private String lastname;
+
+    @Column(name = "username", nullable = false, length = 16)
     private String username;
+
+    @Column(name = "password", nullable = false, length = 16)
     private String password;
+
+    @Column(name = "mobile", nullable = false, length = 10)
     private String mobile;
 
     public int getUser_id() {

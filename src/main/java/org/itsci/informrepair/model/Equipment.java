@@ -18,6 +18,7 @@ public class Equipment {
     @Id
     private int equipment_id;
 
+    @Column(name = "equipmentname", nullable = false, length = 100)
     private String equipmentname;
 
 
