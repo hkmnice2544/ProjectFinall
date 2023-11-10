@@ -2,8 +2,9 @@ package org.itsci.informrepair.controller;
 
 import jakarta.persistence.EntityNotFoundException;
 import org.itsci.informrepair.model.Equipment;
+import org.itsci.informrepair.model.FileUploadUtil;
 import org.itsci.informrepair.model.InformRepair;
-import org.itsci.informrepair.model.InformRepairDetails;
+
 import org.itsci.informrepair.model.Review;
 import org.itsci.informrepair.service.InformRepairService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
+import org.springframework.web.multipart.MultipartFile;
 
 
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -26,19 +29,18 @@ public class InformRepairController {
         return "hi";
     }
 
-
     @PostMapping("/addInformRepair")
     public ResponseEntity addInformRepair(@RequestBody Map<String,String> map){
         try {
             InformRepair informRepair = informRepairService.saveInformRepair(map);
             return new ResponseEntity<>(informRepair, HttpStatus.OK);
 
-        }catch (Exception e){
-            e.printStackTrace();
+        }catch (Exception e){e.printStackTrace();
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-//
+
+
 //    @PostMapping("/addRoomEquipmentInform")
 //    public ResponseEntity<?> addRoomEquipmentInform(@RequestBody Map<String, String> map) {
 //        try {
@@ -54,7 +56,7 @@ public class InformRepairController {
 
 //saveRoomEquipment
 //
-//
+
     @PostMapping("/update")
     public ResponseEntity updateInformRepair(@RequestBody Map<String,String>map){
         try {
@@ -184,14 +186,29 @@ public class InformRepairController {
 //    }
 //
 
-    @PostMapping("/ViewListByinformrepair_id/{informrepair_id}")
-    public ResponseEntity ViewListByinformrepair_id(@PathVariable Integer informrepair_id){
+//    @PostMapping("/ViewListByinformrepair_id/{informrepair_id}")
+//    public ResponseEntity ViewListByinformrepair_id(@PathVariable Integer informrepair_id){
+//        try {
+//            List<InformRepair> ViewListByinformrepair_id = informRepairService.ViewListByinformrepair_id(informrepair_id);
+//            return new ResponseEntity<>(ViewListByinformrepair_id, HttpStatus.OK);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
+        @PostMapping("/upload")
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
-            List<InformRepair> ViewListByinformrepair_id = informRepairService.ViewListByinformrepair_id(informrepair_id);
-            return new ResponseEntity<>(ViewListByinformrepair_id, HttpStatus.OK);
-        } catch (Exception e) {
+            String uploadDir = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\InformRepairs Pictures";
+            String fileName = file.getOriginalFilename();
+
+            FileUploadUtil.saveFile(uploadDir, fileName, file);
+
+            return new ResponseEntity<>("ไฟล์ถูกอัพโหลดและบันทึกเรียบร้อย", HttpStatus.OK);
+        } catch (IOException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("เกิดข้อผิดพลาดในการอัพโหลดและบันทึกไฟล์", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

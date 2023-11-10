@@ -31,14 +31,23 @@ public class InformRepair {
 
 	@Column(name = "status", nullable = false, length = 50)
 	private String status;
+
+	@Column(name = "amount", nullable = false, length = 11)
+    private int amount;
+
+    @Column(name = "details", nullable = false)
+    private String details;
+
+    @Column(name = "pictures", nullable = false, length = 100)
+    private String pictures;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
 	@ManyToOne
-	@JoinColumn(name = "room_id", nullable = false)
-	private Room room;
+	@JoinColumn(name = "equipment_id", nullable = false)
+	private Equipment equipment;
 
 
 }

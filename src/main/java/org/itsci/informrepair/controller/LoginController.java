@@ -3,7 +3,6 @@ package org.itsci.informrepair.controller;
 import org.itsci.informrepair.model.Reportrepair;
 import org.itsci.informrepair.model.Review;
 import org.itsci.informrepair.model.User;
-import org.itsci.informrepair.service.InformRepairService;
 import org.itsci.informrepair.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

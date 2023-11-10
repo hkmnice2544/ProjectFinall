@@ -30,18 +30,9 @@ public class Reportrepair {
 	@Column(name = "status", nullable = false, length = 50)
 	private String status;
 
-	@Column(name = "statusdate", nullable = false)
-	private Date statusdate;
-
-
-	@ManyToOne
-	@JoinColumns({
-			@JoinColumn(name = "equipment_id", referencedColumnName = "equipment_id", nullable = false),
-			@JoinColumn(name = "room_id", referencedColumnName = "room_id", nullable = false),
-			@JoinColumn(name = "informrepair_id", referencedColumnName = "informrepair_id", nullable = false)
-	})
-	private InformRepairDetails informRepairDetails;
-
+    @ManyToOne (cascade = CascadeType.ALL )
+    @JoinColumn(name = "informrepair_id", nullable = false)
+    private InformRepair informRepair;
 
 
 }

@@ -1,11 +1,8 @@
 package org.itsci.informrepair.service;
 
 import org.itsci.informrepair.model.InformRepair;
-import org.itsci.informrepair.model.InformRepairDetails;
-import org.itsci.informrepair.model.Reportrepair;
 import org.itsci.informrepair.model.Review;
 import org.itsci.informrepair.repository.InformRepairRepository;
-import org.itsci.informrepair.repository.ReportrepairRepository;
 import org.itsci.informrepair.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +17,7 @@ public class ReviewServiceImpl implements ReviewService {
     private ReviewRepository reviewRepository;
 
     @Autowired
-    private ReportrepairRepository reportrepairRepository;
+    private InformRepairRepository informRepairRepository;
 
     @Override
     public List<Review> getAllReviews() {
@@ -40,11 +37,12 @@ public class ReviewServiceImpl implements ReviewService {
         String repairscore = map.get("repairscore");
         String comment = map.get("comment");
         Date reviewdate = new Date();
-        Integer report_id = Integer.parseInt(map.get("report_id"));
-        Reportrepair reportrepair = reportrepairRepository.getReferenceById(report_id);
+        String pictureUrl = map.get("pictureUrl");
 
+        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+        InformRepair informRepairs = informRepairRepository.getReferenceById(informrepair_id);
 
-        Review review = new Review(review_id,reviewer,reviewdate,repairscore,comment,reportrepair);
+        Review review = new Review(review_id,reviewer,reviewdate,repairscore,comment,pictureUrl,informRepairs);
         return reviewRepository.save(review);
     }
 //

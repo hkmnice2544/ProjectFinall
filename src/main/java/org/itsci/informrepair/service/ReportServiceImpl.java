@@ -21,18 +21,6 @@ public class ReportServiceImpl implements ReportrepairService {
     @Autowired
     private InformRepairRepository informRepairRepository;
 
-    @Autowired
-    private InformRepiarDetailsRepository informRepiarDetailsRepository;
-
-    @Autowired
-    private ReviewRepository reviewRepository;
-
-    @Autowired
-    private RoomEquipmentRepository roomEquipmentRepository;
-//
-//    @Autowired
-//    private ReviewRepository reviewRepository;
-
 
     @Override
     public List<Reportrepair> getAllReportrepairs() {
@@ -59,18 +47,12 @@ public class ReportServiceImpl implements ReportrepairService {
         Date reportdate = new Date();
         String details = map.get("details");
         String status = map.get("status");
-        Date statusdate = new Date();
-        Integer equipment_id = Integer.parseInt(map.get("equipment_id"));
-        Integer room_id = Integer.parseInt(map.get("room_id"));
         Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
-        InformRepairDetailsID informRepairDetailsID = new InformRepairDetailsID(equipment_id, room_id, informrepair_id);
+        InformRepair informRepairs = informRepairRepository.getReferenceById(informrepair_id);
 
-        // สร้าง InformRepairDetails จาก informRepairDetailsID
-        InformRepairDetails informRepairDetails = new InformRepairDetails();
-        informRepairDetails.setId(informRepairDetailsID);
 
         // เริ่มต้นการสร้าง Reportrepair
-        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, details, status, statusdate, informRepairDetails);
+        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, details, status,informRepairs);
 
         // บันทึก Reportrepair ใหม่
         Reportrepair savedReportrepair = reportrepairRepository.save(reportrepair);

@@ -2,7 +2,6 @@ package org.itsci.informrepair.controller;
 
 import org.itsci.informrepair.model.Equipment;
 import org.itsci.informrepair.model.InformRepair;
-import org.itsci.informrepair.model.InformRepairDetails;
 import org.itsci.informrepair.model.Reportrepair;
 import org.itsci.informrepair.service.InformRepairService;
 import org.itsci.informrepair.service.ReportrepairService;

@@ -14,7 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "building")
 public class Building {
-	
+
 	@Id
 	private int building_id;
 

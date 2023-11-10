@@ -22,7 +22,7 @@ public class Review {
 	@Column(name = "reviewer", nullable = false, length = 100)
 	private String reviewer;
 
-	@Column(name = "repairer", nullable = false)
+	@Column(name = "reviewdate", nullable = false)
 	private Date reviewdate;
 
 	@Column(name = "repairscore", nullable = false, length = 1)
@@ -31,8 +31,11 @@ public class Review {
 	@Column(name = "comment", nullable = false)
 	private String comment;
 
-	@ManyToOne (cascade = CascadeType.ALL )
-	@JoinColumn(name = "report_id", nullable = false)
-	private Reportrepair reportrepair;
+    @Column(name = "pictureUrl", nullable = false, length = 100)
+    private String pictureUrl;
+
+    @OneToOne (cascade = CascadeType.ALL )
+	@JoinColumn(name = "informrepair_id", nullable = false)
+	private InformRepair informRepair;
 
 }

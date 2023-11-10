@@ -21,6 +21,11 @@ public class Equipment {
     @Column(name = "equipmentname", nullable = false, length = 100)
     private String equipmentname;
 
+    @ManyToOne
+	@JoinColumn(name = "room_id", nullable = false)
+	private Room room;
+
+
 
 
 }
