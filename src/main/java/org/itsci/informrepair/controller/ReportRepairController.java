@@ -69,18 +69,18 @@ public class ReportRepairController {
             return ResponseEntity.notFound().build();
         }
     }
-//
-//    @PostMapping("/update")
-//    public ResponseEntity updateReportrepair(@RequestBody Map<String,String>map){
-//        try {
-//            Reportrepair reportrepairs = reportrepairService.updateReportrepair(map);
-//            return new ResponseEntity<>(reportrepairs, HttpStatus.OK);
-//
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+
+    @PostMapping("/update")
+    public ResponseEntity updateReportrepair(@RequestBody Map<String,String>map){
+        try {
+            Reportrepair reportrepairs = reportrepairService.updateReportrepair(map);
+            return new ResponseEntity<>(reportrepairs, HttpStatus.OK);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 }

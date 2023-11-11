@@ -19,9 +19,6 @@ public class Review {
 	@Id
 	private int review_id;
 
-	@Column(name = "reviewer", nullable = false, length = 100)
-	private String reviewer;
-
 	@Column(name = "reviewdate", nullable = false)
 	private Date reviewdate;
 

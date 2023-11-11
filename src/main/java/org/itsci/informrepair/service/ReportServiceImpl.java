@@ -73,34 +73,38 @@ public class ReportServiceImpl implements ReportrepairService {
         return savedReportrepair;
     }
 
+    @Override
+    public Reportrepair updateReportrepair(Map<String, String> map) {
+        Integer report_id = Integer.parseInt(map.get("report_id"));
+        String repairer = map.get("repairer");
+        Date reportdate = new Date();
+        String details = map.get("details");
+        String status = map.get("status");
+        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
+        InformRepair informRepairs = informRepairRepository.getReferenceById(informrepair_id);
 
 
+        // เริ่มต้นการสร้าง Reportrepair
+        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, details, status,informRepairs);
 
-    //
-//
-//    @Override
-//    public Reportrepair updateReportrepair(Map<String, String> map) {
-//        Integer report_id = Integer.parseInt(map.get("report_id"));
-//        String repairer = map.get("repairer");
-//        String details = map.get("details");
-//        Date reportdate = new Date();
-//        Date enddate = new Date();
-//        Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
-//        InformRepair informRepair = informRepairRepository.getReferenceById(informrepair_id);
-//
-//        // สร้าง Reportrepair ใหม่
-//        Reportrepair reportrepair = new Reportrepair(report_id, repairer, reportdate, enddate, details, informRepair);
-//
-//        // อัปเดตค่า informRepair!.status
-//        informRepair.setStatus(map.get("status"));
-//
-//        // บันทึกการเปลี่ยนแปลงในฐานข้อมูล
-//        informRepairRepository.save(informRepair);
-//
-//        // คืนค่า Reportrepair
-//        return reportrepair;
-//    }
-//
+        // บันทึก Reportrepair ใหม่
+        Reportrepair savedReportrepair = reportrepairRepository.save(reportrepair);
+
+        String newStatus = map.get("status"); // ดึงค่า status ใหม่จาก Map
+
+        InformRepair informRepair = informRepairRepository.findById(informrepair_id).orElse(null); // ค้นหา informRepair โดยใช้ informrepair_id
+
+        if (informRepair != null) {
+            informRepair.setStatus(newStatus); // อัปเดตค่า status ใน informRepair
+            informRepairRepository.save(informRepair); // บันทึกการเปลี่ยนแปลงลงในฐานข้อมูล
+        } else {
+            // คุณอาจจะต้องจัดการข้อผิดพลาดหากไม่พบ informRepair ที่ถูกต้อง
+            // เช่น สร้างข้อความผิดพลาดหรือการจัดการข้อผิดพลาดอื่น ๆ ตามสภาพความเป็นจริงของแอปของคุณ
+        }
+        // คืนค่า Reportrepair
+        return reportrepair;
+    }
+
 //    @Override
 //    public void deleteReportrepair(Integer report_id) {
 //        Reportrepair reportrepair = reportrepairRepository.getReferenceById(report_id);

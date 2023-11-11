@@ -33,7 +33,6 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public Review saveReview(Map<String, String> map) {
         Integer review_id = generateReviewId(reviewRepository.count()+1);
-        String reviewer = map.get("reviewer");
         String repairscore = map.get("repairscore");
         String comment = map.get("comment");
         Date reviewdate = new Date();
@@ -42,7 +41,7 @@ public class ReviewServiceImpl implements ReviewService {
         Integer informrepair_id = Integer.parseInt(map.get("informrepair_id"));
         InformRepair informRepairs = informRepairRepository.getReferenceById(informrepair_id);
 
-        Review review = new Review(review_id,reviewer,reviewdate,repairscore,comment,pictureUrl,informRepairs);
+        Review review = new Review(review_id,reviewdate,repairscore,comment,pictureUrl,informRepairs);
         return reviewRepository.save(review);
     }
 //

@@ -13,7 +13,7 @@ public interface ReportrepairService {
 
     Reportrepair saveReportrepair(Map<String, String> map) ;
 
-//    Reportrepair updateReportrepair(Map<String, String> map);
+    Reportrepair updateReportrepair(Map<String, String> map);
 ////    String uploadInformRepairImg (MultipartFile file) throws IOException;
 //
 //    //    Path downloadPostImg (String filePath) ;
