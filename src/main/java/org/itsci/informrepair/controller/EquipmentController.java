@@ -9,12 +9,10 @@ import org.itsci.informrepair.service.InformRepairService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -67,6 +65,17 @@ public class EquipmentController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>("Failed to get: InformRepair with ID "+equipment_id+" not found", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/findeqsbyroom_id/{roomId}")
+    public ResponseEntity findEquipmentsByRoomId (@PathVariable("roomId") String roomId) {
+        try {
+            List<Equipment> equipmentList = equipmentService.getEquipmentByRoomId(Integer.parseInt(roomId));
+            return new ResponseEntity<>(equipmentList, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Failed to get eqs by room id", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

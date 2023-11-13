@@ -16,6 +16,6 @@ public interface EquipmentService {
 
     //    Path downloadPostImg (String filePath) ;
     Equipment deleteEquipment(Integer equipment_id);
-
+    List<Equipment> getEquipmentByRoomId(Integer room_id);
 //    Set<Room> getRoomDoesNotHaveEquipment(Integer map);
 }

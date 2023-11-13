@@ -29,6 +29,12 @@ public class EquipmentServicelmpl implements EquipmentService{
     }
 
     @Override
+    public List<Equipment> getEquipmentByRoomId(Integer room_id) {
+
+        return equipmentRepository.findEquipmentByRoomId(room_id);
+    }
+
+    @Override
     public Equipment saveEquipment(Map<String, String> map) {
         return null;
     }
@@ -42,7 +48,6 @@ public class EquipmentServicelmpl implements EquipmentService{
     public Equipment deleteEquipment(Integer equipment_id) {
         return null;
     }
-
 
 
 //    public Set<Room> getRoomDoesNotHaveEquipment(Integer equipment_id) {
