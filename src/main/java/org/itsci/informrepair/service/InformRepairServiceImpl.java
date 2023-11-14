@@ -10,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +41,19 @@ public class InformRepairServiceImpl implements InformRepairService {
     @Autowired
     private JdbcTemplate jdbcTemplate; // สร้าง JdbcTemplate สำหรับทำงานกับฐานข้อมูล
 
+    private final String imgPath = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\InformRepairs Pictures\\";
+
 
     @Override
     public List<InformRepair> getAllInformRepairs() {
         return informRepairRepository.findAll(); //เรียกข้อมูลทั้งหมด
     }
+
+    @Override
+    public List<InformRepair> getNotReviewInformRepairs() {
+        return informRepairRepository.ReviewListByinformrepair_id(); //เรียกข้อมูลทั้งหมด
+    }
+
 
 //        @Override
 //    public List<InformRepair> getAllInformRepairs() {
@@ -71,6 +83,19 @@ public class InformRepairServiceImpl implements InformRepairService {
     @Override
     public InformRepair getInformRepairById(Integer informrepair_id) {
         return informRepairRepository.getReferenceById(informrepair_id);
+    }
+
+    @Override
+    public Path downloadImage(String filePath) {
+        return new File(imgPath + "\\" + filePath).toPath();
+    }
+
+    @Override
+    public String uploadImage(MultipartFile file) throws IOException {
+        System.out.println("FILE NAME IS : " + file.getOriginalFilename());
+        String newFileName = System.currentTimeMillis() + ".png";
+        file.transferTo(new File(imgPath + newFileName));
+        return newFileName;
     }
 
 ////    @Override

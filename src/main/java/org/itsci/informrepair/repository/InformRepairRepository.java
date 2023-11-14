@@ -11,7 +11,7 @@ public interface InformRepairRepository extends JpaRepository<InformRepair, Inte
 //    @Query(value = "SELECT informdetails_id FROM inform_repairdetails WHERE informrepair_id = :informrepair_id GROUP BY informdetails_id LIMIT 1;",nativeQuery = true)
 //    int findInformDetailIDById(int informrepair_id);
 
-//    @Query(value = "select * from informrepair where informrepair_id = :informrepair_id ", nativeQuery = true)
-//    List<InformRepair> ViewListByinformrepair_id(int informrepair_id);
+    @Query(value = "select * from informrepair where informrepair_id not in(select informrepair_id from review)", nativeQuery = true)
+    List<InformRepair> ReviewListByinformrepair_id();
 //
 }

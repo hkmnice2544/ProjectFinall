@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -134,6 +135,18 @@ public class InformRepairController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PostMapping("/review")
+    public ResponseEntity<List<InformRepair>> listNotReviewInformRepair() {
+        try {
+            List<InformRepair> informRepairs = informRepairService.getNotReviewInformRepairs();
+            return new ResponseEntity<>(informRepairs, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 //    @PostMapping("/amount/{informrepair_id}")
 //    public ResponseEntity findSumamountById(@PathVariable Integer informrepair_id){
 //        try {
@@ -201,7 +214,7 @@ public class InformRepairController {
 //        }
 //    }
 
-        @PostMapping("/upload")
+    @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             String uploadDir = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\InformRepairs Pictures";
@@ -217,6 +230,11 @@ public class InformRepairController {
     }
     private final String imageDirectory = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\InformRepairs Pictures";
 
+    @RequestMapping("/{filePath}")
+    public byte[] downloadImage (@PathVariable("filePath") String filePath) throws IOException {
+        byte[] image = Files.readAllBytes(informRepairService.downloadImage(filePath));
+        return image;
+    }
 
     @GetMapping ("/image/{picture_url}")
     public ResponseEntity<Resource> getImage(@PathVariable("picture_url") String imageName) {
@@ -235,7 +253,17 @@ public class InformRepairController {
         }
     }
 
-
+    @RequestMapping("/uploadimg")
+    public ResponseEntity uploadImage (@RequestParam("image") MultipartFile file) throws IllegalStateException, IOException {
+        try {
+            System.out.println("ori : " + file.getOriginalFilename());
+            String filePath = informRepairService.uploadImage(file);
+            return new ResponseEntity<>(filePath, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
 

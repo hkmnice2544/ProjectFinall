@@ -31,6 +31,12 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public int countReview(Integer informrepair_id) {
+
+        return reviewRepository.countReviewByInformrepair_id(informrepair_id);
+    }
+
+    @Override
     public Review saveReview(Map<String, String> map) {
         Integer review_id = generateReviewId(reviewRepository.count()+1);
         String repairscore = map.get("repairscore");

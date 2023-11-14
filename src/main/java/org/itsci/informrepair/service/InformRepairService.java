@@ -2,7 +2,10 @@ package org.itsci.informrepair.service;
 
 import org.itsci.informrepair.model.Equipment;
 import org.itsci.informrepair.model.InformRepair;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +37,11 @@ public interface InformRepairService { //เหมือนManager
 //
 //    //    Path downloadPostImg (String filePath) ;
     InformRepair deleteInformRepair(Integer informrepair_id);
+
+    Path downloadImage(String filePath);
+
+    String uploadImage(MultipartFile file) throws IOException;
+    List<InformRepair> getNotReviewInformRepairs();
 
 //    List<InformRepair> ViewListByinformrepair_id(int informrepair_id);
 

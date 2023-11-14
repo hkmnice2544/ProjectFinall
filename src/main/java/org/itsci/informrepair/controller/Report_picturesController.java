@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/report_pictures")
@@ -34,6 +36,27 @@ public class Report_picturesController {
         try {
             List<Report_pictures> saveReport_pictures = reportPicturesService.saveReport_pictures(Report_picturesList);
             return new ResponseEntity<>(saveReport_pictures, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PostMapping("/addreppic")
+    public ResponseEntity addReportPictures(@RequestBody Map<String, String> map) {
+        try {
+            Report_pictures reportPictures = reportPicturesService.addReportPictures(map);
+            return new ResponseEntity<>(reportPictures, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/delete/{reportpictures_id}")
+    public ResponseEntity deleteReportPictures (@PathVariable("reportpictures_id") String reportpictures_id) {
+        try {
+            reportPicturesService.deleteReportPictures(Integer.parseInt(reportpictures_id));
+            return new ResponseEntity<>("Delete report picture success!", HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -89,6 +112,24 @@ public class Report_picturesController {
         } catch (IOException e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @RequestMapping("/{filePath}")
+    public byte[] downloadImage (@PathVariable("filePath") String filePath) throws IOException {
+        byte[] image = Files.readAllBytes(reportPicturesService.downloadImage(filePath));
+        return image;
+    }
+
+    @RequestMapping("/uploadimg")
+    public ResponseEntity uploadImage (@RequestParam("image") MultipartFile file) throws IllegalStateException, IOException {
+        try {
+            System.out.println("ori : " + file.getOriginalFilename());
+            String filePath = reportPicturesService.uploadImage(file);
+            return new ResponseEntity<>(filePath, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

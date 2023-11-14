@@ -14,4 +14,5 @@ public interface ReviewService {
 //
 //    //    Path downloadPostImg (String filePath) ;
 //    void deleteReview(Integer review_id);
+int countReview(Integer informrepair_id);
 }

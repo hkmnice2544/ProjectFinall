@@ -68,6 +68,16 @@ public class ReviewController {
         }
     }
 
+    @PostMapping("/count/{informrepair_id}")
+    public ResponseEntity<?> countReview(@PathVariable Integer informrepair_id) {
+        try {
+            Integer count = reviewService.countReview(informrepair_id);
+            return ResponseEntity.ok(count);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
         @PostMapping("/uploadMultiple")
     public ResponseEntity<String> uploadMultipleFiles(@RequestParam("files") List<MultipartFile> files) {
         try {
@@ -91,7 +101,7 @@ public class ReviewController {
     }
     private final String imageDirectory = "C:\\Users\\HKMGF\\OneDrive - Maejo university\\Desktop\\New folder (3)\\flutterr\\images\\Review Pictures";
 
-        @GetMapping ("/image/{picture_url}")
+    @GetMapping ("/image/{picture_url}")
     public ResponseEntity<Resource> getImage(@PathVariable("picture_url") String imageName) {
         try {
             Path imagePath = Paths.get(imageDirectory).resolve(imageName);
